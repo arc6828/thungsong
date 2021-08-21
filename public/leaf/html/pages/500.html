@@ -1,0 +1,58 @@
+<!--
+
+=========================================================
+* Leaf Non-Profit environmental Bootstrap 4 Theme
+=========================================================
+
+* Product Page: https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme
+* Copyright 2019 Themesberg (https://www.themesberg.com)
+
+* Coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @@include('./_head.html', {
+        "path": "../..",
+        "title": "Leaf - 500 Server Error Page"
+    })
+</head>
+
+<body>
+    <main>
+        <section class="section p-0 min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-lg-6 my-6 my-lg-0 text-center">
+                        <img class="img-fluid w-75" src="../../assets/img/500-error.svg" alt="maintenance">
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div>
+                            <h4 class="mb-2 display-1 text-light">Error</h4>
+                            <h1 class="display-3">Something has gone <span class="font-weight-bold text-primary">seriously</span>
+                                wrong</h1>
+                            <p class="lead my-4">It's always time for a coffee break. We should be back by the time you
+                                finish your coffee.</p>
+                            <a class="btn btn-primary animate-hover" href="../../index.html"><i class="fas fa-chevron-left mr-3 pl-2 animate-left-3"></i>Go
+                                back home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @@include('./_scripts.html', {
+        "path": "../.."
+    })
+
+</body>
+
+</html>

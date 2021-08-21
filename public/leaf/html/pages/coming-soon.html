@@ -1,0 +1,78 @@
+<!--
+
+=========================================================
+* Leaf Non-Profit environmental Bootstrap 4 Theme
+=========================================================
+
+* Product Page: https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme
+* Copyright 2019 Themesberg (https://www.themesberg.com)
+
+* Coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @@include('./_head.html', {
+        "path": "../..",
+        "title": "Leaf - Coming Soon Page"
+    })
+</head>
+
+<body>
+    <main>
+        <!-- Hero -->
+        <section class="min-vh-100 bg-primary d-flex align-items-center text-white">
+            <div class="container">
+                <div class="row d-flex align-items-center mb-2">
+                    <div class="col-12 col-lg-6 mb-5 mb-lg-0 text-center text-lg-left">
+                        <!-- Heading -->
+                        <h1 class="display-2 font-weight-bold mb-4">
+                            We <span class="font-weight-bold">safeguard</span> the environment.
+                        </h1>
+                        <!-- Text -->
+                        <p class="lead mb-5">
+                            Over the past several decades, as the world has <br>increasingly warmed, so has its potential to burn.
+                        </p>
+                        <!-- Buttons -->
+                        <div>
+                            <a href="#" class="btn btn-md btn-white animate-up-2">
+                                <span class="btn-inner-text"><i class="fas fa-file-download mr-2"></i>Download report</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <img src="../../assets/img/illustrations/comingsoon.svg" alt="Coming Soon Illustration" class="img-fluid mb-4">
+                        <form class="row d-flex align-items-top">
+                            <div class="col-12 mx-auto">
+                                <div class="form-group mb-0">
+                                    <div class="d-flex flex-row justify-content-center mb-2">
+                                        <div class="input-group">
+                                            <input class="form-control form-control-xl border-0" placeholder="Your email address" type="email" required>
+                                            <div class="input-group-prepend">
+                                                <button type="submit" class="btn btn-secondary rounded-right">Subscribe</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="font-small text-white mb-0">Subscribe to our newsletter to be the first to hear about us!</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @@include('./_scripts.html', {
+        "path": "../.."
+    })
+</body>
+
+</html>

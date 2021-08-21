@@ -1,0 +1,85 @@
+<!--
+
+=========================================================
+* Leaf Non-Profit environmental Bootstrap 4 Theme
+=========================================================
+
+* Product Page: https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme
+* Copyright 2019 Themesberg (https://www.themesberg.com)
+
+* Coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @@include('./_head.html', {
+        "path": "..",
+        "title": "Leaf - Changelog"
+    })
+</head>
+
+<body>
+    <a href="#doc-index" class="btn btn-lg btn-primary btn-block rounded-0 d-lg-none" role="button" data-toggle="collapse" data-target="#doc-index" aria-expanded="false" aria-controls="doc-index">
+        <i class="fas fa-bars"></i>
+        <span class="h6 text-white">Menu</span>
+    </a>
+    <section class="container-fluid py-4 mt-lg-0">
+        <div class="row">
+            @@include('./_docs-sidebar.html', {
+                "path": "..",
+                "docs-path": "."
+            })
+            <!-- Content -->
+            <div class="col-12 col-lg-10">
+                <div class="row">
+                    <div class="col-xl-10 col-lg-9 px-xl-5 px-lg-3 px-md-3 py-md-5">
+                        <div class="border-bottom">
+                            <h1>Changelog</h1>
+                            <p class="lead text-dark">We keep track of version changes here</p>
+                        </div>
+                        <div class="my-5" id="getting-started">
+                            <h5 class="mb-3">Version 1.0 - 2019-11-04</h5>
+                            <ul class="mb-5">
+                                <li>Initial release files</li>
+                            </ul>
+                        </div>
+                        <div class="my-5">
+                            <h5 class="mb-3">Version 1.1 - 2019-11-07</h5>
+                            <ul class="mb-5">
+                                <li>Small visual fixes for menus & spacing between elements</li>
+                            </ul>
+                        </div>
+                        <div class="my-5">
+                            <h5 class="mb-3">Version 1.2 - 2019-12-20</h5>
+                            <ul class="mb-5">
+                                <li>Fix all W3C issues</li>
+                                <li>Improve homepage card spacings</li>
+                                <li>Small bug fixes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 d-none d-lg-block py-md-1 doc-sidebar border-left">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="#getting-started" class="nav-link " data-smooth-scroll>Changelog</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End of content -->
+            </div>
+        </div>
+    </section>
+    @@include('./_scripts.html', {
+        "path": ".."
+    })
+</body>
+
+</html>

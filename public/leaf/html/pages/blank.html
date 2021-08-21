@@ -1,0 +1,60 @@
+<!--
+
+=========================================================
+* Leaf Non-Profit environmental Bootstrap 4 Theme
+=========================================================
+
+* Product Page: https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme
+* Copyright 2019 Themesberg (https://www.themesberg.com)
+
+* Coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @@include('./_head.html', {
+        "path": "../..",
+        "title": "Leaf - Blank Starter Page"
+    })
+</head>
+
+<body>
+    @@include('./_navigation.html', {
+        "path": "../..",
+        "classes": "navbar-light navbar-theme-primary"
+    })
+    <main>
+        <section class="section section-xl">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Blank page</h1>
+                        <p>Hello world!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @@include('./_pre-footer.html', {
+            "path": "../.."
+        })
+
+    </main>
+
+    @@include('./_footer.html', {
+        "path": "../.."
+    })
+
+    @@include('./_scripts.html', {
+        "path": "../.."
+    })
+</body>
+
+</html>
