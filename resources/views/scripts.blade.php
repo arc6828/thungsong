@@ -22,4 +22,4 @@
 <script src="{{ asset ('leaf/node_modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
 
 <!-- Leaf JS -->
-<script src="{{ asset ('leaf/asset/js/leaf.js') }}"></script>
+<script src="{{ asset ('leaf/assets/js/leaf.js') }}"></script>

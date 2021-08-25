@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-4 col-md-5 col-lg-6 order-lg-2">
                         <!-- Image -->
-                        <img src="./asset/img/forest.svg" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration">
+                        <img src="{{ asset('leaf/assets/img/forest.svg') }}" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration">
                     </div>
                 </div>
             </div>
