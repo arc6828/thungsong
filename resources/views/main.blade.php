@@ -19,17 +19,11 @@
 <html lang="en">
 
 <head>
-    @@include('./_head.html', {
-        "path": ".",
-        "title": "Leaf - Non Profit environmental Bootstrap 4 Theme"
-    })
+    @include('_head')
 </head>
 
 <body>
-    @@include('./_navigation.html', {
-        "path": ".",
-        "classes": "navbar-transparent navbar-light navbar-theme-primary"
-    })
+    @include('_navigation')
     <main>
         <!-- Hero -->
         <section class="section-header bg-soft text-dark">
@@ -55,7 +49,7 @@
                     </div>
                     <div class="col-4 col-md-5 col-lg-6 order-lg-2">
                         <!-- Image -->
-                        <img src="./assets/img/forest.svg" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration">
+                        <img src="./asset/img/forest.svg" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration">
                     </div>
                 </div>
             </div>
@@ -154,7 +148,7 @@
                                 <p class="text-gray mb-0">The Earth's climate has changed throughout history</p>
                             </div>
                             <div>
-                                <img src="./assets/img/illustrations/evidence.svg" class="img-fluid img-center" alt="Illustration">
+                                <img src="./asset/img/illustrations/evidence.svg" class="img-fluid img-center" alt="Illustration">
                             </div>
                         </a>
                     </div>
@@ -166,7 +160,7 @@
                                 <p class="text-gray mb-0">Life on Earth depends on energy coming from the Sun</p>
                             </div>
                             <div>
-                                <img src="./assets/img/illustrations/causes.svg" class="img-fluid img-center" alt="Illustration">
+                                <img src="./asset/img/illustrations/causes.svg" class="img-fluid img-center" alt="Illustration">
                             </div>
                         </a>
                     </div>
@@ -178,7 +172,7 @@
                                 <p class="text-gray mb-0">NASA is a world leader in climate studies and Earth science</p>
                             </div>
                             <div>
-                                <img src="./assets/img/illustrations/solution.svg" class="img-fluid img-center" alt="Illustration">
+                                <img src="./asset/img/illustrations/solution.svg" class="img-fluid img-center" alt="Illustration">
                             </div>
                         </a>
                     </div>
@@ -196,7 +190,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4 d-flex">
                         <!-- Card -->
-                        <a class="card mb-5 mb-lg-0 pb-11 overlay-primary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./assets/img/activity-1.jpg">
+                        <a class="card mb-5 mb-lg-0 pb-11 overlay-primary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./asset/img/activity-1.jpg">
                             <!-- Body -->
                             <div class="card-body z-2 my-auto text-white" >
                                 <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Scoping Meeting</span>
@@ -215,7 +209,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 d-flex">
                         <!-- Card -->
-                        <a class="card mb-4 mb-lg-0 pb-11 overlay-secondary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./assets/img/activity-2.jpg">
+                        <a class="card mb-4 mb-lg-0 pb-11 overlay-secondary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./asset/img/activity-2.jpg">
                             <!-- Body -->
                             <div class="card-body z-2 my-auto text-white" >
                                 <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Lead Author Meetings</span>
@@ -234,7 +228,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 d-flex">
                         <!-- Card -->
-                        <a class="card mb-4 mb-lg-0 pb-11 overlay-tertiary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                        <a class="card mb-4 mb-lg-0 pb-11 overlay-tertiary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./asset/img/activity-3.jpg">
                             <!-- Body -->
                             <div class="card-body z-2 my-auto text-white" >
                                 <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
@@ -253,7 +247,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 d-flex d-lg-none">
                         <!-- Card -->
-                        <a class="card mb-5 mb-lg-0 pb-11 overlay-primary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                        <a class="card mb-5 mb-lg-0 pb-11 overlay-primary rounded bg-image animate-up-3" href="./html/pages/update.html" data-background="./asset/img/activity-3.jpg">
                             <!-- Body -->
                             <div class="card-body z-2 my-auto text-white" >
                                 <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
@@ -281,15 +275,13 @@
 
         @include('pricing')
 
-        @@include('./_pre-footer.html', {
-            "path": "."
-        })
+        @include('_pre-footer')
+            
 
     </main>
 
-    @@include('./_footer.html', {
-        "path": "."
-    })
+    @include('_footer')
+       
 
     @include('scripts' )
 </body>
