@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/thungsong', function () {
-    return view('main');
+    return view('home');
 });

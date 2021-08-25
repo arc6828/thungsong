@@ -1,8 +1,8 @@
 <!-- Primary Meta Tags -->
-<title>@@title</title>
+<title>@title</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="@@title">
+<meta name="title" content="@title">
 <meta name="author" content="Themesberg">
 <meta name="description"
     content="Leaf is the highest quality and most abundantly featured non profit environmental Bootstrap 4 theme ever created. Having a clean and beautiful UI and UX you can reach and truly get your message across about environmental issues.">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url"
     content="https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme">
-<meta property="og:title" content="@@title">
+<meta property="og:title" content="@title">
 <meta property="og:description"
     content="Leaf is the highest quality and most abundantly featured non profit environmental Bootstrap 4 theme ever created. Having a clean and beautiful UI and UX you can reach and truly get your message across about environmental issues.">
 <meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/leaf/leaf-preview.jpg">
@@ -24,7 +24,7 @@
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url"
     content="https://themesberg.com/product/web-templates/leaf-non-profit-environmental-bootstrap-4-theme">
-<meta property="twitter:title" content="@@title">
+<meta property="twitter:title" content="@title">
 <meta property="twitter:description"
     content="Leaf is the highest quality and most abundantly featured non profit environmental Bootstrap 4 theme ever created. Having a clean and beautiful UI and UX you can reach and truly get your message across about environmental issues.">
 <meta property="twitter:image"
@@ -69,3 +69,17 @@
 
     gtag('config', 'UA-141734189-6');
 </script>
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <style>
+    #map{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+  </style>

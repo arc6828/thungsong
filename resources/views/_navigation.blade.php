@@ -4,7 +4,7 @@
     <!-- End Google Tag Manager (noscript) -->
 
 <header class="header-global">
-        <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg @@classes headroom py-lg-2 px-lg-6">
+        <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg @classes headroom py-lg-2 px-lg-6">
             <div class="container">
                 <a class="navbar-brand" href="{{ asset ('leaf/index.html') }}">
                     <img class="navbar-brand-dark" src="{{ asset ('leaf/asset/img/brand/light.svg') }}" alt="Logo light">

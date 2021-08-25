@@ -8,22 +8,22 @@
         <h6 class="mb-2">Getting Started</h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="@@docs-path/introduction.html" class="nav-link">Introduction</a>
+                <a href="@docs-path/introduction.html" class="nav-link">Introduction</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/file-structure.html" class="nav-link">File Structure </a>
+                <a href="@docs-path/file-structure.html" class="nav-link">File Structure </a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/gulp.html" class="nav-link">Gulp </a>
+                <a href="@docs-path/gulp.html" class="nav-link">Gulp </a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/utilities.html" class="nav-link">Utilities</a>
+                <a href="@docs-path/utilities.html" class="nav-link">Utilities</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/javascript.html" class="nav-link">Javascript</a>
+                <a href="@docs-path/javascript.html" class="nav-link">Javascript</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/changelog.html" class="nav-link">Changelog </a>
+                <a href="@docs-path/changelog.html" class="nav-link">Changelog </a>
             </li>
         </ul>
     </div>
@@ -31,10 +31,10 @@
         <h6 class="mb-2">How To</h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="@@docs-path/how-to/color-scheme.html" class="nav-link">Edit Color Scheme</a>
+                <a href="@docs-path/how-to/color-scheme.html" class="nav-link">Edit Color Scheme</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/how-to/fonts.html" class="nav-link">Edit Fonts</a>
+                <a href="@docs-path/how-to/fonts.html" class="nav-link">Edit Fonts</a>
             </li>
         </ul>
     </div>
@@ -42,82 +42,82 @@
         <h6 class="mb-2">Components</h6>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="@@docs-path/components/accordions.html" class="nav-link">Accordions</a>
+                <a href="@docs-path/components/accordions.html" class="nav-link">Accordions</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/alerts.html" class="nav-link">Alerts</a>
+                <a href="@docs-path/components/alerts.html" class="nav-link">Alerts</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/badges.html" class="nav-link">Badges</a>
+                <a href="@docs-path/components/badges.html" class="nav-link">Badges</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/blog-cards.html" class="nav-link">Blog Cards</a>
+                <a href="@docs-path/components/blog-cards.html" class="nav-link">Blog Cards</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/bootstrap-carousels.html" class="nav-link">Bootstrap Carousels</a>
+                <a href="@docs-path/components/bootstrap-carousels.html" class="nav-link">Bootstrap Carousels</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/breadcrumbs.html" class="nav-link">Breadcrumbs</a>
+                <a href="@docs-path/components/breadcrumbs.html" class="nav-link">Breadcrumbs</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/buttons.html" class="nav-link">Buttons</a>
+                <a href="@docs-path/components/buttons.html" class="nav-link">Buttons</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/collapse.html" class="nav-link">Collapse</a>
+                <a href="@docs-path/components/collapse.html" class="nav-link">Collapse</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/counters.html" class="nav-link">Counters</a>
+                <a href="@docs-path/components/counters.html" class="nav-link">Counters</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/charts.html" class="nav-link">Charts</a>
+                <a href="@docs-path/components/charts.html" class="nav-link">Charts</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/forms.html" class="nav-link">Forms</a>
+                <a href="@docs-path/components/forms.html" class="nav-link">Forms</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/icon-boxes.html" class="nav-link">Icon Boxes</a>
+                <a href="@docs-path/components/icon-boxes.html" class="nav-link">Icon Boxes</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/modals.html" class="nav-link">Modals</a>
+                <a href="@docs-path/components/modals.html" class="nav-link">Modals</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/navbars.html" class="nav-link">Navbars</a>
+                <a href="@docs-path/components/navbars.html" class="nav-link">Navbars</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/navs.html" class="nav-link">Navs</a>
+                <a href="@docs-path/components/navs.html" class="nav-link">Navs</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/pagination.html" class="nav-link">Pagination</a>
+                <a href="@docs-path/components/pagination.html" class="nav-link">Pagination</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/popovers.html" class="nav-link">Popovers</a>
+                <a href="@docs-path/components/popovers.html" class="nav-link">Popovers</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/pricing-cards.html" class="nav-link">Pricing Cards</a>
+                <a href="@docs-path/components/pricing-cards.html" class="nav-link">Pricing Cards</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/profile-cards.html" class="nav-link">Profile Cards</a>
+                <a href="@docs-path/components/profile-cards.html" class="nav-link">Profile Cards</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/progress.html" class="nav-link">Progress</a>
+                <a href="@docs-path/components/progress.html" class="nav-link">Progress</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/steps.html" class="nav-link">Steps</a>
+                <a href="@docs-path/components/steps.html" class="nav-link">Steps</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/tabs.html" class="nav-link">Tabs</a>
+                <a href="@docs-path/components/tabs.html" class="nav-link">Tabs</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/timelines.html" class="nav-link">Timelines</a>
+                <a href="@docs-path/components/timelines.html" class="nav-link">Timelines</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/tooltips.html" class="nav-link">Tooltips</a>
+                <a href="@docs-path/components/tooltips.html" class="nav-link">Tooltips</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/typography.html" class="nav-link">Typography</a>
+                <a href="@docs-path/components/typography.html" class="nav-link">Typography</a>
             </li>
             <li class="nav-item">
-                <a href="@@docs-path/components/widgets.html" class="nav-link">Widgets</a>
+                <a href="@docs-path/components/widgets.html" class="nav-link">Widgets</a>
             </li>
         </ul>
     </div>
