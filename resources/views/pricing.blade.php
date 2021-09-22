@@ -36,8 +36,7 @@
                                 <li class="list-group-item"><i class="fas fa-times-circle mr-1 text-danger"></i>
                                     Multiple websites for clients</li>
                             </ul>
-                            <a href="https://themesberg.com/product/bootstrap/leaf-non-profit-environmental-bootstrap-4-theme"
-                                class="btn btn-primary btn-block animate-up-2" target="_blank">Buy Freelancer License</a>
+                            <a href="https://themesberg.com/product/bootstrap/leaf-non-profit-environmental-bootstrap-4-theme" class="btn btn-primary btn-block animate-up-2" target="_blank">Buy Freelancer License</a>
                         </div>
                         <!-- End Content -->
                     </div>
@@ -74,16 +73,14 @@
                                 <li class="list-group-item"><i class="fas fa-check-circle mr-1 text-secondary"></i>
                                     Multiple websites for clients</li>
                             </ul>
-                            <a href="https://themesberg.com/product/bootstrap/leaf-non-profit-environmental-bootstrap-4-theme"
-                                class="btn btn-outline-secondary btn-block" target="_blank">Buy Company License</a>
+                            <a href="https://themesberg.com/product/bootstrap/leaf-non-profit-environmental-bootstrap-4-theme" class="btn btn-outline-secondary btn-block" target="_blank">Buy Company License</a>
                         </div>
                         <!-- End Content -->
                     </div>
                 </div>
             </div>
         </div>
-        <p class="text-center mt-4"><a href="https://themesberg.com/licensing" target="_blank"
-                class="text-gray font-small font-weight-light"><i class="fas fa-question-circle mr-1"></i> Read more
+        <p class="text-center mt-4"><a href="https://themesberg.com/licensing" target="_blank" class="text-gray font-small font-weight-light"><i class="fas fa-question-circle mr-1"></i> Read more
                 about licensing</a></p>
     </div>
 </section>
