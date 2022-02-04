@@ -1,15 +1,15 @@
-<footer class="footer pt-10 pt-lg-11 pb-4 bg-soft text-dark mt-n9">
+<footer class="footer pt-9 pt-lg-9 pb-4 bg-soft text-dark mt-n9">
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <a class="footer-brand" href="{{ asset('leaf/index.html') }}">
+                <!-- <a class="footer-brand" href="{{ asset('leaf/index.html') }}">
                     <img src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="brand" />
                 </a>
                 <h6 class="text-primary pt-4 pb-5">
                     Leaf - Non Profit environmental Bootstrap 4 Theme
-                </h6>
+                </h6> -->
                 <!-- List -->
-                <ul class="
+                <!-- <ul class="
                             list-inline
                             list-group-flush
                             list-group-borderless
@@ -36,7 +36,7 @@
                     <li class="list-inline-item px-0 px-sm-2">
                         <a href="https://themesberg.com/contact" target="_blank" class="text-gray">Contact</a>
                     </li>
-                </ul>
+                </ul> -->
                 <!-- End List -->
             </div>
         </div>
@@ -51,7 +51,7 @@
                         ">
                     <p class="small text-gray mb-0">
                         ©
-                        <a href="https://themesberg.com" target="_blank">Themesberg</a>
+                        <a href="https://themesberg.com" target="_blank">THUNGSONG</a>
                         <span class="current-year"></span>. All rights
                         reserved.
                     </p>

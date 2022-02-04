@@ -79,6 +79,7 @@
     <!-- leaflet map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 
     <style>
         #map {
@@ -88,6 +89,11 @@
             left: 0;
             right: 0;
         }
+        h1, h2, h3, h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend, a, .card-header, th ,p, li{
+            font-family: "Prompt", "Open Sans script=all rev=1" !important;
+            font-weight: 400 !important;
+            
+        }
     </style>
 </head>
 
@@ -96,9 +102,10 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <x-leaf.header></x-leaf.header>
+    <x-leaf.header mode="{{ $mode }}"></x-leaf.header>
     <main>
         {{ $slot }}
+        <x-leaf.pre-footer></x-leaf.pre-footer>
     </main>
 
     <!-- Footer -->

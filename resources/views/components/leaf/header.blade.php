@@ -1,17 +1,7 @@
 <header class="header-global">
-    <nav id="navbar-main" class="
-                    navbar
-                    navbar-main
-                    navbar-expand-lg
-                    navbar-transparent
-                    navbar-light
-                    navbar-theme-primary
-                    headroom
-                    py-lg-2
-                    px-lg-6
-                ">
+    <nav id="navbar-main" class=" navbar navbar-main navbar-expand-lg navbar-transparent {{ $mode }} navbar-theme-primary headroom py-lg-2 px-lg-6 ">
         <div class="container">
-            <a class="navbar-brand" href="{{ asset('leaf/index.html') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img class="navbar-brand-dark" src="{{ asset('leaf/assets/img/brand/light.svg') }}" alt="Logo light" />
                 <img class="navbar-brand-light" src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="Logo dark" />
             </a>
@@ -19,7 +9,7 @@
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                            <a href="{{ asset('leaf/index.html') }}">
+                            <a href="{{ url('/') }}">
                                 <img src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="menuimage" />
                             </a>
                         </div>
@@ -30,18 +20,33 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-hover m-auto">
                     <li class="nav-item">
-                        <a href="{{ asset('leaf/index.html') }}" class="nav-link">
+                        <a href="{{ url('/') }}" class="nav-link">
                             <span class="nav-link-inner-text">หน้าหลัก</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('leaf/html/pages/about.html') }}" class="nav-link">
+                        <a href="{{ url('/about') }}" class="nav-link">
                             <span class="nav-link-inner-text">เกี่ยวกับเรา</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('leaf/html/pages/our-mission.html') }}" class="nav-link">
+                        <a href="{{ url('/predict') }}" class="nav-link">
                             <span class="nav-link-inner-text">แจ้งเตือน</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/statistic') }}" class="nav-link">
+                            <span class="nav-link-inner-text">ตัวเลขและสถิติ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-link-inner-text">บทความ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/contact') }}" class="nav-link">
+                            <span class="nav-link-inner-text">ติดต่อเรา</span>
                         </a>
                     </li>
                     <!-- <li class="nav-item dropdown">

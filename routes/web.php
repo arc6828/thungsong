@@ -13,13 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('home');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/', function () { return view('home'); });
+Route::get('/about', function () { return view('about'); });
+Route::get('/statistic', function () { return view('statistic'); });
+Route::get('/predict', function () { return view('predict'); });
+Route::get('/contact', function () { return view('contact'); });
