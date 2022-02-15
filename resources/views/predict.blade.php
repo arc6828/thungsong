@@ -131,7 +131,8 @@
                     <div class="card-group shadow-soft">
                         <div class="card border border-soft">
                             <div class="card-body p-5">
-                                <h5 class="text-gray text-center">Donor Country Contributions</h5>
+                                <x-leaf.predict.map></x-leaf.predict.map>
+                                <h5 class="text-gray text-center">Country Contributions</h5>
                                 <div class="d-flex flex-column flex-lg-row d-sm-flex justify-content-between align-items-center">
                                     <div class="my-5">
                                         <div id="vmap" style="width: 1012px; height: 500px;"></div>
