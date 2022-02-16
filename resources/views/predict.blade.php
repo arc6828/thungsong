@@ -10,7 +10,7 @@
                         ระบบแจ้งเตือนภัย
                     </h1>
                     <p class="lead mb-4 font-weight-bold">
-                    ระบบคาดการณ์ล่วงหน้าและแจ้งเตือนจะพยากรณ์สิ่งที่กำลังจะเกิดขึ้นและแจ้งเตือนให้คุณทราบโดยเร็วที่สุด เพื่อยับยั้งและบรรเทาความสูญเสียที่อาจจะเกิดขึ้นต่อชีวิตและทรัพย์สิน
+                        ระบบคาดการณ์ล่วงหน้าและแจ้งเตือนจะพยากรณ์สิ่งที่กำลังจะเกิดขึ้นและแจ้งเตือนให้คุณทราบโดยเร็วที่สุด เพื่อยับยั้งและบรรเทาความสูญเสียที่อาจจะเกิดขึ้นต่อชีวิตและทรัพย์สิน
                     </p>
                     <!-- Text -->
                     <!-- <button type="button" class="btn btn-lg btn-secondary animate-up-2" data-toggle="modal" data-target="#modal-form"><i class="fas fa-donate mr-2"></i>Donate</button> -->
@@ -125,7 +125,8 @@
     </section>
     <section class="section pt-0">
         <div class="container mt-n4 mt-xl-n8">
-            <div class="row d-none d-xl-block">
+            <div class="row" classes="row d-none d-xl-block">
+            <!-- <div class="row d-none d-xl-block"> -->
                 <div class="col-12">
                     <!-- Card -->
                     <div class="card-group shadow-soft">
@@ -160,46 +161,46 @@
                     <p class="lead lh-180 my-4">Since the LEAF was established in 2008, 14 donor countries have contributed over $8 billion in support of scaling up mitigation and adaptation action in developing and middle-income countries. These precious public resources are held in trust by the World Bank, and they are disbursed as grants, highly concessional loans, and risk mitigation instruments to recipient countries through multilateral development banks (MDBs).</p>
                 </div>
                 <div class="col-lg-5">
-
-                    <table class="table shadow-sm border border-soft">
-                        <thead>
-                            <tr>
-                                <th class="h5 border-0 pt-5 pl-5" scope="col">Country</th>
-                                <th class="h5 border-0 text-center" scope="col">Contribution</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">Australia</td>
-                                <td class="font-weight-normal text-center">$283.26m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">United Kingdom</td>
-                                <td class="font-weight-normal text-center">$2,830.80m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">France</td>
-                                <td class="font-weight-normal text-center">$136.17m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">Germany</td>
-                                <td class="font-weight-normal text-center">$680.67m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">Canada</td>
-                                <td class="font-weight-normal text-center">$277.03m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pl-5">Japan</td>
-                                <td class="font-weight-normal text-center">$1,234.14m</td>
-                            </tr>
-                            <tr class="table-white">
-                                <td class="font-weight-bold pb-5 pl-5">United States</td>
-                                <td class="font-weight-normal text-center">$2,000.04m</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table class="table shadow-sm border border-soft">
+                            <thead>
+                                <tr>
+                                    <th class="h5 border-0 pt-5 pl-5" scope="col">Country</th>
+                                    <th class="h5 border-0 text-center" scope="col">Contribution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">Australia</td>
+                                    <td class="font-weight-normal text-center">$283.26m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">United Kingdom</td>
+                                    <td class="font-weight-normal text-center">$2,830.80m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">France</td>
+                                    <td class="font-weight-normal text-center">$136.17m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">Germany</td>
+                                    <td class="font-weight-normal text-center">$680.67m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">Canada</td>
+                                    <td class="font-weight-normal text-center">$277.03m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pl-5">Japan</td>
+                                    <td class="font-weight-normal text-center">$1,234.14m</td>
+                                </tr>
+                                <tr class="table-white">
+                                    <td class="font-weight-bold pb-5 pl-5">United States</td>
+                                    <td class="font-weight-normal text-center">$2,000.04m</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
