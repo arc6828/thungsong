@@ -26,3 +26,5 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/statistic', function () { return view('statistic'); });
 Route::get('/predict', function () { return view('predict'); });
 Route::get('/contact', function () { return view('contact'); });
+
+Route::get('livewire',function(){return view('livewire');});
