@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Thungsong Flood Project
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
@@ -21,11 +21,28 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## How does it work
+1. Schedule every hour by window Task Scheduler 
+2. รับข้อมูลจาก “คลังข้อมูลน้ำ” ผ่าน API
+3. รัน Model  ผ่าน Jupyter
+4. ได้ผลลัพธ์ออกมาเป็นไฟล์ในโฟลเดอร์ output
+- รูปภาพ (.png)
+- ข้อมูล (.csv)
+- metadata (.json)
+5. ส่งข้อมูล Output ไปเก็บไว้ที่ S3
+
+
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+
+## papermill
+Papermill is a tool for parameterizing and executing Jupyter Notebooks.
+https://papermill.readthedocs.io/en/latest/installation.html
+pip install papermill
+papermill Test.ipynb Testoutput.ipynb
+papermill local/input.ipynb s3://bkt/output.ipynb -p alpha 0.6 -p l1_ratio 0.1
 
 ## Laravel Sponsors
 
