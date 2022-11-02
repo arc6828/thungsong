@@ -2,7 +2,7 @@
     <div id="map" style="height: 500px;padding:20"></div>
     <!-- <div class="" style="position: absolute; bottom: 55px; left: 25px;"><img class="" src="https://weather.ckartisan.com/image/scale.png" width="30%"></div> -->
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-NoP20OejFNd_gxMizvmRCDHwRPg0gJI"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
     <script>
         //google.maps.event.addDomListener(window, 'load', init);
         var map;
@@ -16,7 +16,7 @@
         //var src = "https://csincube.com/us_states.kml";
         //var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
         // var src = "https://weather.ckartisan.com/storage/uploads/wL9wyTDWRs3snitOn4hUm3MnnQIIUj6m4NE7X5F8.zip ";
-        var src = "{{ url('/kml/kml.zip') }}";
+        // var src = "{{ url('/kml/kml.zip') }}";
         
 
 
@@ -28,15 +28,16 @@
                 //13.751288, 100.628847
                 zoom: 11
             });
+            
+            //KML OVERLAY  
+            // var kmlLayer = new google.maps.KmlLayer(src, {
+            //     suppressInfoWindows: true,
+            //     preserveViewport: true,
+            //     map: map
+            // });
+            // console.log("kmlLayer : ", kmlLayer);
 
-            var kmlLayer = new google.maps.KmlLayer(src, {
-                suppressInfoWindows: true,
-                preserveViewport: true,
-                map: map
-            });
-            console.log("kmlLayer : ", kmlLayer);
-
-            //OVERLAY                                        
+            //IMG OVERLAY                                        
 
             var bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(7.9810505258, 99.4672642786),
@@ -46,7 +47,8 @@
 
             // The photograph is courtesy of the U.S. Geological Survey.                                       
             // var srcImage = 'http://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
-            var srcImage = "{{ url('/kml/Tungsong_FM_2006 2006-02-10-07-00.png') }}";
+            // var srcImage = "{{ url('/kml/Tungsong_FM_2006 2006-02-10-07-00.png') }}";
+            var srcImage = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodoverlay.png";
 
             // The custom USGSOverlay object contains the USGS image,
             // the bounds of the image, and a reference to the map.
