@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ url('/blog') }}" class="nav-link">
                             <span class="nav-link-inner-text">บทความ</span>
                         </a>
                     </li>
