@@ -5,10 +5,11 @@
             <div class="row align-items-center">
                 <div class="col-12 d-md-none">
                     <h1 class="display-2 font-weight-bold mb-0">
-                        We<span class="font-weight-bold">
+                        {{-- We<span class="font-weight-bold">
                             safeguard
                         </span>
-                        the environment.
+                        the environment. --}}
+                        เเผนที่น้ำท่วม<br />เเละจักรกลเรียนรู้
                     </h1>
                 </div>
                 <div class="col-8 col-md-7 col-lg-6 order-lg-1">

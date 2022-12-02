@@ -94,6 +94,9 @@
             font-weight: 400 !important;
             
         }
+        #ofBar{
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -105,7 +108,7 @@
     <x-leaf.header mode="{{ $mode }}"></x-leaf.header>
     <main>
         {{ $slot }}
-        <x-leaf.pre-footer></x-leaf.pre-footer>
+        {{-- <x-leaf.pre-footer></x-leaf.pre-footer> --}}
     </main>
 
     <!-- Footer -->

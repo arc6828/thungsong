@@ -195,10 +195,10 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="d-none d-lg-block">
-                <!-- <a href="{{ asset('leaf/html/pages/donate.html') }}" role="button" class="btn btn-sm btn-warning animate-up-2">
+            {{-- <div class="d-lg-block">
+                <a href="{{ asset('leaf/html/pages/donate.html') }}" role="button" class="btn btn-sm btn-warning animate-up-2">
                     <i class="fas fa-donate mr-2"></i>Contribute
-                </a> -->
+                </a>
                 <a href="{{ asset('leaf/html/pages/sign-in.html') }}" role="button" class="btn btn-sm btn-secondary animate-up-2 ml-3">
                     <i class="fas fa-sign-in-alt mr-2"></i>Sign In
                 </a>
@@ -213,7 +213,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
+            </div> --}}
         </div>
     </nav>
 </header>
