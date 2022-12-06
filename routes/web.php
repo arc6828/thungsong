@@ -32,5 +32,6 @@ Route::get('/blog', function () {
     return view('blog',compact('blogObject')); 
 });
 Route::get('/contact', function () { return view('contact'); });
+Route::get('/chart', function () { return view('chart'); });
 
 Route::get('livewire',function(){return view('livewire');});
