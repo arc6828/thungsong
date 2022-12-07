@@ -45,6 +45,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/gallery') }}" class="nav-link">
+                            <span class="nav-link-inner-text">คลังภาพ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('/contact') }}" class="nav-link">
                             <span class="nav-link-inner-text">ติดต่อเรา</span>
                         </a>

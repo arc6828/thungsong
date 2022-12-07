@@ -16,7 +16,8 @@
                     <!-- Heading -->
                     <!-- <h1 class="display-2 font-weight-bold d-none d-md-inline">We<span class="font-weight-bold">
                                 safeguard </span> the environment.</h1> -->
-                    <h1 class="
+                    <h1
+                        class="
                                     display-2
                                     font-weight-bold
                                     d-none d-md-inline
@@ -45,14 +46,16 @@
                             </a>
                         </div> -->
                     <div class="mt-4 mt-lg-5 mb-5 mb-lg-0">
-                        <a href="./html/pages/our-mission.html" class="
+                        <a href="./html/pages/our-mission.html"
+                            class="
                                         btn btn-md btn-primary
                                         animate-up-2
                                         mr-3
                                     ">
                             <span class="btn-inner-text"><i class="fas fa-book-reader mr-2"></i>ดูการพยากรณ์</span>
                         </a>
-                        <a href="#" class="
+                        <a href="#"
+                            class="
                                         btn btn-md btn-white
                                         animate-up-2
                                         d-none d-lg-inline-block
@@ -64,7 +67,8 @@
                 <div class="col-4 col-md-5 col-lg-6 order-lg-2">
                     <!-- Image -->
                     <!-- <img src="./assets/img/forest.svg" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration" /> -->
-                    <img src="{{ asset('leaf/assets/img/forest.svg')}}" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration" />
+                    <img src="{{ asset('leaf/assets/img/forest.svg') }}" class="img-fluid mb-lg-6 mb-0"
+                        alt="Forest Illustration" />
                 </div>
             </div>
         </div>
@@ -130,10 +134,10 @@
                                 </h6>
                                 <!-- Heading -->
                                 <h2 class="text-gray mb-0">
-                                    <span class="icon-danger mr-2"><i class="
-                                                        fas
-                                                        fa-long-arrow-alt-up
-                                                    "></i></span><span class="counter display-3 mr-2">3.3</span>
+                                    <span class="icon-danger mr-2">
+                                        <i class="fas fa-long-arrow-alt-up "></i>
+                                    </span>
+                                    <span class="counter display-3 mr-2">3.3</span>
                                 </h2>
                                 <!-- Text -->
                                 <span class="text-center text-muted mb-0">ม.ทรก</span>
@@ -328,7 +332,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center text-dark">
-                    <h2 class="h1">วิธีการที่เราใช้</h2>
+                    <h2>วิธีการที่เราใช้</h2>
                     <p class="lead text-gray my-4">
                         ระบบนี้เป็นรวมงานวิศวกรรมด้านเซนเซอร์
                         และการทำโมเดลน้ำท่วม
@@ -344,7 +348,8 @@
                 <div class="col-12 col-lg-4 mb-5">
                     <a class="card animate-up-3 shadow-sm border-soft" href="./html/pages/our-mission.html">
                         <div class="px-5 pt-4 pb-5">
-                            <span class="
+                            <span
+                                class="
                                             badge badge-secondary badge-pill
                                             mb-2
                                         ">Sensoring
@@ -354,11 +359,13 @@
                                 การจัดเก็บข้อมูลจากเซนเซอร์
                             </h6>
                             <p class="text-gray mb-0">
-                                ข้อมูลจากเซนเซอร์ต่างๆ จะได้รับมาจากหน่วยงานที่ดูแลด้านข้อมูลซึ่งข้อมูลที่เราใช้จะเป็นข้อมูล ทุติยภูมิ
+                                ข้อมูลจากเซนเซอร์ต่างๆ
+                                จะได้รับมาจากหน่วยงานที่ดูแลด้านข้อมูลซึ่งข้อมูลที่เราใช้จะเป็นข้อมูล ทุติยภูมิ
                             </p>
                         </div>
                         <div>
-                            <img src="{{ asset('leaf/assets/img/illustrations/evidence.svg') }}" class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/evidence.svg') }}"
+                                class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
@@ -369,11 +376,13 @@
                             <!-- ตอนเเรกเป็น h5 -->
                             <h6 class="mb-3">การสร้างโมเดลน้ำท่วม</h6>
                             <p class="text-gray mb-0">
-                                การจัดทำแผนที่น้ำท่วม โดยใช้ข้อมูลจากระดับน้ำและปริมาณฝนที่ได้รับมาทำการแสดงเป็นแผนที่ GIS และแสดงผลผลเว็บแอพพลิเคชั่นโดยใช้ซอฟแวร์ด้านวิศวกรรมน้ำ
+                                การจัดทำแผนที่น้ำท่วม โดยใช้ข้อมูลจากระดับน้ำและปริมาณฝนที่ได้รับมาทำการแสดงเป็นแผนที่
+                                GIS และแสดงผลผลเว็บแอพพลิเคชั่นโดยใช้ซอฟแวร์ด้านวิศวกรรมน้ำ
                             </p>
                         </div>
                         <div>
-                            <img src="{{ asset('leaf/assets/img/illustrations/causes.svg') }}" class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/causes.svg') }}"
+                                class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
@@ -383,54 +392,77 @@
                             <span class=" badge badge-tertiary badge-pill mb-2 ">Machine Learning</span>
                             <h5 class="mb-3">จักรกลเรียนรู้</h5>
                             <p class="text-gray mb-0">
-                                เลียนแบบการทำงานและวิธีออกผลลัพธ์ของซอฟแวร์ด้านวิศวกรรมน้ำ โดยในอนาคตจะเป็นซอฟแวร์ที่มาแทนที่ ซอฟแวร์ด้านวิศกรรมน้ำ
+                                เลียนแบบการทำงานและวิธีออกผลลัพธ์ของซอฟแวร์ด้านวิศวกรรมน้ำ
+                                โดยในอนาคตจะเป็นซอฟแวร์ที่มาแทนที่ ซอฟแวร์ด้านวิศกรรมน้ำ
                             </p>
                         </div>
                         <div>
-                            <img src="{{asset('leaf/assets/img/illustrations/solution.svg')}}" class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/solution.svg') }}"
+                                class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <section class="section section-lg pb-5">
+    <section class="section section-lg">
         <div class="container">
-            <div class="row justify-content-center mb-5 mb-lg-7">
+            <div class="row justify-content-center mb-4">
                 <div class="col-lg-10 text-center">
-                    <span class=" badge badge-primary badge-pill badge-lg mb-4 ">กิจกรรมของเรา</span>
-                    <p class="h2">
-                        กิจกรรมของเราที่ทำร่วมกับชาวบ้านในอำเภอทุ่งสง
-                    </p>
+                    <h2> บทความ </h2>
                 </div>
             </div>
+            @php
+                $blogs = $blogObject['channel']['item'];
+                $overlays = ['overlay-primary', 'overlay-secondary', 'overlay-tertiary'];
+                
+            @endphp
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
-                    <!-- Card -->
-                    <a class=" card mb-5 mb-lg-0 pb-11 overlay-primary rounded bg-image animate-up-3 " href="./html/pages/update.html" data-background="./assets/img/activity-1.jpg">
-                        <!-- Body -->
-                        <div class="card-body z-2 my-auto text-white">
-                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Scoping Meeting</span>
-                            <!-- Heading -->
-                            <h4 class="font-weight-normal mt-4 mb-3">
-                                Scoping meeting for the Synthesis Report
-                                of the Sixth Assessment Report
-                            </h4>
+                @foreach ($blogs as $item)
+                    <div class="col-12 col-md-6 d-flex">
+                        <!-- Card -->
+                        <a class=" card mb-5 {{ $overlays[$loop->index] }} rounded bg-image animate-up-3 "
+                            href="{{ $item['link'] }}">
+                            <!-- Body -->
+                            <div class="card-body z-2 my-auto text-white">
+                                <!-- Heading -->
+                                <h4 class="font-weight-normal mt-4 mb-3">
+                                    {{ $item['title'] }}
+                                </h4>
 
-                            <!-- Text -->
-                            <p class="mb-0">
-                                <i class="far fa-calendar-alt mr-2"></i>October 21,
-                                <span class="current-year"></span>
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
+
+                                <img src="{{ $item['image_url'] }}" class="card-img-top" alt="{{ $item['title'] }}"
+                                    height=300 />
+
+                                <!-- Text -->
+                                <p class="my-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>{{ $item['pubDate'] }}
+                                </p>
+                                <p class="card-text my-2">{{ $item['first_paragraph'] }}</p>
+                                <small class="d-block mb-2">
+                                    <i class="fas fa-user mr-2"></i>
+                                    {{-- January 20, <span class="current-year">2022</span> --}}
+                                    {{ $item['creator'] }}
+                                </small>
+                                <span>
+                                    <i class="fas fa-dot-circle mr-2"></i>
+                                    @php
+                                        $category_string = join(', ', $item['category']);
+                                    @endphp
+                                    {{ $category_string }}
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+                {{-- <div class="col-12 col-md-6 col-lg-4 d-flex">
                     <!-- Card -->
-                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-secondary rounded bg-image animate-up-3 " href="./html/pages/update.html" data-background="./assets/img/activity-2.jpg">
+                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-secondary rounded bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-2.jpg">
                         <!-- Body -->
                         <div class="card-body z-2 my-auto text-white">
-                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Lead Author Meetings</span>
+                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Lead Author
+                                Meetings</span>
                             <!-- Heading -->
                             <h4 class="font-weight-normal mt-4 mb-3">
                                 Third Lead Author Meeting of the IPCC
@@ -447,7 +479,8 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 d-flex">
                     <!-- Card -->
-                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-tertiary rounded bg-image animate-up-3 " href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-tertiary rounded bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
                         <!-- Body -->
                         <div class="card-body z-2 my-auto text-white">
                             <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
@@ -468,7 +501,87 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 d-flex d-lg-none">
                     <!-- Card -->
-                    <a class=" card  mb-5 mb-lg-0  pb-11  overlay-primary rounded  bg-image animate-up-3 " href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                    <a class=" card  mb-5 mb-lg-0  pb-11  overlay-primary rounded  bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                        <!-- Body -->
+                        <div class="card-body z-2 my-auto text-white">
+                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
+                            <!-- Heading -->
+                            <h4 class="font-weight-normal mt-4 mb-3">
+                                Second Joint Session of IPCC Working
+                                Groups I, II and III, in cooperation
+                                with the TFI and IPCC 50
+                            </h4>
+
+                            <!-- Text -->
+                            <p class="mb-0">
+                                <i class="far fa-calendar-alt mr-2"></i>August 1,
+                                <span class="current-year"></span>
+                            </p>
+                        </div>
+                    </a>
+                </div> --}}
+            </div>
+            <div class="col text-center mt-4">
+                <a href="{{ url('blog') }}" class="btn btn-md btn-primary animate-hover mr-3">
+                    <span class="btn-inner-text">
+                        ดูกิจกรรมทั้งหมดของเรา
+                        <i class=" fas fa-arrow-right animate-right-3 ml-2 "></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section section-lg ">
+        <div class="container">
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-10 text-center">
+                    <span class=" badge badge-secondary badge-pill badge-lg mb-4 ">กิจกรรมของเรา</span>
+                    <p class="h2">
+                        กิจกรรมของเราที่ทำร่วมกับชาวบ้านในอำเภอทุ่งสง
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach ($images as $m)
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <!-- Card -->
+                        <a class=" card mb-4 rounded bg-image animate-up-3 " href="{{ url('img/ground/' . $m) }}" target="_blank">
+                            <!-- Body -->
+                            <div class="card-body z-2 my-auto text-white">
+                                <img src="{{ url('img/ground/' . $m) }}" class="card-img-top"
+                                    alt="Related news image 1" height=200>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+                {{-- <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <!-- Card -->
+                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-secondary rounded bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-2.jpg">
+                        <!-- Body -->
+                        <div class="card-body z-2 my-auto text-white">
+                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Lead Author
+                                Meetings</span>
+                            <!-- Heading -->
+                            <h4 class="font-weight-normal mt-4 mb-3">
+                                Third Lead Author Meeting of the IPCC
+                                Working Group I Sixth Assessment Report
+                            </h4>
+
+                            <!-- Text -->
+                            <p class="mb-0">
+                                <i class="far fa-calendar-alt mr-2"></i>August 26,
+                                <span class="current-year"></span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <!-- Card -->
+                    <a class=" card mb-4 mb-lg-0 pb-11 overlay-tertiary rounded bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
                         <!-- Body -->
                         <div class="card-body z-2 my-auto text-white">
                             <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
@@ -487,17 +600,47 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-12 col-md-6 col-lg-4 d-flex d-lg-none">
+                    <!-- Card -->
+                    <a class=" card  mb-5 mb-lg-0  pb-11  overlay-primary rounded  bg-image animate-up-3 "
+                        href="./html/pages/update.html" data-background="./assets/img/activity-3.jpg">
+                        <!-- Body -->
+                        <div class="card-body z-2 my-auto text-white">
+                            <span class="font-weight-bold"><i class="fas fa-dot-circle mr-2"></i>Meeting</span>
+                            <!-- Heading -->
+                            <h4 class="font-weight-normal mt-4 mb-3">
+                                Second Joint Session of IPCC Working
+                                Groups I, II and III, in cooperation
+                                with the TFI and IPCC 50
+                            </h4>
+
+                            <!-- Text -->
+                            <p class="mb-0">
+                                <i class="far fa-calendar-alt mr-2"></i>August 1,
+                                <span class="current-year"></span>
+                            </p>
+                        </div>
+                    </a>
+                </div> --}}
             </div>
             <div class="col text-center mt-lg-6">
-                <a href="./html/pages/updates.html" class="btn btn-md btn-primary animate-hover mr-3">
-                    <span class="btn-inner-text">ดูกิจกรรมทั้งหมดของเรา<i class=" fas fa-arrow-right animate-right-3 ml-2 "></i></span>
+                <a href="{{ url('/gallery') }}" class="btn btn-md btn-secondary animate-hover mr-3">
+                    <span class="btn-inner-text">
+                        ดูกิจกรรมทั้งหมดของเรา
+                        <i class=" fas fa-arrow-right animate-right-3 ml-2 "></i>
+                    </span>
                 </a>
             </div>
         </div>
     </section>
+    <section class="section section-lg pb-5 mb-5">
+        <div class="container">
+
+        </div>
+    </section>
 
     <!-- End of section -->
-    
 
-    
+
+
 </x-leaf.theme>
