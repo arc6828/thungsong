@@ -53,14 +53,7 @@ Route::get('/blog', function () {
 });
 
 Route::get('/gallery', function () {
-    $images = [
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_1.jpg',
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_38.jpg',
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_65.jpg',
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_78.jpg',
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_147.jpg',
-        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_137.jpg',
-    ];
+    $images = ['LINE_ALBUM_Nakhon Sri _day 1_160222_220914_1.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_105.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_119.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_12.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_137.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_146.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_147.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_149.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_158.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_162.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_166.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_29.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_30.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_38.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_46.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_65.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_78.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_8.jpg', 'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_85.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_17.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_36.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_42.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_64.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_8.jpg', 'LINE_ALBUM_Nakhon Sri_day_2 170222_221202_9.jpg'];
     return view('gallery', compact('images'));
 });
 Route::get('/contact', function () {
