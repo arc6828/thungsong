@@ -1,9 +1,16 @@
 <header class="header-global">
+    <style>
+        .navbar-brand img {
+            height: 60px !important;
+        }
+    </style>
     <nav id="navbar-main" class=" navbar navbar-main navbar-expand-lg navbar-transparent {{ $mode }} navbar-theme-primary headroom py-lg-2 px-lg-6 ">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="navbar-brand-dark" src="{{ asset('leaf/assets/img/brand/light.svg') }}" alt="Logo light" />
-                <img class="navbar-brand-light" src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="Logo dark" />
+                <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO-Eng-White.png') }}" alt="Logo light" height="150" />
+                <img class="navbar-brand-light" src="{{ asset('img/logo/LOGO-Eng.png') }}" alt="Logo dark" height="150" />
+                <!-- <img class="navbar-brand-dark" src="{{ asset('leaf/assets/img/brand/light.svg') }}" alt="Logo light" />
+                <img class="navbar-brand-light" src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="Logo dark" /> -->
             </a>
             <div class="navbar-collapse collapse" id="navbar_global">
                 <div class="navbar-collapse-header">
@@ -202,7 +209,7 @@
             </div>
             <div class="d-lg-block">
                 {{-- <a href="{{ asset('leaf/html/pages/donate.html') }}" role="button" class="btn btn-sm btn-warning animate-up-2">
-                    <i class="fas fa-donate mr-2"></i>Contribute
+                <i class="fas fa-donate mr-2"></i>Contribute
                 </a>
                 <a href="{{ asset('leaf/html/pages/sign-in.html') }}" role="button" class="btn btn-sm btn-secondary animate-up-2 ml-3">
                     <i class="fas fa-sign-in-alt mr-2"></i>Sign In
@@ -210,7 +217,7 @@
             </div>
             <div class="d-flex d-lg-none align-items-center">
                 {{-- <a href="{{ asset('leaf/html/pages/donate.html') }}" role="button" class="btn btn-sm btn-warning animate-up-2">
-                    <i class="fas fa-donate mr-1"></i>Donate
+                <i class="fas fa-donate mr-1"></i>Donate
                 </a>
                 <a href="{{ asset('leaf/html/pages/sign-in.html') }}" role="button" class="btn btn-sm btn-secondary animate-up-2 ml-2">
                     <i class="fas fa-sign-in-alt mr-1"></i>Sign In
