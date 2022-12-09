@@ -38,7 +38,7 @@ Route::get("waterlevel/now/station/{station_id}",function($station_id){
     //station_id 795 สถานีทุ่งสง
     //station_id 1101568 สถานีบ้านประดู่
     $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-4 hour'));
+    $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
     $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
     $response = Http::get($url);
     return $response->json();
@@ -47,7 +47,7 @@ Route::get("rain/now/station/{station_id}",function($station_id){
     //station_id 795 ทุ่งสง
     //station_id 13892 สถานีฝายคลองท่าเลา
     $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-4 hour'));
+    $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
     $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
     $response = Http::get($url);
     return $response->json();
@@ -57,4 +57,57 @@ Route::get("waterlevel/predict",function(){
     $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodwaterlevel.json";
     $response = Http::get($url);
     return $response->json();
+});
+
+Route::get("statistic/now",function(){
+    $wl_urls = [
+        "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=795",
+        "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=1101568",
+    ];
+    $rain_urls = [
+        "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id=795",
+        "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id=13892",
+    ];
+
+    $wl_data = array_map(function($item){
+        $response = Http::get($item);
+        $d = $response->json()["data"]["graph_data"];
+        $collection = collect($d);
+        $first = $collection->first(function($item){return $item["value"]!=null;});
+        $last = $collection->last(function($item){return $item["value"]!=null;});
+        return [
+            "oldest"=> $first,
+            "avg"=> $collection->avg('value'),
+            "min"=>$collection->min('value'),
+            "max"=>$collection->max('value'),
+            "latest"=> $last,
+            "d"=>$last["value"] - $first["value"],
+        ];
+    },$wl_urls);
+
+
+    $rain_data = array_map(function($item){
+        $response = Http::get($item);
+        $d = $response->json()["data"];
+        $collection = collect($d);
+        $first = $collection->first(function($item){return $item["rainfall_value"]!=null;});
+        $last = $collection->last(function($item){return $item["rainfall_value"]!=null;});
+        return [
+            "oldest"=> $first,
+            "avg"=> $collection->avg('rainfall_value'),
+            "min"=>$collection->min('rainfall_value'),
+            "max"=>$collection->max('rainfall_value'),
+            "latest"=> $last,
+            "d"=>$last["rainfall_value"] - $first["rainfall_value"],
+        ];
+    },$rain_urls);
+
+    $data = [
+        "wl_thungsong" => $wl_data[0] ,
+        "wl_baanpradoo" => $wl_data[1] ,
+        "rain_thungsong" => $rain_data[0] ,
+        "rain_faiklongtalao" => $rain_data[1] ,
+    ];
+
+    return $data;
 });

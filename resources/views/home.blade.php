@@ -1,8 +1,8 @@
 <x-leaf.theme mode="navbar-light">
     <!-- Hero -->
-    <section class="section-header bg-soft text-dark">
+    <section class="section section-lg py-6 bg-soft text-dark">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center d-none">
                 <div class="col-12 d-md-none">
                     <h1 class="display-2 font-weight-bold mb-0">
                         {{-- We<span class="font-weight-bold">
@@ -16,8 +16,7 @@
                     <!-- Heading -->
                     <!-- <h1 class="display-2 font-weight-bold d-none d-md-inline">We<span class="font-weight-bold">
                                 safeguard </span> the environment.</h1> -->
-                    <h1
-                        class="
+                    <h1 class="
                                     display-2
                                     font-weight-bold
                                     d-none d-md-inline
@@ -46,16 +45,14 @@
                             </a>
                         </div> -->
                     <div class="mt-4 mt-lg-5 mb-5 mb-lg-0">
-                        <a href="./html/pages/our-mission.html"
-                            class="
+                        <a href="./html/pages/our-mission.html" class="
                                         btn btn-md btn-primary
                                         animate-up-2
                                         mr-3
                                     ">
                             <span class="btn-inner-text"><i class="fas fa-book-reader mr-2"></i>ดูการพยากรณ์</span>
                         </a>
-                        <a href="#"
-                            class="
+                        <a href="#" class="
                                         btn btn-md btn-white
                                         animate-up-2
                                         d-none d-lg-inline-block
@@ -67,13 +64,12 @@
                 <div class="col-4 col-md-5 col-lg-6 order-lg-2">
                     <!-- Image -->
                     <!-- <img src="./assets/img/forest.svg" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration" /> -->
-                    <img src="{{ asset('leaf/assets/img/forest.svg') }}" class="img-fluid mb-lg-6 mb-0"
-                        alt="Forest Illustration" />
+                    <img src="{{ asset('leaf/assets/img/forest.svg') }}" class="img-fluid mb-lg-6 mb-0" alt="Forest Illustration" />
                 </div>
             </div>
         </div>
     </section>
-    <section class="section section-lg py-0">
+    <section class="section section-lg py-4">
         <div class="container mt-n5 mt-md-n6">
             <div class="row">
                 <div class="col-12">
@@ -82,253 +78,99 @@
                         <div class="card border-left-md border-soft">
                             <div class="card-body text-center">
                                 <h6 class="font-weight-bold mb-2">
-                                    น้ำฝนฝายคลองเปิก
+                                    ระดับน้ำ - ทุ่งสง
                                 </h6>
                                 <!-- Heading -->
-                                <h2 class="text-gray mb-0">
+                                <h2 class="text-gray mb-0" id="wl_thungsong">
                                     <span class="icon-danger mr-2">
-                                        <i class=" fas fa-long-arrow-alt-up "></i>
+                                        <!-- <i class=" fas fa-long-arrow-alt-up "></i> -->
+                                        <i class="fas "></i>
                                     </span>
-                                    <span class="counter display-3 mr-2">412</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    น้ำฝนน้ำตกปลิว
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0">
-                                    <span class="icon-danger mr-2">
-                                        <i class=" fas fa-long-arrow-alt-up "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">1.9</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    น้ำฝนบ้านไสใหญ่
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0">
-                                    <span class="icon-danger mr-2">
-                                        <i class=" fas fa-long-arrow-alt-down "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">13</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    ระดับน้ำสถานีทุ่งสง
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0">
-                                    <span class="icon-danger mr-2">
-                                        <i class="fas fa-long-arrow-alt-up "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">3.3</span>
+                                    <span class="counter display-3 mr-2">0</span>
                                 </h2>
                                 <!-- Text -->
                                 <span class="text-center text-muted mb-0">ม.ทรก</span>
+                            </div>
+                        </div>
+                        <div class="card border-left-md border-soft">
+                            <div class="card-body text-center">
+                                <h6 class="font-weight-bold mb-2">
+                                    ปริมาณฝน - ทุ่งสง
+                                </h6>
+                                <!-- Heading -->
+                                <h2 class="text-gray mb-0" id="rain_thungsong">
+                                    <span class="icon-danger mr-2">
+                                        <!-- <i class=" fas fa-long-arrow-alt-up "></i> -->
+                                        <i class="fas "></i>
+                                    </span>
+                                    <span class="counter display-3 mr-2" >0.0</span>
+                                </h2>
+                                <!-- Text -->
+                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
+                            </div>
+                        </div>
+                        <div class="card border-left-md border-soft">
+                            <div class="card-body text-center">
+                                <h6 class="font-weight-bold mb-2">
+                                    ระดับน้ำ - บ้านประดู่
+                                </h6>
+                                <!-- Heading -->
+                                <h2 class="text-gray mb-0" id="wl_baanpradoo">
+                                    <span class="icon-danger mr-2">
+                                        <!-- <i class=" fas fa-long-arrow-alt-down "></i> -->
+                                        <i class="fas "></i>
+                                    </span>
+                                    <span class="counter display-3 mr-2">0</span>
+                                </h2>
+                                <!-- Text -->
+                                <span class="text-center text-muted mb-0">ม.ทรก</span>
+                            </div>
+                        </div>
+                        <div class="card border-left-md border-soft">
+                            <div class="card-body text-center">
+                                <h6 class="font-weight-bold mb-2">
+                                    ปริมาณฝน - ฝายคลองท่าเลา
+                                </h6>
+                                <!-- Heading -->
+                                <h2 class="text-gray mb-0" id="rain_faiklongtalao">
+                                    <span class="icon-danger mr-2">
+                                        <!-- <i class="fas fa-long-arrow-alt-up "></i> -->
+                                        <i class="fas "></i>
+                                    </span>
+                                    <span class="counter display-3 mr-2">0</span>
+                                </h2>
+                                <!-- Text -->
+                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            // api/statistic/now
+            document.addEventListener('DOMContentLoaded', async (event) => {
+                console.log('DOM fully loaded and parsed');
+                let promise = await fetch("{{ url('api/statistic/now') }}");
+                let data = await promise.json();
+
+                console.log("STATISTIC : ",data);
+                document.querySelector("#wl_thungsong .counter").innerHTML = data.wl_thungsong.latest.value;
+                document.querySelector("#wl_baanpradoo .counter").innerHTML = data.wl_baanpradoo.latest.value;
+                document.querySelector("#rain_thungsong .counter").innerHTML = data.rain_thungsong.latest.rainfall_value;
+                document.querySelector("#rain_faiklongtalao .counter").innerHTML = data.rain_faiklongtalao.latest.rainfall_value;
+                
+                document.querySelector("#wl_thungsong i").classList.add(data.wl_thungsong.d >0 ? "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
+                document.querySelector("#wl_baanpradoo i").classList.add(data.wl_baanpradoo.d >0 ? "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
+                document.querySelector("#rain_thungsong i").classList.add(data.rain_thungsong.d >0 ? "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
+                document.querySelector("#rain_faiklongtalao i").classList.add(data.rain_faiklongtalao.d >0 ? "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
+            });
+        </script>
     </section>
-    <div class="section section-lg">
-        <div class="container">
-            <div class="display-5">
-                ทุ่งสง
-                เป็นอำเภอที่มีความเจริญเป็นอันดับสองของจังหวัดนครศรีธรรมราช
-                รองจากอำเภอเมืองนครศรีธรรมราช
-                เนื่องจากมีที่ตั้งอยู่ตรงกลางของภาคใต้และเป็นจุดศูนย์กลางคมนาคมทางบกทั้งรถยนต์และรถไฟ
-                มีสถานีตรวจวัดระดับน้ำ 1 สถานี้
-                และสถานีตรวจวัดระดับน้ำฝน 10 สถานี
-            </div>
-            <br />
-            <div class="row mb-4 mb-lg-6">
-                <!-- <div class="col-lg-6 pr-lg-5">
-                            <p class="h5 font-weight-bold lh-180">
-                                LEAF was created to provide policymakers with
-                                regular scientific assessments on climate
-                                change, its implications and potential future
-                                risks, as well as to put forward adaptation and
-                                mitigation options.
-                            </p>
-                        </div> -->
-                <div class="col-lg-6 pr-lg-5">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">สถานี</th>
-                                <th scope="col">ที่ตั้ง</th>
-                                <th scope="col">ระดับน้ำ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ทุ่งสง</td>
-                                <td>
-                                    ต.ปากเเพรก อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>51.30</td>
-                            </tr>
-                            <!-- <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                    </tr> -->
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">ชื่อสถานี</th>
-                                <th scope="col">ที่ตั้ง</th>
-                                <th scope="col">เวลา</th>
-                                <th scope="col">ฝนล่าสุด</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>บ้านคลองตูกเหนือ</td>
-                                <td>
-                                    ต.กะปาง อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>14.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        51
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    หน่วยพิทักษ์อุทยานเเห่งชาติที่ ขป.๔
-                                    (บ้านน้ำตก)
-                                </td>
-                                <td>
-                                    ต.น้ำตก อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>16.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        48.8
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ทุ่งสง</td>
-                                <td>
-                                    ต.ปากเเพรก อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>16.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        43.8
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>บ้านหิวราว</td>
-                                <td>
-                                    ต.เขาขาว อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>15.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        41
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ฝายคลองเปิก</td>
-                                <td>
-                                    ต.ถ้ำใหญ่ อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>16.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        40.8
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>รร.บ้านพูน</td>
-                                <td>
-                                    ต.กะปาง อ.ทุ่งสง จ.นครศรีธรรมราช
-                                </td>
-                                <td>16.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        37.4
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- <div class="col-lg-6">
-                            <p class="lead lh-180">
-                                Through its assessments, the LEAF determines the
-                                state of knowledge on climate change. It
-                                identifies where there is agreement in the
-                                scientific community on topics related to
-                                climate change, and where further research is
-                                needed. The reports are drafted and reviewed in
-                                several stages, thus guaranteeing objectivity
-                                and transparency. The LEAF does not conduct its
-                                own research.
-                            </p>
-                            <p class="lead lh-180">
-                                LEAF reports are neutral, policy-relevant but
-                                not policy-prescriptive. The assessment reports
-                                are a key input into the international
-                                negotiations to tackle climate change.
-                            </p>
-                        </div> -->
-                <div class="col-lg-6">
-                    <div id="map"></div>
-                    <script>
-                        var map = L.map("map").setView([0, 0], 1);
-                        L.tileLayer(
-                            "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=4XVGrxzCZYBYVpqyAVTs", {
-                                attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-                            }
-                        ).addTo(map);
-                        var marker = L.marker([
-                            8.169742463710204, 99.67182347414169,
-                        ]).addTo(map);
-                    </script>
-                </div>
-            </div>
-            <div class="col text-center">
-                <a href="./html/pages/about.html" class="btn btn-md btn-primary animate-up-2 mr-3">
-                    <span class="btn-inner-text"><i class="fas fa-book-open mr-2"></i>
-                        ดูข้อมูลย้อนหลัง
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <section class="section section-lg pb-10 pb-lg-11 bg-soft">
+
+    <x-leaf.predict.map2></x-leaf.predict.map2>
+
+    <section class="section section-lg py-6 bg-soft">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center text-dark">
@@ -340,16 +182,12 @@
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="section py-0">
-        <div class="container">
-            <div class="row mt-n9">
+
+            <div class="row mt-4">
                 <div class="col-12 col-lg-4 mb-5">
                     <a class="card animate-up-3 shadow-sm border-soft" href="./html/pages/our-mission.html">
                         <div class="px-5 pt-4 pb-5">
-                            <span
-                                class="
+                            <span class="
                                             badge badge-secondary badge-pill
                                             mb-2
                                         ">Sensoring
@@ -364,8 +202,7 @@
                             </p>
                         </div>
                         <div>
-                            <img src="{{ asset('leaf/assets/img/illustrations/evidence.svg') }}"
-                                class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/evidence.svg') }}" class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
@@ -381,8 +218,7 @@
                             </p>
                         </div>
                         <div>
-                            <img src="{{ asset('leaf/assets/img/illustrations/causes.svg') }}"
-                                class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/causes.svg') }}" class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
@@ -397,15 +233,14 @@
                             </p>
                         </div>
                         <div>
-                            <img src="{{ asset('leaf/assets/img/illustrations/solution.svg') }}"
-                                class="img-fluid img-center" alt="Illustration" />
+                            <img src="{{ asset('leaf/assets/img/illustrations/solution.svg') }}" class="img-fluid img-center" alt="Illustration" />
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-    <section class="section section-lg">
+    </section>
+    <section class="section section-lg py-6 ">
         <div class="container">
             <div class="row justify-content-center mb-4">
                 <div class="col-lg-10 text-center">
@@ -413,47 +248,45 @@
                 </div>
             </div>
             @php
-                $blogs = $blogObject['channel']['item'];
-                $overlays = ['overlay-primary', 'overlay-secondary', 'overlay-tertiary'];
-                
+            $blogs = $blogObject['channel']['item'];
+            $overlays = ['overlay-primary', 'overlay-secondary', 'overlay-tertiary'];
+
             @endphp
             <div class="row">
                 @foreach ($blogs as $item)
-                    <div class="col-12 col-md-6 d-flex">
-                        <!-- Card -->
-                        <a class=" card mb-5 {{ $overlays[$loop->index] }} rounded bg-image animate-up-3 "
-                            href="{{ $item['link'] }}">
-                            <!-- Body -->
-                            <div class="card-body z-2 my-auto text-white">
-                                <!-- Heading -->
-                                <h4 class="font-weight-normal mt-4 mb-3">
-                                    {{ $item['title'] }}
-                                </h4>
+                <div class="col-12 col-md-6 d-flex">
+                    <!-- Card -->
+                    <a class=" card mb-5 {{ $overlays[$loop->index] }} rounded bg-image animate-up-3 " href="{{ $item['link'] }}">
+                        <!-- Body -->
+                        <div class="card-body z-2 my-auto text-white">
+                            <!-- Heading -->
+                            <h4 class="font-weight-normal mt-4 mb-3">
+                                {{ $item['title'] }}
+                            </h4>
 
 
-                                <img src="{{ $item['image_url'] }}" class="card-img-top" alt="{{ $item['title'] }}"
-                                    height=300 />
+                            <img src="{{ $item['image_url'] }}" class="card-img-top" alt="{{ $item['title'] }}" height=300 />
 
-                                <!-- Text -->
-                                <p class="my-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>{{ $item['pubDate'] }}
-                                </p>
-                                <p class="card-text my-2">{{ $item['first_paragraph'] }}</p>
-                                <small class="d-block mb-2">
-                                    <i class="fas fa-user mr-2"></i>
-                                    {{-- January 20, <span class="current-year">2022</span> --}}
-                                    {{ $item['creator'] }}
-                                </small>
-                                <span>
-                                    <i class="fas fa-dot-circle mr-2"></i>
-                                    @php
-                                        $category_string = join(', ', $item['category']);
-                                    @endphp
-                                    {{ $category_string }}
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                            <!-- Text -->
+                            <p class="my-2">
+                                <i class="far fa-calendar-alt mr-2"></i>{{ $item['pubDate'] }}
+                            </p>
+                            <p class="card-text my-2">{{ $item['first_paragraph'] }}</p>
+                            <small class="d-block mb-2">
+                                <i class="fas fa-user mr-2"></i>
+                                {{-- January 20, <span class="current-year">2022</span> --}}
+                                {{ $item['creator'] }}
+                            </small>
+                            <span>
+                                <i class="fas fa-dot-circle mr-2"></i>
+                                @php
+                                $category_string = join(', ', $item['category']);
+                                @endphp
+                                {{ $category_string }}
+                            </span>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
                 {{-- <div class="col-12 col-md-6 col-lg-4 d-flex">
                     <!-- Card -->
@@ -532,7 +365,7 @@
             </div>
         </div>
     </section>
-    <section class="section section-lg ">
+    <section class="section section-lg py-6 ">
         <div class="container">
             <div class="row justify-content-center mb-4">
                 <div class="col-lg-10 text-center">
@@ -545,16 +378,15 @@
 
             <div class="row">
                 @foreach ($images as $m)
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <!-- Card -->
-                        <a class=" card mb-4 rounded bg-image animate-up-3 " href="{{ url('img/ground/' . $m) }}" target="_blank">
-                            <!-- Body -->
-                            <div class="card-body z-2 my-auto text-white">
-                                <img src="{{ url('img/ground/' . $m) }}" class="card-img-top"
-                                    alt="Related news image 1" height=200>
-                            </div>
-                        </a>
-                    </div>
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <!-- Card -->
+                    <a class=" card mb-4 rounded bg-image animate-up-3 " href="{{ url('img/ground/' . $m) }}" target="_blank">
+                        <!-- Body -->
+                        <div class="card-body z-2 my-auto text-white">
+                            <img src="{{ url('img/ground/' . $m) }}" class="card-img-top" alt="Related news image 1" height=200>
+                        </div>
+                    </a>
+                </div>
                 @endforeach
                 {{-- <div class="col-12 col-md-6 col-lg-4 d-flex">
                     <!-- Card -->
@@ -633,7 +465,7 @@
             </div>
         </div>
     </section>
-    <section class="section section-lg pb-5 mb-5">
+    <section class="section section-lg py-6 pb-5 mb-5">
         <div class="container">
 
         </div>

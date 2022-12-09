@@ -29,11 +29,11 @@
                             <span class="nav-link-inner-text">เกี่ยวกับเรา</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ url('/predict') }}" class="nav-link">
                             <span class="nav-link-inner-text">แจ้งเตือน</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="{{ url('/statistic') }}" class="nav-link">
                             <span class="nav-link-inner-text">ตัวเลขและสถิติ</span>

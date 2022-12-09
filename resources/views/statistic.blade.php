@@ -20,6 +20,9 @@
         <div class="container mt-n5">
             <div class="row">
                 <div class="col">
+                    <x-leaf.predict.map2></x-leaf.predict.map2>
+                </div>
+                <div class="col d-none">
                     <!-- Tab -->
                     <nav>
                         <div class="nav nav-tabs flex-column flex-md-row shadow-sm border-soft justify-content-around bg-white rounded mb-3 py-3" id="nav-tab" role="tablist">
