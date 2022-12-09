@@ -38,7 +38,21 @@ Route::get('/', function () {
     return view('home', compact('blogObject','images'));
 });
 Route::get('/about', function () {
-    return view('about');
+    //IMAGES
+    $images = [
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_1.jpg',
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_38.jpg',
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_65.jpg',
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_78.jpg',
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_147.jpg',
+        'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_137.jpg',
+    ];
+    $profiles = [
+        (object)[ "image" => "sitang.jpg" , "name" => "ผศ.ดร.สิตางศุ์ พิลัยหล้า" , "position" => "Project Manager" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
+        (object)[ "image" => "jirayu.jpg" , "name" => "นายจิรายุ พึ่งฉิ่ง" , "position" => "Machine Learning Developer" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
+        (object)[ "image" => "chavalit.jpg" , "name" => "นายชวลิต โควีระวงศ์" , "position" => "Software Engineer" , "organization" => "หลักสูตรวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์"  ],
+    ];
+    return view('about',compact('profiles','images'));
 });
 Route::get('/statistic', function () {
     return view('statistic');

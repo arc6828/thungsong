@@ -18,14 +18,16 @@
                 return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value !== null;
             });
             wl_now = wl_now.map(function(item) {
-                return [item.datetime, item.value, null];
+                return [item.datetime,  50.57,55.20,  item.value, null];
             });
             //
             wl_predict = wl_predict.map(function(item, index) {
                 return [
                     (new Date(item.datetime + 30 * 60 * 1000 * index)).toISOString(),
+                    50.57,
+                    55.20, 
                     null,
-                    item["forecast_wl(msl)"]
+                    item["forecast_wl(msl)"], 
                 ];
             });
             // console.log(wl_predict);
@@ -42,7 +44,7 @@
                 return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value != null;
             });
             wl_now = wl_now.map(function(item) {
-                return [item.datetime, item.value];
+                return [item.datetime,  66.50, 67.08, item.value];
             });
             return wl_now;
         }
@@ -74,7 +76,7 @@
             let [wl_now, wl_predict] = await loadWaterLevelThungsong();
 
             let dataset = [
-                ['Year', 'ข้อมูลจริง', 'ข้อมูลทำนาย'],
+                ['Year', 'ระดับท้องน้ำ','ระดับตลิ่ง','ข้อมูลจริง', 'ข้อมูลทำนาย'],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -92,7 +94,13 @@
                 curveType: 'function',
                 legend: {
                     position: 'bottom'
-                }
+                },
+                series: {
+                    0: { lineDashStyle: [10, 5] },
+                    1: { lineDashStyle: [10, 5] },
+                    2: {  },
+                    3: {  },
+                },
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_thungsong'));
@@ -106,7 +114,7 @@
             let wl_now = await loadWaterLevelBannPradoo();
 
             let dataset = [
-                ['Year', 'ข้อมูลจริง'],
+                ['Year', 'ระดับท้องน้ำ','ระดับตลิ่ง','ข้อมูลจริง'],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -124,8 +132,11 @@
                 legend: {
                     position: 'bottom'
                 },
-                // width: 900,
-                // height: 500,
+                series: {
+                    0: { lineDashStyle: [10, 5] },
+                    1: { lineDashStyle: [10, 5] },
+                    2: {  },
+                },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_bann_pradoo'));
             chart.draw(data, options);
@@ -337,7 +348,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <h5>ระดับน้ำและระบบคาดการณ์อุทกภัยเรียลไทม์</h5>
+                    <h5><i class="fas fa-water mr-2"></i> ระดับน้ำและระบบคาดการณ์อุทกภัยเรียลไทม์</h5>
+                    {{-- <i class="fa-solid fa-arrow-up-wide-short"></i> --}}
                 </div>
             </div>
             <div class="row">
@@ -380,7 +392,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <h5>ปริมาณฝน</h5>
+                    <h5><i class="fas fa-cloud-rain mr-2"></i> ปริมาณฝน</h5>
                 </div>
             </div>
             <div class="row">
