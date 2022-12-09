@@ -6,9 +6,7 @@ use Livewire\Component;
 
 class Counter extends Component
 {
-    protected $listeners = [
-        'change'
-    ];
+    protected $listeners = [ 'change' ];
     public $path = "";
     public $count = 0;
     public $all = [];
@@ -58,7 +56,7 @@ class Counter extends Component
     public function onDistrictChanged(){
         $data = json_decode(file_get_contents($this->path), false);
         $zipcodes = array_filter($data,function($item){
-            return $item->amphoe == $this->amphoe_value && $item->province == $this->province_value ;
+            return $item->district == $this->districts && $item->amphoe == $this->amphoe_value && $item->province == $this->province_value ;
         });
         $zipcodes = array_map(function($item){
             return $item->zipcode;
