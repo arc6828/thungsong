@@ -1,4 +1,4 @@
-<x-leaf.theme mode="navbar-dark">
+<x-leaf.theme mode="navbar-dark" title="เกี่ยวกับเรา" image="{{ url('img/profile/sitang.jpg') }}">
     <!-- Hero -->
     <section class="section section-lg bg-image overlay-secondary text-white"
         data-background="{{ asset('leaf/assets/img/about.jpg') }}">
@@ -122,21 +122,22 @@
                         <!-- Profile Card -->
                         <div class="profile-card mb-5">
                             <div class="card shadow-sm border-soft">
-                                <img src="{{ asset('img/profile/' . $item->image) }}" class="card-img-top" alt="..."
-                                    style="height : 400px; object-fit:cover;">
+                                <img src="{{ asset('img/profile/' . $item->image) }}" class="card-img-top"
+                                    alt="..." style="height : 400px; object-fit:cover;">
 
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $item->name }}</h5>
                                     <h6 class="card-subtitle text-gray">{{ $item->position }}</h6>
                                     <p class="card-text my-2">{{ $item->organization }}</p>
                                     @if ($loop->first)
-                                    <p class="card-text my-2">
-                                        50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900
-                                        <br />0 2797 0999 ต่อ 1901-1904
-                                        <br /><a href="https://www.wre.eng.ku.ac.th">https://www.wre.eng.ku.ac.th</a>
-                                    </p>
+                                        <p class="card-text my-2">
+                                            50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900
+                                            <br />0 2797 0999 ต่อ 1901-1904
+                                            <br /><a
+                                                href="https://www.wre.eng.ku.ac.th">https://www.wre.eng.ku.ac.th</a>
+                                        </p>
                                     @endif
-                                    
+
                                     <ul class="social-buttons mt-3 d-none">
                                         <li>
                                             <a href="#" target="_blank" class="btn btn-link btn-facebook"

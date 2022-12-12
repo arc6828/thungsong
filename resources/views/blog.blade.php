@@ -1,4 +1,4 @@
-<x-leaf.theme mode="navbar-light">
+<x-leaf.theme mode="navbar-light" title="บทความ" description="บทความที่เกี่ยวข้องกับงายวิจัย ความรู้ที่เป็นประโยชน์และต้องการเผยแพร่สู่สาธารณะ" image="https://cdn-images-1.medium.com/max/1024/1*pnw6OuU-R4JXzgUUPWbmbg.jpeg">
     <section class="section section-header">
         <div class="container">
             <div class="row">

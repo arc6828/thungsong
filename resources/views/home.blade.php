@@ -145,12 +145,12 @@
                 let data = await promise.json();
 
                 console.log("STATISTIC : ", data);
-                document.querySelector("#wl_thungsong .counter").innerHTML = data.wl_thungsong.latest.value;
-                document.querySelector("#wl_baanpradoo .counter").innerHTML = data.wl_baanpradoo.latest.value;
-                document.querySelector("#rain_thungsong .counter").innerHTML = data.rain_thungsong.latest
-                    .rainfall_value;
-                document.querySelector("#rain_faiklongtalao .counter").innerHTML = data.rain_faiklongtalao.latest
-                    .rainfall_value;
+                document.querySelector("#wl_thungsong .counter").innerHTML = data.wl_thungsong.latest?data.wl_thungsong.latest.value:"0";
+                document.querySelector("#wl_baanpradoo .counter").innerHTML = data.wl_baanpradoo.latest?data.wl_baanpradoo.latest.value:"0";
+                document.querySelector("#rain_thungsong .counter").innerHTML = data.rain_thungsong.latest?data.rain_thungsong.latest
+                    .rainfall_value:"0";
+                document.querySelector("#rain_faiklongtalao .counter").innerHTML = data.rain_faiklongtalao.latest?data.rain_faiklongtalao.latest
+                    .rainfall_value:"0";
 
                 document.querySelector("#wl_thungsong i").classList.add(data.wl_thungsong.d > 0 ?
                     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");

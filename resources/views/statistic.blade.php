@@ -1,4 +1,4 @@
-<x-leaf.theme mode="navbar-dark">
+<x-leaf.theme mode="navbar-dark" title="ตัวเลขและสถิติ" description="ข้อมูลปัจจุบัน ข้อมูลย้อนหลัง ผลการวิเคราะห์ ตัวเลขและสถิติ แผนที่ GIS" image="{{ url('leaf/assets/img/our-mission.jpg') }}">
     <!-- Hero -->
     <section class="section section-lg bg-secondary overlay-primary text-white" data-background="{{ asset('leaf/assets/img/our-mission.jpg') }}">
         <div class="container">

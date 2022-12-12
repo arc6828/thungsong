@@ -1,4 +1,4 @@
-<x-leaf.theme mode="navbar-dark">
+<x-leaf.theme mode="navbar-dark" title="ติดต่อเรา" description="ช่องทางการติดต่อกับทีมวิจัย คณะทำงาน สถานที่ติดต่อ ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์" image="{{ url('img/logo/LOGO-Eng.png') }}">
     <!-- Hero -->
     <section class=" section section-header bg-secondary overlay-primary text-white "
         data-background="{{ asset('leaf/assets/img/donate.jpg') }}">

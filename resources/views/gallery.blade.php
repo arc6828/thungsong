@@ -1,4 +1,4 @@
-<x-leaf.theme mode="navbar-light">
+<x-leaf.theme mode="navbar-light" title="คลังภาพ" description="รวบรวมรูปภาพ และกิจกรรมที่ทำในระยะเวลาตลอดปีที่ผ่านมา ในพื้นที่อำเภอทุ่งสง จังหวัดนครศรีธรรมราช" image="{{ url('img/ground/LINE_ALBUM_Nakhon%20Sri%20_day%201_160222_220914_147.jpg') }}">
     <section class="section section-header">
         <div class="container">
             <div class="row">
