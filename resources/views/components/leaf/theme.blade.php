@@ -5,7 +5,7 @@
     $author = isset($author) ? $author : 'KU Flood Research Team';
     $description = isset($description) ? $description : 'ระบบคาดการณ์อุทกภัยด้วย Machine Learning ของพื้นที่เทศบาลเมืองทุ่งสง “ML Flood by KU” เป็นส่วนหนึ่งของโครงการ: การพัฒนาระบบคาดการณ์อุทกภัยแบบเรียลไทม์ด้วย Machine Learning ในพื้นที่เทศบาลเมืองทุ่งสง อำเภอทุ่งสง จังหวัดนครศรีธรรมราช, “ML Flood by KU” ซึ่งได้รับทุนจากโครงการนวัตกรรมสู่สังคม ปี 2564-65 ของคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ โดยมี ผู้ช่วยศาสตราจารย์ สิตางศุ์ พิลัยหล้า สังกัดภาควิชาวิศวกรรมทรัพยากรน้ำ เป็นหัวหน้าโครงการ';
     $keywords = isset($keywords) ? $keywords : 'Machine Learning, Flood, วิจัย, คาดการณ์, ทุ่งสง, มหาวิทยาลัยเกษตรศาศตร์, ทุนวิจัย';
-    $image = isset($image) ? $image : '';
+    $image = isset($image) ? $image : url('img/ground/LINE_ALBUM_Nakhon%20Sri%20_day%201_160222_220914_78.jpg');
     $url = isset($url) ? $url : url()->current();
     
 @endphp
