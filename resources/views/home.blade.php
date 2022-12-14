@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-12 text-center">
                     <h1 class="pt-4">
-                        ML Flood by KU
+                        <img src="{{ url('img/logo/LOGO_KU_Flood-02.png') }}" width="100" /> ML Flood by KU
                     </h1>
                 </div>
                 <div class="col-12 d-md-none d-none">
@@ -181,8 +181,8 @@
 
             <div class="row mt-4">
                 <div class="col-12 col-lg-4 mb-5">
-                    <a class="card animate-up-3 shadow-sm border-soft" href="./html/pages/our-mission.html">
-                        <div class="px-5 pt-4 pb-5">
+                    <a class="card animate-up-3 shadow-sm border-soft" href="#">
+                        <div class="px-5 pt-4 pb-5" style="min-height: 300px;">
                             <span class=" badge badge-secondary badge-pill mb-2 ">
                                 Sensoring
                             </span>
@@ -202,8 +202,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-lg-4 mb-5">
-                    <a class="card animate-up-3 shadow-sm border-soft" href="./html/pages/our-mission.html">
-                        <div class="px-5 pt-4 pb-5">
+                    <a class="card animate-up-3 shadow-sm border-soft" href="#">
+                        <div class="px-5 pt-4 pb-5" style="min-height: 300px;">
                             <span class=" badge badge-primary badge-pill mb-2 ">Modeling</span>
                             <!-- ตอนเเรกเป็น h5 -->
                             <h6 class="mb-3">การสร้างโมเดลน้ำท่วม</h6>
@@ -219,8 +219,8 @@
                     </a>
                 </div>
                 <div class="col-12 col-lg-4 mb-5">
-                    <a class="card animate-up-3 shadow-sm border-soft" href="./html/pages/our-mission.html">
-                        <div class="px-5 pt-4 pb-5">
+                    <a class="card animate-up-3 shadow-sm border-soft" href="#">
+                        <div class="px-5 pt-4 pb-5" style="min-height: 300px;">
                             <span class=" badge badge-tertiary badge-pill mb-2 ">Machine Learning</span>
                             <h5 class="mb-3">จักรกลเรียนรู้</h5>
                             <p class="text-gray mb-0">

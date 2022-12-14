@@ -130,12 +130,12 @@
                                     <h6 class="card-subtitle text-gray">{{ $item->position }}</h6>
                                     <p class="card-text my-2">{{ $item->organization }}</p>
                                     @if ($loop->first)
-                                        <p class="card-text my-2">
+                                        {{-- <p class="card-text my-2">
                                             50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900
                                             <br />0 2797 0999 ต่อ 1901-1904
                                             <br /><a
                                                 href="https://www.wre.eng.ku.ac.th">https://www.wre.eng.ku.ac.th</a>
-                                        </p>
+                                        </p> --}}
                                     @endif
 
                                     <ul class="social-buttons mt-3 d-none">

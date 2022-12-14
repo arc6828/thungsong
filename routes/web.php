@@ -49,7 +49,7 @@ Route::get('/about', function () {
     ];
     $profiles = [
         (object)[ "image" => "sitang.jpg" , "name" => "ผศ.ดร.สิตางศุ์ พิลัยหล้า" , "position" => "Project Manager" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
-        (object)[ "image" => "jirayu.jpg" , "name" => "นายจิรายุ พึ่งฉิ่ง" , "position" => "Machine Learning Developer" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
+        (object)[ "image" => "jirayu.jpg" , "name" => "นายจิรายุ พึ่งฉิ่ง" , "position" => "Water Resources Engineer, Machine Learning Developer" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
         (object)[ "image" => "chavalit.jpg" , "name" => "นายชวลิต โควีระวงศ์" , "position" => "Software Engineer" , "organization" => "หลักสูตรวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์"  ],
     ];
     return view('about',compact('profiles','images'));
