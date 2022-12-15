@@ -283,8 +283,8 @@
                 //center: {lat: 21.3143328800798, lng: 105.603779579014},
                 // center: { lat: 13.751288, lng: 100.628847 },
                 center: {
-                    lat: 8.1170129282,
-                    lng: 99.6490122079
+                    lat: 8.174971,
+                    lng: 99.678874
                 },
                 //13.751288, 100.628847
                 zoom: 10
@@ -293,6 +293,9 @@
             fetch("{{ url('api/now/wl') }}")
                 .then((data) => data.json())
                 .then((data) => {
+                    data = data.filter((item)=>{
+                        return item.station.tele_station_lat >= 8.174971;
+                    });
                     console.log("Wl : ", data);
                     const infos = data.map(function(item) {
                         // console.log(item.agency_name);
@@ -445,8 +448,8 @@
                 //center: {lat: 21.3143328800798, lng: 105.603779579014},
                 // center: { lat: 13.751288, lng: 100.628847 },
                 center: {
-                    lat: 8.1170129282,
-                    lng: 99.6490122079
+                    lat: 8.174971,
+                    lng: 99.678874
                 },
                 //13.751288, 100.628847
                 zoom: 10
@@ -455,6 +458,9 @@
             fetch("{{ url('api/now/rain') }}")
                 .then((data) => data.json())
                 .then((data) => {
+                    data = data.filter((item)=>{
+                        return item.station.tele_station_lat >= 8.174971;
+                    });
                     console.log("Rain : ", data);
                     const infos = data.map(function(item) {
                         // console.log(item.agency_name);

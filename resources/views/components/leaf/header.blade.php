@@ -1,14 +1,16 @@
 <header class="header-global">
     <style>
         .navbar-brand img {
-            height: 60px !important;
+            height: 40px ;
+            width: 200px; 
+            object-fit: cover;
         }
     </style>
     <nav id="navbar-main" class=" navbar navbar-main navbar-expand-lg navbar-transparent {{ $mode }} navbar-theme-primary headroom py-lg-2 px-lg-6 ">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO_KU_Flood_hollow-04.png') }}" alt="Logo light" height="200" />
-                <img class="navbar-brand-light" src="{{ asset('img/logo/LOGO_KU_Flood-01.png') }}" alt="Logo dark" height="200" />
+                <img class="navbar-brand-dark" src="{{ asset('img/LOGO_KU_Flood_hollow-04.png') }}" alt="Logo light" />
+                <img class="navbar-brand-light" src="{{ asset('img/LOGO_KU_Flood-01.png') }}" alt="Logo dark"  />
                 {{-- <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO-Eng-White.png') }}" alt="Logo light" height="150" />
                 <img class="navbar-brand-light" src="{{ asset('img/logo/LOGO-Eng.png') }}" alt="Logo dark" height="150" /> --}}
                 <!-- <img class="navbar-brand-dark" src="{{ asset('leaf/assets/img/brand/light.svg') }}" alt="Logo light" />
@@ -19,7 +21,8 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="menuimage" />
+                                <img src="{{ asset('img/LOGO_KU_Flood-01.png') }}" alt="menu image"  />
+                                {{-- <img src="{{ asset('leaf/assets/img/brand/primary.svg') }}" alt="menuimage" /> --}}
                             </a>
                         </div>
                         <div class="col-6 collapse-close">

@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-12 text-center">
                     <h1 class="pt-4">
-                        <img src="{{ url('img/logo/LOGO_KU_Flood-02.png') }}" width="100" /> ML Flood by KU
+                        <img src="{{ url('img/LOGO_KU_Flood-02.png') }}" width="100" /> ML Flood by KU
                     </h1>
                 </div>
                 <div class="col-12 d-md-none d-none">
@@ -59,110 +59,8 @@
             </div>
         </div>
     </section>
-    <section class="section section-lg py-4">
-        <div class="container mt-n5 mt-md-n6">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Card -->
-                    <div class="card-group">
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    ระดับน้ำ - ทุ่งสง
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0" id="wl_thungsong">
-                                    <span class="icon-danger mr-2">
-                                        <!-- <i class=" fas fa-long-arrow-alt-up "></i> -->
-                                        <i class="fas "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">0</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">ม.ทรก</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    ปริมาณฝน - ทุ่งสง
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0" id="rain_thungsong">
-                                    <span class="icon-danger mr-2">
-                                        <!-- <i class=" fas fa-long-arrow-alt-up "></i> -->
-                                        <i class="fas "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">0.0</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    ระดับน้ำ - บ้านประดู่
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0" id="wl_baanpradoo">
-                                    <span class="icon-danger mr-2">
-                                        <!-- <i class=" fas fa-long-arrow-alt-down "></i> -->
-                                        <i class="fas "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">0</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">ม.ทรก</span>
-                            </div>
-                        </div>
-                        <div class="card border-left-md border-soft">
-                            <div class="card-body text-center">
-                                <h6 class="font-weight-bold mb-2">
-                                    ปริมาณฝน - ฝายคลองท่าเลา
-                                </h6>
-                                <!-- Heading -->
-                                <h2 class="text-gray mb-0" id="rain_faiklongtalao">
-                                    <span class="icon-danger mr-2">
-                                        <!-- <i class="fas fa-long-arrow-alt-up "></i> -->
-                                        <i class="fas "></i>
-                                    </span>
-                                    <span class="counter display-3 mr-2">0</span>
-                                </h2>
-                                <!-- Text -->
-                                <span class="text-center text-muted mb-0">มิลลิเมตร</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            // api/statistic/now
-            document.addEventListener('DOMContentLoaded', async (event) => {
-                console.log('DOM fully loaded and parsed');
-                let promise = await fetch("{{ url('api/statistic/now') }}");
-                let data = await promise.json();
-
-                console.log("STATISTIC : ", data);
-                document.querySelector("#wl_thungsong .counter").innerHTML = data.wl_thungsong.latest?data.wl_thungsong.latest.value:"0";
-                document.querySelector("#wl_baanpradoo .counter").innerHTML = data.wl_baanpradoo.latest?data.wl_baanpradoo.latest.value:"0";
-                document.querySelector("#rain_thungsong .counter").innerHTML = data.rain_thungsong.latest?data.rain_thungsong.latest
-                    .rainfall_value:"0";
-                document.querySelector("#rain_faiklongtalao .counter").innerHTML = data.rain_faiklongtalao.latest?data.rain_faiklongtalao.latest
-                    .rainfall_value:"0";
-
-                document.querySelector("#wl_thungsong i").classList.add(data.wl_thungsong.d > 0 ?
-                    "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-                document.querySelector("#wl_baanpradoo i").classList.add(data.wl_baanpradoo.d > 0 ?
-                    "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-                document.querySelector("#rain_thungsong i").classList.add(data.rain_thungsong.d > 0 ?
-                    "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-                document.querySelector("#rain_faiklongtalao i").classList.add(data.rain_faiklongtalao.d > 0 ?
-                    "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            });
-        </script>
-    </section>
+    
+    <x-leaf.statistic.number></x-leaf.statistic.number>
 
     <x-leaf.predict.map2></x-leaf.predict.map2>
 

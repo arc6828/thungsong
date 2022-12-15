@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-    $title = isset($title) ? $title : 'THUNGSONG';
+    $title = isset($title) ? $title : 'THUNGSONG :: ML Flood by KU';
     $author = isset($author) ? $author : 'KU Flood Research Team';
     $description = isset($description) ? $description : 'ระบบคาดการณ์อุทกภัยด้วย Machine Learning ของพื้นที่เทศบาลเมืองทุ่งสง “ML Flood by KU” เป็นส่วนหนึ่งของโครงการ: การพัฒนาระบบคาดการณ์อุทกภัยแบบเรียลไทม์ด้วย Machine Learning ในพื้นที่เทศบาลเมืองทุ่งสง อำเภอทุ่งสง จังหวัดนครศรีธรรมราช, “ML Flood by KU” ซึ่งได้รับทุนจากโครงการนวัตกรรมสู่สังคม ปี 2564-65 ของคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ โดยมี ผู้ช่วยศาสตราจารย์ สิตางศุ์ พิลัยหล้า สังกัดภาควิชาวิศวกรรมทรัพยากรน้ำ เป็นหัวหน้าโครงการ';
     $keywords = isset($keywords) ? $keywords : 'Machine Learning, Flood, วิจัย, คาดการณ์, ทุ่งสง, มหาวิทยาลัยเกษตรศาศตร์, ทุนวิจัย';
