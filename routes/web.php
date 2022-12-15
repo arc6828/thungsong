@@ -76,7 +76,12 @@ Route::get('/contact', function () {
 Route::get('/chart', function () {
     return view('chart');
 });
+Route::get('/testmap', function () {
+    return view('m');
+});
 
 Route::get('livewire', function () {
     return view('livewire');
 });
+
+

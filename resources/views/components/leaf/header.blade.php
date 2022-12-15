@@ -7,7 +7,7 @@
     <nav id="navbar-main" class=" navbar navbar-main navbar-expand-lg navbar-transparent {{ $mode }} navbar-theme-primary headroom py-lg-2 px-lg-6 ">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO_KU_Flood-01.png') }}" alt="Logo light" height="200" />
+                <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO_KU_Flood_hollow-04.png') }}" alt="Logo light" height="200" />
                 <img class="navbar-brand-light" src="{{ asset('img/logo/LOGO_KU_Flood-01.png') }}" alt="Logo dark" height="200" />
                 {{-- <img class="navbar-brand-dark" src="{{ asset('img/logo/LOGO-Eng-White.png') }}" alt="Logo light" height="150" />
                 <img class="navbar-brand-light" src="{{ asset('img/logo/LOGO-Eng.png') }}" alt="Logo dark" height="150" /> --}}

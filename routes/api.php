@@ -40,8 +40,8 @@ Route::get("waterlevel/now/station/{station_id}",function($station_id){
     //station_id 1101568 สถานีบ้านประดู่
     $current = date('Y-m-d H:i:s');
     $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
-    // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
-    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}";
+    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
+    // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}";
     $response = Http::get($url);
     return $response->json();
 });
@@ -57,6 +57,12 @@ Route::get("rain/now/station/{station_id}",function($station_id){
 
 Route::get("waterlevel/predict",function(){
     $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodwaterlevel.json";
+    $response = Http::get($url);
+    return $response->json();
+});
+
+Route::get("now/{name}",function($name){
+    $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/now/now-{$name}.json";
     $response = Http::get($url);
     return $response->json();
 });

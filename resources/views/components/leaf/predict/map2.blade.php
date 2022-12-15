@@ -15,19 +15,20 @@
             //PREPARE DATA
             wl_now = wl_now.data.graph_data;
             wl_now = wl_now.filter(function(item) {
-                return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value !== null;
+                // return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value !== null;
+                return item.value !== null;
             });
             wl_now = wl_now.map(function(item) {
-                return [item.datetime,  50.57,55.20,  item.value, null];
+                return [new Date(item.datetime), 50.57, 55.20, item.value, null];
             });
             //
             wl_predict = wl_predict.map(function(item, index) {
                 return [
-                    (new Date(item.datetime + 30 * 60 * 1000 * index)).toISOString(),
+                    (new Date(item.datetime + 30 * 60 * 1000 * index - 60 * 60 * 7 * 1000)),
                     50.57,
-                    55.20, 
+                    55.20,
                     null,
-                    item["forecast_wl(msl)"], 
+                    item["forecast_wl(msl)"],
                 ];
             });
             // console.log(wl_predict);
@@ -41,10 +42,10 @@
             //RESIZE
             wl_now = wl_now.data.graph_data;
             wl_now = wl_now.filter(function(item) {
-                return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value != null;
+                return item.value != null;
             });
             wl_now = wl_now.map(function(item) {
-                return [item.datetime,  66.50, 67.08, item.value];
+                return [new Date(item.datetime), 66.50, 67.08, item.value];
             });
             return wl_now;
         }
@@ -56,10 +57,11 @@
             //RESIZE
             rain_now = rain_now.data;
             rain_now = rain_now.filter(function(item) {
-                return (item.rainfall_datetime.includes(":00") || item.rainfall_datetime.includes(":30")) && item.rainfall_value != null;
+                return (item.rainfall_datetime.includes(":00") || item.rainfall_datetime.includes(":30")) &&
+                    item.rainfall_value != null;
             });
             rain_now = rain_now.map(function(item) {
-                return [item.rainfall_datetime, item.rainfall_value];
+                return [new Date(item.rainfall_datetime), item.rainfall_value];
             });
             return rain_now;
         }
@@ -76,7 +78,7 @@
             let [wl_now, wl_predict] = await loadWaterLevelThungsong();
 
             let dataset = [
-                ['Year', 'ระดับท้องน้ำ','ระดับตลิ่ง','ข้อมูลจริง', 'ข้อมูลทำนาย'],
+                ['Year', 'ระดับท้องน้ำ', 'ระดับตลิ่ง', 'ข้อมูลจริง', 'ข้อมูลทำนาย'],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -88,19 +90,39 @@
             // console.log(dataset);
 
             var data = google.visualization.arrayToDataTable(dataset);
+            var ticks = dataset.filter(function(item, index) {
+                return (index % 10 == 9);
+            });
 
             var options = {
                 title: 'ระดับน้ำข้อมูลจริง/ทำนาย',
                 curveType: 'function',
                 legend: {
-                    position: 'bottom'
+                    position: 'top'
                 },
                 series: {
-                    0: { lineDashStyle: [10, 5] },
-                    1: { lineDashStyle: [10, 5] },
-                    2: {  },
-                    3: {  },
+                    0: {
+                        lineDashStyle: [10, 5]
+                    },
+                    1: {
+                        lineDashStyle: [10, 5]
+                    },
+                    2: {},
+                    3: {},
                 },
+
+                // pointSize: 2,
+                hAxis: {
+                    // format: 'HH:mm',
+                    // title : 'วันที่',
+                    viewWindow: {                        
+                        min: new Date(Date.now()-24*60*60*1000),
+                    },
+                },
+                vAxis: {
+                    title: 'ม.ทรก.',
+                },
+
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_thungsong'));
@@ -114,7 +136,7 @@
             let wl_now = await loadWaterLevelBannPradoo();
 
             let dataset = [
-                ['Year', 'ระดับท้องน้ำ','ระดับตลิ่ง','ข้อมูลจริง'],
+                ['Year', 'ระดับท้องน้ำ', 'ระดับตลิ่ง', 'ข้อมูลจริง'],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -126,6 +148,7 @@
 
             var data = google.visualization.arrayToDataTable(dataset);
 
+
             var options = {
                 title: 'ระดับน้ำข้อมูลจริง',
                 curveType: 'function',
@@ -133,9 +156,23 @@
                     position: 'bottom'
                 },
                 series: {
-                    0: { lineDashStyle: [10, 5] },
-                    1: { lineDashStyle: [10, 5] },
-                    2: {  },
+                    0: {
+                        lineDashStyle: [10, 5]
+                    },
+                    1: {
+                        lineDashStyle: [10, 5]
+                    },
+                    2: {},
+                },
+                hAxis: {
+                    // format: 'MMM dd, YYYY',
+                    // title : 'วันที่',
+                    viewWindow: {                        
+                        min: new Date(Date.now()-24*60*60*1000),
+                    },
+                },
+                vAxis: {
+                    title: 'ม.ทรก.',
                 },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_bann_pradoo'));
@@ -167,6 +204,13 @@
                 legend: {
                     position: 'bottom'
                 },
+                vAxis: {
+                    title: "มิลลิเมตร",
+                    viewWindow: {
+                        // max: 100,
+                        min: 0,
+                    }
+                },
                 // width: 900,
                 // height: 500,
             };
@@ -194,6 +238,20 @@
                 legend: {
                     position: 'bottom'
                 },
+                hAxis: {
+                    // format: 'MMM dd, YYYY',
+                    // title : 'วันที่',
+                    viewWindow: {                        
+                        min: new Date(Date.now()-24*60*60*1000),
+                    },
+                },
+                vAxis: {
+                    title: "มิลลิเมตร",
+                    viewWindow: {
+                        // max: 100,
+                        min: 0,
+                    }
+                },
                 // width: 900,
                 // height: 500,
             };
@@ -205,7 +263,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
     <script>
         //google.maps.event.addDomListener(window, 'load', init);
-        var map;
+        // var map;
         var overlay;
         USGSOverlay.prototype = new google.maps.OverlayView();
 
@@ -217,18 +275,79 @@
         //var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
         // var src = "https://weather.ckartisan.com/storage/uploads/wL9wyTDWRs3snitOn4hUm3MnnQIIUj6m4NE7X5F8.zip ";
         // var src = "{{ url('/kml/kml.zip') }}";
-        
+
 
 
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
+            const map = new google.maps.Map(document.getElementById('map'), {
                 //center: {lat: 21.3143328800798, lng: 105.603779579014},
                 // center: { lat: 13.751288, lng: 100.628847 },
-                center: { lat: 8.1170129282, lng: 99.6490122079 },
+                center: {
+                    lat: 8.1170129282,
+                    lng: 99.6490122079
+                },
                 //13.751288, 100.628847
-                zoom: 11
+                zoom: 10
             });
-            
+
+            fetch("{{ url('api/now/wl') }}")
+                .then((data) => data.json())
+                .then((data) => {
+                    console.log("Wl : ", data);
+                    const infos = data.map(function(item) {
+                        // console.log(item.agency_name);
+                        let div = document.createElement('div');
+                        let h = document.createElement('h6');
+                        let h7 = document.createElement('h7');
+                        let p = document.createElement('div');
+                        let ul = document.createElement('div');
+                        let items = [
+                            `ระดับน้ำ (ม.ทรก.) : ${item.waterlevel_msl}`,
+                            `สถานะ : ${item.diff_wl_bank_text} ${item.diff_wl_bank}`,
+                            `ปริมาณน้ำเต็มความจุ  : ${item.storage_percent}%`,
+                            `เวลา : ${item.waterlevel_datetime}`,
+                            `รหัสสถานี : ${item.station.id}`,
+                            `แหล่งข้อมูล : ${item.agency.agency_name.th}`,
+
+                        ];
+                        items.map(function(item) {
+                            let li = document.createElement('div');
+                            li.innerHTML = item;
+                            ul.appendChild(li);
+                            return li;
+                        });
+                        div.appendChild(h);
+                        // div.appendChild(p);
+                        div.appendChild(ul);
+                        h.innerHTML =
+                            ` ${item.station.tele_station_name.th} <br />จ.${item.geocode.province_name.th} อ.${item.geocode.amphoe_name.th} ต.${item.geocode.tumbon_name.th}`;
+                        h.classList.add("mb-2");
+                        p.innerHTML = item.geocode.province_name.th;
+                        return new google.maps.InfoWindow({
+                            content: div,
+                            ariaLabel: item.station.tele_station_name.th,
+                        });
+                    });
+                    const markers = data.map(function(item, index) {
+                        let m = new google.maps.Marker({
+                            position: {
+                                lat: item.station.tele_station_lat,
+                                lng: item.station.tele_station_long
+                            },
+                            map: map,
+                            // label: item.rain_24h.toFixed(0),
+                            title: `${item.station.tele_station_name.th} จ.${item.geocode.province_name.th} อ.${item.geocode.amphoe_name.th} ต.${item.geocode.tumbon_name.th}`,
+                        });
+                        m.addListener("click", () => {
+                            infos[index].open({
+                                anchor: m,
+                                map: map,
+                            });
+                        });
+                    });
+
+                })
+
             //KML OVERLAY  
             // var kmlLayer = new google.maps.KmlLayer(src, {
             //     suppressInfoWindows: true,
@@ -322,7 +441,7 @@
         google.maps.event.addDomListener(window, 'load', initMap);
 
         function initMap2() {
-            var map2 = new google.maps.Map(document.getElementById('map2'), {
+            const map2 = new google.maps.Map(document.getElementById('map2'), {
                 //center: {lat: 21.3143328800798, lng: 105.603779579014},
                 // center: { lat: 13.751288, lng: 100.628847 },
                 center: {
@@ -330,11 +449,69 @@
                     lng: 99.6490122079
                 },
                 //13.751288, 100.628847
-                zoom: 11
+                zoom: 10
             });
+
+            fetch("{{ url('api/now/rain') }}")
+                .then((data) => data.json())
+                .then((data) => {
+                    console.log("Rain : ", data);
+                    const infos = data.map(function(item) {
+                        // console.log(item.agency_name);
+                        let div = document.createElement('div');
+                        let h = document.createElement('h6');
+                        let h7 = document.createElement('h7');
+                        let p = document.createElement('div');
+                        let ul = document.createElement('div');
+                        let items = [
+                            `ปริมาณฝน (มม.) : ${item.rain_24h}`,
+                            `เวลา : ${item.rainfall_datetime}`,
+                            `รหัสสถานี : ${item.station.id}`,
+                            `แหล่งข้อมูล : ${item.agency.agency_name.th}`,
+                        ];
+                        items.map(function(item) {
+                            let li = document.createElement('div');
+                            li.innerHTML = item;
+                            ul.appendChild(li);
+                            return li;
+                        });
+                        div.appendChild(h);
+                        // div.appendChild(p);
+                        div.appendChild(ul);
+                        h.innerHTML =
+                            ` ${item.station.tele_station_name.th} <br />จ.${item.geocode.province_name.th} อ.${item.geocode.amphoe_name.th} ต.${item.geocode.tumbon_name.th}`;
+                        h.classList.add("mb-2");
+                        p.innerHTML = item.geocode.province_name.th;
+                        return new google.maps.InfoWindow({
+                            content: div,
+                            ariaLabel: item.station.tele_station_name.th,
+                        });
+                    });
+                    const markers = data.map(function(item, index) {
+                        let m = new google.maps.Marker({
+                            position: {
+                                lat: item.station.tele_station_lat,
+                                lng: item.station.tele_station_long
+                            },
+                            map: map2,
+                            // label: item.rain_24h.toFixed(0),
+                            title: `${item.station.tele_station_name.th} จ.${item.geocode.province_name.th} อ.${item.geocode.amphoe_name.th} ต.${item.geocode.tumbon_name.th}`,
+                        });
+                        m.addListener("click", () => {
+                            infos[index].open({
+                                anchor: m,
+                                map: map2,
+                            });
+                        });
+                    });
+
+                })
+
+
 
         }
         google.maps.event.addDomListener(window, 'load', initMap2);
+        // window.initMap2 = initMap2;
     </script>
 
     <section class="section section-lg py-6">
@@ -353,80 +530,92 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" style="min-height: 400px;">
-                    <div id="map" style="height: 400px; padding:20"></div>
+                <div class="col-lg-4" style="min-height: 600px;">
+                    <div id="map" style="height: 600px; padding:20"></div>
                 </div>
                 <div class="col-lg-8">
                     <div class="accordion" id="accordionExample">
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="btn btn-link btn-block text-left" type="button"
+                                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
                                         ระดับน้ำ - สถานีทุ่งสง
                                     </button>
                                 </h2>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div id="chart_wl_thungsong" style="width: 100%; height: 200px"></div>
+                                    <div id="chart_wl_thungsong" style="width: 100%; height: 400px"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
                                         ระดับน้ำ - สถานีบ้านประดู่
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div id="chart_wl_bann_pradoo" style="width: 100%; height: 200px"></div>
+                                    <div id="chart_wl_bann_pradoo" style="width: 100%; height: 400px"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-12">
                     <h5><i class="fas fa-cloud-rain mr-2"></i> ปริมาณฝน</h5>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" style="min-height: 400px;">
-                    <div id="map2" style="height: 400px; padding:20"></div>
+                <div class="col-lg-4" style="min-height: 600px;">
+                    <div id="map2" style="height: 600px; padding:20"></div>
                 </div>
                 <div class="col-lg-8">
                     <div class="accordion" id="accordionExample2">
                         <div class="card">
                             <div class="card-header" id="headingOne2">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="btn btn-link btn-block text-left" type="button"
+                                        data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true"
+                                        aria-controls="collapseOne">
                                         ปริมาณน้ำฝน - สถานีทุ่งสง
                                     </button>
                                 </h2>
                             </div>
 
-                            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2" data-parent="#accordionExample2">
+                            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2"
+                                data-parent="#accordionExample2">
                                 <div class="card-body">
-                                    <div id="chart_rain_thungsong" style="width: 100%; height: 200px"></div>
+                                    <div id="chart_rain_thungsong" style="width: 100%; height: 400px"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header" id="headingTwo2">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false"
+                                        aria-controls="collapseTwo">
                                         ปริมาณน้ำฝน - สถานีฝายคลองท่าเลา
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionExample2">
+                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2"
+                                data-parent="#accordionExample2">
                                 <div class="card-body">
-                                    <div id="chart_rain_fai_klong_ta_lao" style="width: 100%; height: 200px"></div>
+                                    <div id="chart_rain_fai_klong_ta_lao" style="width: 100%; height: 400px"></div>
                                 </div>
                             </div>
                         </div>
