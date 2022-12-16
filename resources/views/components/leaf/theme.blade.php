@@ -58,6 +58,8 @@
 
     <!-- Leaf CSS -->
     <link type="text/css" href="{{ asset('leaf/css/leaf.css') }}" rel="stylesheet" />
+    <link type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script>

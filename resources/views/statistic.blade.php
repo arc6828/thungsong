@@ -20,7 +20,7 @@
         <div class="container mt-n5">
             <div class="row">
                 <div class="col">
-                    <x-leaf.predict.map2></x-leaf.predict.map2>
+                    <x-leaf.predict.map3 :wl="$wl" :rain="$rain"></x-leaf.predict.map3>
                 </div>
                 <div class="col d-none">
                     <!-- Tab -->

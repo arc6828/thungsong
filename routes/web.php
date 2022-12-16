@@ -55,7 +55,11 @@ Route::get('/about', function () {
     return view('about',compact('profiles','images'));
 });
 Route::get('/statistic', function () {
-    return view('statistic');
+    $response = Http::get(url('api/now/wl'));
+    $wl = $response->json();
+    $response = Http::get(url('api/now/rain'));
+    $rain = $response->json();
+    return view('statistic', compact('wl','rain'));
 });
 Route::get('/predict', function () {
     return view('predict');

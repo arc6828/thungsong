@@ -19,6 +19,7 @@
 <script src="{{ asset('leaf/node_modules/prismjs/prism.js') }}"></script>
 <script src="{{ asset('leaf/node_modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('leaf/node_modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 <!-- Leaf JS -->
 <script src="{{ asset('leaf/assets/js/leaf.js') }}"></script>
