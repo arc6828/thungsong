@@ -13,20 +13,22 @@
             // console.log(wl_now);
 
             //PREPARE DATA
+            let wl_max = wl_now.data.min_bank;
+            let wl_min = wl_now.data.ground_level;
             wl_now = wl_now.data.graph_data;
             wl_now = wl_now.filter(function(item) {
                 // return (item.datetime.includes(":00") || item.datetime.includes(":30")) && item.value !== null;
                 return item.value !== null;
             });
             wl_now = wl_now.map(function(item) {
-                return [new Date(item.datetime), 50.57, 55.20, item.value, null];
+                return [new Date(item.datetime), wl_min, wl_max, item.value, null];
             });
             //
             wl_predict = wl_predict.map(function(item, index) {
                 return [
                     (new Date(item.datetime + 30 * 60 * 1000 * index - 60 * 60 * 7 * 1000)),
-                    50.57,
-                    55.20,
+                    wl_min,
+                    wl_max,
                     null,
                     item["forecast_wl(msl)"],
                 ];
@@ -35,17 +37,20 @@
             return [wl_now, wl_predict];
         }
         async function loadWaterLevelBannPradoo() {
-            let url2 = "{{ url('api/waterlevel/now/station/1101568') }}"; //BannPradoo
+            // let url2 = "{{ url('api/waterlevel/now/station/1101568') }}"; //BannPradoo
+            let url2 = "{{ url('api/waterlevel/now/station/13892') }}"; //Faiklongtalao
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
             console.log(wl_now);
-            //RESIZE
+            //RESIZE            
+            let wl_max = wl_now.data.min_bank;
+            let wl_min = wl_now.data.ground_level;
             wl_now = wl_now.data.graph_data;
             wl_now = wl_now.filter(function(item) {
                 return item.value != null;
             });
             wl_now = wl_now.map(function(item) {
-                return [new Date(item.datetime), 66.50, 67.08, item.value];
+                return [new Date(item.datetime), wl_min, wl_max, item.value];
             });
             return wl_now;
         }
@@ -565,7 +570,7 @@
                                     <button class="btn btn-link btn-block text-left collapsed" type="button"
                                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                        ระดับน้ำ - สถานีบ้านประดู่
+                                        ระดับน้ำ - สถานีฝายคลองท่าเลา
                                     </button>
                                 </h2>
                             </div>

@@ -82,33 +82,18 @@
         // api/statistic/now
         document.addEventListener('DOMContentLoaded', async (event) => {
             console.log('DOM fully loaded and parsed');
-            // let promise = await fetch("{{ url('api/statistic/now') }}");
-            // let data = await promise.json();
 
-            // console.log("STATISTIC : ", data);
-            // document.querySelector("#wl_thungsong .counter").innerHTML = data.wl_thungsong.latest?data.wl_thungsong.latest.value:"0";
-            // document.querySelector("#wl_baanpradoo .counter").innerHTML = data.wl_baanpradoo.latest?data.wl_baanpradoo.latest.value:"0";
-            // document.querySelector("#rain_thungsong .counter").innerHTML = data.rain_thungsong.latest?data.rain_thungsong.latest
-            //     .rainfall_value:"0";
-            // document.querySelector("#rain_faiklongtalao .counter").innerHTML = data.rain_faiklongtalao.latest?data.rain_faiklongtalao.latest
-            //     .rainfall_value:"0";
-
-            // document.querySelector("#wl_thungsong i").classList.add(data.wl_thungsong.d > 0 ?
-            //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            // document.querySelector("#wl_baanpradoo i").classList.add(data.wl_baanpradoo.d > 0 ?
-            //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            // document.querySelector("#rain_thungsong i").classList.add(data.rain_thungsong.d > 0 ?
-            //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            // document.querySelector("#rain_faiklongtalao i").classList.add(data.rain_faiklongtalao.d > 0 ?
-            //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-
-
+            // fetch api
             let promiseWL = await fetch("{{ url('api/now/wl') }}");
             let dataWL = await promiseWL.json();
             let promiseRain = await fetch("{{ url('api/now/rain') }}");
             let dataRain = await promiseRain.json();
+
+            // filter above thungsong station by latitude
             dataWL = dataWL.filter((item) => (item.station.tele_station_lat >= 8.174971));
             dataRain = dataRain.filter((item) => (item.station.tele_station_lat >= 8.174971));
+
+            // map data
             dataWL = dataWL.map((item) => {
                 return {
                     "title": `ระดับน้ำ - ${item.station.tele_station_name.th}`,
@@ -129,59 +114,24 @@
                     "station_id": `${item.station.id}`,
                 }
             });
+
+            // sort by station id
             dataWL.sort(function(a, b) {
                 return a.station_id - b.station_id
             });
             dataRain.sort(function(a, b) {
                 return a.station_id - b.station_id
             });
-            console.log("STATISTIC : ", dataWL, dataRain);
-            var intervel_counter = 0;
-            // var onSwapCards = () => {
-            //     // element.innerHTML += "Hello"
-            //     if (intervel_counter % 2 == 0) {
-            //         dataWL.forEach((item, index) => {
-            //             document.querySelector(`#card-${index}`).setAttribute("title",
-            //                 `อัพเดทข้อมูลเมื่อ : ${item.datetime}`);
-            //             document.querySelector(`#card-${index} h6`).innerHTML = item.title;
-            //             document.querySelector(`#card-${index} .counter`).innerHTML = item
-            //                 .number;
-            //             document.querySelector(`#card-${index} span.text-center`).innerHTML =
-            //                 item.unit;
-            //             // document.querySelector(`#card-${index} h6`).innerHTML = item.title;
-            //             // document.querySelector("#rain_faiklongtalao i").classList.add(data
-            //             //     .rain_faiklongtalao.d > 0 ?
-            //             //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            //         });
-            //     } else {
-            //         dataRain.forEach((item, index) => {
-            //             document.querySelector(`#card-${index}`).setAttribute("title",
-            //                 `อัพเดทข้อมูลเมื่อ : ${item.datetime}`);
-            //             document.querySelector(`#card-${index} h6`).innerHTML = item.title;
-            //             document.querySelector(`#card-${index} .counter`).innerHTML = item
-            //                 .number;
-            //             document.querySelector(`#card-${index} span.text-center`).innerHTML =
-            //                 item.unit;
-            //             // document.querySelector(`#card-${index} h6`).innerHTML = item.title;
-            //             // document.querySelector("#rain_faiklongtalao i").classList.add(data
-            //             //     .rain_faiklongtalao.d > 0 ?
-            //             //     "fa-long-arrow-alt-up" : "fa-long-arrow-alt-down");
-            //         });
 
-            //     }
-            //     $('.counter').counterUp({
-            //         delay: 10,
-            //         time: 1000,
-            //         offset: 70,
-            //         // beginAt: 100,
-            //         formatter: function(n) {
-            //             return n.replace(/,/g, '.');
-            //         }
-            //     });
-            //     intervel_counter++;
-            // };
-            // onSwapCards();
-            setInterval(() => {
+            // filter only most significant 4 stataions
+            dataWL = dataWL.filter((item, index) => (index < 4));
+            dataRain = dataRain.filter((item, index) => (index < 4));
+
+            console.log("STATISTIC : ", dataWL, dataRain);
+
+            // set interval
+            var intervel_counter = 0;
+            var onSwapCards = () => {
                 // element.innerHTML += "Hello"
                 if (intervel_counter % 2 == 0) {
                     dataWL.forEach((item, index) => {
@@ -222,8 +172,14 @@
                         return n.replace(/,/g, '.');
                     }
                 });
+
+
                 intervel_counter++;
-            }, 5000);
+            };
+            onSwapCards();
+            setInterval(() => {
+                onSwapCards();
+            }, 7000);
 
         });
     </script>

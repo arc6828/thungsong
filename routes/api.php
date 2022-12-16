@@ -38,6 +38,7 @@ Route::get("waterlevel/now",function(){
 Route::get("waterlevel/now/station/{station_id}",function($station_id){
     //station_id 795 สถานีทุ่งสง
     //station_id 1101568 สถานีบ้านประดู่
+    //station_id 13892 สถานีฝายคลองท่าเลา
     $current = date('Y-m-d H:i:s');
     $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
     $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
