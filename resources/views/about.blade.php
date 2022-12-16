@@ -16,7 +16,7 @@
             </div>
         </div>
     </section>
-    <section class="section pt-0">
+    <section class="section section-lg py-5">
         <div class="container mt-n5">
             <div class="row d-none">
                 <div class="col-12">
@@ -109,7 +109,7 @@
         </div>
     </section>
     <!-- Section -->
-    <section class="section section-sm py-4 ">
+    <section class="section section-lg py-5 ">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">

@@ -57,8 +57,10 @@ Route::get('/about', function () {
 Route::get('/statistic', function () {
     $response = Http::get(url('api/now/wl'));
     $wl = $response->json();
+    $wl = array_filter($wl,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });
     $response = Http::get(url('api/now/rain'));
     $rain = $response->json();
+    $rain = array_filter($rain,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });    
     return view('statistic', compact('wl','rain'));
 });
 Route::get('/predict', function () {

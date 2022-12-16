@@ -1,6 +1,8 @@
 <div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+        var global_wl;
+        var global_rain;
         async function loadWaterLevelThungsong() {
             let url = "{{ url('api/waterlevel/predict') }}";
             let promise = await fetch(url);
@@ -36,9 +38,9 @@
             // console.log(wl_predict);
             return [wl_now, wl_predict];
         }
-        async function loadWaterLevelBannPradoo() {
-            // let url2 = "{{ url('api/waterlevel/now/station/1101568') }}"; //BannPradoo
-            let url2 = "{{ url('api/waterlevel/now/station/13892') }}"; //Faiklongtalao
+        async function loadWaterLevel(station_id) {
+            let url2 = "{{ url('api/waterlevel/now/station') }}/"+ station_id; 
+            console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
             console.log(wl_now);
@@ -80,6 +82,7 @@
         google.charts.setOnLoadCallback(drawChartWaterLevelThungsong);
 
         async function drawChartWaterLevelThungsong() {
+            
             let [wl_now, wl_predict] = await loadWaterLevelThungsong();
 
             let dataset = [
@@ -138,14 +141,17 @@
             chart.draw(data, options);
         }
 
-        //WATER LEVEL BANN PRA DOO
-        google.charts.setOnLoadCallback(drawChartWaterLevelBannPradoo);
+        //WATER LEVEL 
+        google.charts.setOnLoadCallback(drawChartWaterLevel);
 
-        async function drawChartWaterLevelBannPradoo() {
-            let wl_now = await loadWaterLevelBannPradoo();
+        async function drawChartWaterLevel(station_id = 795) {
+            console.log("STATION_ID : ",station_id);
+            let wl_now = await loadWaterLevel(station_id);
 
             let dataset = [
                 ['Year', 'ระดับท้องน้ำ', 'ระดับตลิ่ง', 'ข้อมูลจริง'],
+                
+                // ['', 0,0,0],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -154,6 +160,9 @@
             ];
             dataset = dataset.concat(wl_now);
             // console.log(dataset);
+            if(dataset.length == 1){
+                dataset.push(['', 0,0,0]);
+            }
 
             var data = google.visualization.arrayToDataTable(dataset);
 
@@ -177,7 +186,7 @@
                     // format: 'MMM dd, YYYY',
                     // title : 'วันที่',
                     viewWindow: {
-                        min: new Date(Date.now() - 24 * 60 * 60 * 1000),
+                        // min: new Date(Date.now() - 24 * 60 * 60 * 1000),
                     },
                 },
                 vAxis: {
@@ -195,49 +204,13 @@
         //RAIN
         google.charts.setOnLoadCallback(drawChartRain);
 
-        async function drawChartRain() {
-            //THUNGSONG
-            let rain_now = await loadRain(795);
-            let dataset = [
-                ['Year', 'ข้อมูลจริง'],
-                // ['2003', 900, null],
-                // ['2004', 1000, null],
-                // ['2005', 1170, 1170],
-                // ['2006', null, 1120],
-                // ['2007', null, 540]
-            ];
-            dataset = dataset.concat(rain_now);
-            // console.log(dataset);
-
-            var data = google.visualization.arrayToDataTable(dataset);
-
-            var options = {
-                title: 'ปริมาณฝน',
-                curveType: 'function',
-                legend: {
-                    position: 'bottom'
-                },
-                vAxis: {
-                    title: "มิลลิเมตร",
-                    viewWindow: {
-                        // max: 100,
-                        min: 0,
-                    }
-                },
-                // width: 900,
-                // height: 500,
-                chartArea: {
-                    'width': '80%',
-                    'height': '80%'
-                },
-            };
-            var chart = new google.visualization.LineChart(document.getElementById('chart_rain_thungsong'));
-            chart.draw(data, options);
-
-            //fai_klong_ta_lao
-            let rain_now2 = await loadRain(13892);
+        async function drawChartRain(station_id = 795) {
+            
+            
+            let rain_now2 = await loadRain(station_id);
             let dataset2 = [
-                ['Year', 'ข้อมูลจริง'],
+                ['Date', 'ข้อมูลจริง'],
+                // ['', 0],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
                 // ['2005', 1170, 1170],
@@ -246,6 +219,10 @@
             ];
             dataset2 = dataset2.concat(rain_now2);
             // console.log(dataset);
+            
+            if(dataset2.length == 1){
+                dataset2.push(['', 0]);
+            }
 
             var data = google.visualization.arrayToDataTable(dataset2);
 
@@ -259,7 +236,7 @@
                     // format: 'MMM dd, YYYY',
                     // title : 'วันที่',
                     viewWindow: {
-                        min: new Date(Date.now() - 24 * 60 * 60 * 1000),
+                        // min: new Date(Date.now() - 24 * 60 * 60 * 1000),
                     },
                 },
                 vAxis: {
@@ -276,7 +253,7 @@
                     'height': '80%'
                 },
             };
-            var chart = new google.visualization.LineChart(document.getElementById('chart_rain_fai_klong_ta_lao'));
+            var chart = new google.visualization.LineChart(document.getElementById('chart_rain'));
             chart.draw(data, options);
         }
     </script>
@@ -667,7 +644,7 @@
             </div>
         </div>
     </section>
-    <section class="section section-lg py-6">
+    <section class="section section-lg py-6 mb-6">
         <div class="container">
             <div class="row d-none">
                 <div class="col-12 text-center">
@@ -689,7 +666,7 @@
                 <div class="col-lg-8">
                     <div class="p-4">
                         <div class="table-responsive">
-                            <table class="table table-sm data-table">
+                            <table class="table  data-table">
                                 <caption>รายชื่อสถานีวัดระดับน้ำใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
                                 <thead>
                                     <tr>
@@ -711,7 +688,7 @@
                                             <td>{{ explode(' ', $item['waterlevel_datetime'])[1] }}</td>
                                             <td>
                                                 <button href="#" class="btn btn-primary btn-sm"
-                                                    data-toggle="modal" data-target="#wlModal">
+                                                    data-toggle="modal" data-target="#wlModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
                                                     <i class="fa fa-chart-line"></i>
                                                 </button>
                                             </td>
@@ -732,7 +709,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="wlModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -761,7 +738,7 @@
                 <div class="col-lg-8">
                     <div class="p-4">
                         <div class="table-responsive">
-                            <table class="table table-sm data-table">
+                            <table class="table  data-table">
                                 <caption>รายชื่อสถานีวัดปริมาณฝนใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
                                 <thead>
                                     <tr>
@@ -781,7 +758,7 @@
                                             <td>{{ explode(' ', $item['rainfall_datetime'])[1] }}</td>
                                             <td>
                                                 <button href="#" class="btn btn-secondary btn-sm"
-                                                    data-toggle="modal" data-target="#rainModal">
+                                                    data-toggle="modal" data-target="#rainModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
                                                     <i class="fa fa-chart-line"></i>
                                                 </button>
                                             </td>
@@ -792,44 +769,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="accordion" id="accordionExample2">
-                        <div class="card">
-                            <div class="card-header" id="headingOne2">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                        data-toggle="collapse" data-target="#collapseOne2" aria-expanded="false"
-                                        aria-controls="collapseOne">
-                                        ปริมาณน้ำฝน - สถานีทุ่งสง
-                                    </button>
-                                </h2>
-                            </div>
-
-                            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2"
-                                data-parent="#accordionExample2">
-                                <div class="card-body">
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingTwo2">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                        data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        ปริมาณน้ำฝน - สถานีฝายคลองท่าเลา
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2"
-                                data-parent="#accordionExample2">
-                                <div class="card-body">
-                                    <div id="chart_rain_thungsong" style="width: 100%; height: 400px"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
                 <!-- Rain Modal -->
                 <div class="modal fade" id="rainModal" tabindex="-1" aria-labelledby="rainModalLabel"
@@ -837,13 +777,13 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="rainModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="rainModalLabel">ข้อมูลปริมาณน้ำฝน</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div id="chart_rain_fai_klong_ta_lao" style="width: 100%; height: 400px"></div>
+                                <div id="chart_rain" style="width: 100%; height: 400px"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary">Download JSON</button>
@@ -858,16 +798,22 @@
 
         </div>
         <script>
-            $('#wlModal').on('show.bs.modal', function() {
+            $('#wlModal').on('show.bs.modal', function(e) {
                 // do something...
                 console.log("OPEN");
-                drawChartWaterLevelBannPradoo();
+                let station_id = e.relatedTarget.getAttribute("station-id");
+                let station_name = e.relatedTarget.getAttribute("station-name");
+                document.querySelector("#wlModal h5").innerHTML = "ข้อมูลระดับน้ำ - "+station_name;
+                drawChartWaterLevel(station_id);
                 // drawChartWaterLevelThungsong();
             })
-            $('#rainModal').on('show.bs.modal', function() {
+            $('#rainModal').on('show.bs.modal', function(e) {
                 // do something...
                 console.log("OPEN");
-                drawChartRain();
+                let station_id = e.relatedTarget.getAttribute("station-id");
+                let station_name = e.relatedTarget.getAttribute("station-name");
+                document.querySelector("#rainModal h5").innerHTML = "ข้อมูลปริมาณน้ำฝน - "+station_name;
+                drawChartRain(station_id);
             })
             $(document).ready(function() {
                 $('.data-table').DataTable();
