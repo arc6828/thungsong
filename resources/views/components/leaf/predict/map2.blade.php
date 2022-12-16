@@ -103,7 +103,7 @@
                 title: 'ระดับน้ำข้อมูลจริง/ทำนาย',
                 curveType: 'function',
                 legend: {
-                    position: 'top'
+                    position: 'bottom'
                 },
                 series: {
                     0: {
@@ -127,6 +127,7 @@
                 vAxis: {
                     title: 'ม.ทรก.',
                 },
+                chartArea: {'width': '80%', 'height': '80%'},
 
             };
 
@@ -179,6 +180,7 @@
                 vAxis: {
                     title: 'ม.ทรก.',
                 },
+                chartArea: {'width': '80%', 'height': '80%'},
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_bann_pradoo'));
             chart.draw(data, options);
@@ -218,6 +220,7 @@
                 },
                 // width: 900,
                 // height: 500,
+                chartArea: {'width': '80%', 'height': '80%'},
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_rain_thungsong'));
             chart.draw(data, options);
@@ -259,6 +262,7 @@
                 },
                 // width: 900,
                 // height: 500,
+                chartArea: {'width': '80%', 'height': '80%'},
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_rain_fai_klong_ta_lao'));
             chart.draw(data, options);
