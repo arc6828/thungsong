@@ -26,7 +26,9 @@
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
-                            <a href="#navbar_global" role="button" class="fas fa-times" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"></a>
+                            <a href="#navbar_global" role="button"  data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-times"></i>          
+                            </a>
                         </div>
                     </div>
                 </div>
