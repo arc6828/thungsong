@@ -120,14 +120,17 @@
                 hAxis: {
                     // format: 'HH:mm',
                     // title : 'วันที่',
-                    viewWindow: {                        
-                        min: new Date(Date.now()-24*60*60*1000),
+                    viewWindow: {
+                        min: new Date(Date.now() - 24 * 60 * 60 * 1000),
                     },
                 },
                 vAxis: {
                     title: 'ม.ทรก.',
                 },
-                chartArea: {'width': '80%', 'height': '80%'},
+                chartArea: {
+                    'width': '80%',
+                    'height': '80%'
+                },
 
             };
 
@@ -173,14 +176,17 @@
                 hAxis: {
                     // format: 'MMM dd, YYYY',
                     // title : 'วันที่',
-                    viewWindow: {                        
-                        min: new Date(Date.now()-24*60*60*1000),
+                    viewWindow: {
+                        min: new Date(Date.now() - 24 * 60 * 60 * 1000),
                     },
                 },
                 vAxis: {
                     title: 'ม.ทรก.',
                 },
-                chartArea: {'width': '80%', 'height': '80%'},
+                chartArea: {
+                    'width': '80%',
+                    'height': '80%'
+                },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_bann_pradoo'));
             chart.draw(data, options);
@@ -220,7 +226,10 @@
                 },
                 // width: 900,
                 // height: 500,
-                chartArea: {'width': '80%', 'height': '80%'},
+                chartArea: {
+                    'width': '80%',
+                    'height': '80%'
+                },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_rain_thungsong'));
             chart.draw(data, options);
@@ -249,8 +258,8 @@
                 hAxis: {
                     // format: 'MMM dd, YYYY',
                     // title : 'วันที่',
-                    viewWindow: {                        
-                        min: new Date(Date.now()-24*60*60*1000),
+                    viewWindow: {
+                        min: new Date(Date.now() - 24 * 60 * 60 * 1000),
                     },
                 },
                 vAxis: {
@@ -262,7 +271,10 @@
                 },
                 // width: 900,
                 // height: 500,
-                chartArea: {'width': '80%', 'height': '80%'},
+                chartArea: {
+                    'width': '80%',
+                    'height': '80%'
+                },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_rain_fai_klong_ta_lao'));
             chart.draw(data, options);
@@ -271,22 +283,6 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
     <script>
-        //google.maps.event.addDomListener(window, 'load', init);
-        // var map;
-        var overlay;
-        USGSOverlay.prototype = new google.maps.OverlayView();
-
-        //var src = "https://weather.ckartisan.com/sample/kml/test1.kmz";
-        //var src = "https://weather.ckartisan.com/sample/kml/2D_Base.kmz";
-        // /2D_Base.kmz
-        //var src = "https://weather.ckartisan.com/reports/2019-08-14_10-00-00/kml/1RG.kmz";
-        //var src = "https://csincube.com/us_states.kml";
-        //var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
-        // var src = "https://weather.ckartisan.com/storage/uploads/wL9wyTDWRs3snitOn4hUm3MnnQIIUj6m4NE7X5F8.zip ";
-        // var src = "{{ url('/kml/kml.zip') }}";
-
-
-
         function initMap() {
             const map = new google.maps.Map(document.getElementById('map'), {
                 //center: {lat: 21.3143328800798, lng: 105.603779579014},
@@ -299,10 +295,11 @@
                 zoom: 10
             });
 
+            // FETCH MARKERS
             fetch("{{ url('api/now/wl') }}")
                 .then((data) => data.json())
                 .then((data) => {
-                    data = data.filter((item)=>{
+                    data = data.filter((item) => {
                         return item.station.tele_station_lat >= 8.174971;
                     });
                     console.log("Wl : ", data);
@@ -360,96 +357,228 @@
 
                 })
 
-            //KML OVERLAY  
-            // var kmlLayer = new google.maps.KmlLayer(src, {
-            //     suppressInfoWindows: true,
-            //     preserveViewport: true,
-            //     map: map
-            // });
-            // console.log("kmlLayer : ", kmlLayer);
+            // IMG OVERLAY 
+            class USGSOverlay extends google.maps.OverlayView {
+                bounds;
+                image;
+                div;
+                constructor(bounds, image) {
+                    super();
+                    this.bounds = bounds;
+                    this.image = image;
+                }
+                // [END maps_overlay_hideshow_subclass]
+                // [START maps_overlay_hideshow_onadd]
+                /**
+                 * onAdd is called when the map's panes are ready and the overlay has been
+                 * added to the map.
+                 */
+                onAdd() {
+                    this.div = document.createElement("div");
+                    this.div.style.borderStyle = "none";
+                    this.div.style.borderWidth = "0px";
+                    this.div.style.position = "absolute";
 
-            //IMG OVERLAY                                        
+                    // Create the img element and attach it to the div.
+                    const img = document.createElement("img");
 
-            var bounds = new google.maps.LatLngBounds(
+                    img.src = this.image;
+                    img.style.width = "100%";
+                    img.style.height = "100%";
+                    img.style.position = "absolute";
+                    this.div.appendChild(img);
+
+                    // Add the element to the "overlayLayer" pane.
+                    const panes = this.getPanes();
+
+                    panes.overlayLayer.appendChild(this.div);
+                }
+                // [END maps_overlay_hideshow_onadd]
+                // [START maps_overlay_hideshow_draw]
+                draw() {
+                    // We use the south-west and north-east
+                    // coordinates of the overlay to peg it to the correct position and size.
+                    // To do this, we need to retrieve the projection from the overlay.
+                    const overlayProjection = this.getProjection();
+                    // Retrieve the south-west and north-east coordinates of this overlay
+                    // in LatLngs and convert them to pixel coordinates.
+                    // We'll use these coordinates to resize the div.
+                    const sw = overlayProjection.fromLatLngToDivPixel(
+                        this.bounds.getSouthWest()
+                    );
+                    const ne = overlayProjection.fromLatLngToDivPixel(
+                        this.bounds.getNorthEast()
+                    );
+
+                    // Resize the image's div to fit the indicated dimensions.
+                    if (this.div) {
+                        this.div.style.left = sw.x + "px";
+                        this.div.style.top = ne.y + "px";
+                        this.div.style.width = ne.x - sw.x + "px";
+                        this.div.style.height = sw.y - ne.y + "px";
+                    }
+                }
+                // [END maps_overlay_hideshow_draw]
+                // [START maps_overlay_hideshow_onremove]
+                /**
+                 * The onRemove() method will be called automatically from the API if
+                 * we ever set the overlay's map property to 'null'.
+                 */
+                onRemove() {
+                    if (this.div) {
+                        this.div.parentNode.removeChild(this.div);
+                        delete this.div;
+                    }
+                }
+                // [END maps_overlay_hideshow_onremove]
+                // [START maps_overlay_hideshow_hideshowtoggle]
+                /**
+                 *  Set the visibility to 'hidden' or 'visible'.
+                 */
+                hide() {
+                    if (this.div) {
+                        this.div.style.visibility = "hidden";
+                    }
+                }
+                show() {
+                    if (this.div) {
+                        this.div.style.visibility = "visible";
+                    }
+                }
+                toggle() {
+                    if (this.div) {
+                        if (this.div.style.visibility === "hidden") {
+                            this.show();
+                        } else {
+                            this.hide();
+                        }
+                    }
+                }
+                toggleDOM(map) {
+                    if (this.getMap()) {
+                        this.setMap(null);
+                    } else {
+                        this.setMap(map);
+                    }
+                }
+                // [END maps_overlay_hideshow_hideshowtoggle]
+            }
+            
+            const bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(7.9810505258, 99.4672642786),
-                new google.maps.LatLng(8.2529753306, 99.8307601372));
+                new google.maps.LatLng(8.2529753306, 99.8307601372)
+            );
+            // The photograph is courtesy of the U.S. Geological Survey.
+            let image = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodoverlay.png";
+
+            // [START maps_overlay_hideshow_init]
+            const overlay = new USGSOverlay(bounds, image);
+
+            overlay.setMap(map);
+
+            // [END maps_overlay_hideshow_init]
+            // [START maps_overlay_hideshow_controls]
+
+            // // CREATE ELEMENTS
+            const centerControlDiv = document.createElement("div");
+            centerControlDiv.style.backgroundColor = "white";
+            centerControlDiv.style.borderRadius = "2px";
+            const checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.setAttribute("checked", "true");
+            checkbox.setAttribute("id", "visibleOverlayControl");
+            // checkbox.setAttribute("onchange", "onToggle(this)");
+            checkbox.addEventListener("change", () => {
+                overlay.toggle();
+            });
+            checkbox.style.width = "20px";
+            checkbox.style.height = "20px";
+            const label = document.createElement("span");
+            label.innerHTML = " Flood";
+            label.style.fontFamily = "Prompt";
+            label.style.fontSize = "20px";
+
+            centerControlDiv.appendChild(checkbox);
+            centerControlDiv.appendChild(label);
+
+            centerControlDiv.index = 1;
+            centerControlDiv.style.padding = "5px 10px";
+            centerControlDiv.style.marginTop = "10px";
+
+            
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+
+            // const toggleButton = document.createElement("button");
+
+            // toggleButton.textContent = "Toggle";
+            // toggleButton.classList.add("custom-map-control-button");
+
+            // const toggleDOMButton = document.createElement("button");
+
+            // toggleDOMButton.textContent = "Toggle DOM Attachment";
+            // toggleDOMButton.classList.add("custom-map-control-button");
+            // toggleButton.addEventListener("click", () => {
+            //     overlay.toggle();
+            // });
+            // toggleDOMButton.addEventListener("click", () => {
+            //     overlay.toggleDOM(map);
+            // });
+            // // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleDOMButton);
+            // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
 
 
+            ///
+            // const imageBounds = {
+            //     north: 8.2529753306,
+            //     south: 7.9810505258,
+            //     east: 99.8307601372,
+            //     west: 99.4672642786,
+            // };
+            // let imgURL = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodoverlay.png";
+            // var historicalOverlay = new google.maps.GroundOverlay(imgURL, imageBounds);
+            // historicalOverlay.setMap(map);
 
-            // The photograph is courtesy of the U.S. Geological Survey.                                       
-            // var srcImage = 'http://weather.bangkok.go.th/Images/Radar/NjKML/njRadarOnGoogle.png';
-            // var srcImage = "{{ url('/kml/Tungsong_FM_2006 2006-02-10-07-00.png') }}";
-            var srcImage = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodoverlay.png";
+            // function redrawOverlay() {
+            //     historicalOverlay.setMap(map);
+            // }
 
-            // The custom USGSOverlay object contains the USGS image,
-            // the bounds of the image, and a reference to the map.
-            overlay = new USGSOverlay(bounds, srcImage, map);
+            // function removeOverlay() {
+            //     historicalOverlay.setMap(null);
+            // }
+
+            // const onToggle = (e) => {
+            //     if (e.checked) {
+            //         redrawOverlay()
+            //     } else {
+            //         removeOverlay()
+            //     }
+            // }
+
+            // // CREATE ELEMENTS
+            // const centerControlDiv = document.createElement("div");
+            // centerControlDiv.style.backgroundColor = "white";
+            // centerControlDiv.style.borderRadius = "2px";
+            // const checkbox = document.createElement("input");
+            // checkbox.setAttribute("type", "checkbox");
+            // checkbox.setAttribute("id", "visibleOverlayControl");
+            // checkbox.setAttribute("onchange", "onToggle(this)");
+            // checkbox.style.width = "20px";
+            // checkbox.style.height = "20px";
+            // const label = document.createElement("span");
+            // label.innerHTML = " Flood";
+            // label.style.fontFamily = "Prompt";
+            // label.style.fontSize = "20px";
+
+            // centerControlDiv.appendChild(checkbox);
+            // centerControlDiv.appendChild(label);
+
+            // centerControlDiv.index = 1;
+            // centerControlDiv.style.padding = "5px 10px";
+            // centerControlDiv.style.marginTop = "10px";
+            // map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
         }
 
-        function USGSOverlay(bounds, image, map) {
-            // Initialize all properties.
-            this.bounds_ = bounds;
-            this.image_ = image;
-            this.map_ = map;
-
-            // Define a property to hold the image's div. We'll
-            // actually create this div upon receipt of the onAdd()
-            // method so we'll leave it null for now.
-            this.div_ = null;
-
-            // Explicitly call setMap on this overlay.
-            this.setMap(map);
-        }
-        USGSOverlay.prototype.onAdd = function() {
-
-            var div = document.createElement('div');
-            div.style.borderStyle = 'none';
-            div.style.borderWidth = '0px';
-            div.style.position = 'absolute';
-
-            // Create the img element and attach it to the div.
-            var img = document.createElement('img');
-            img.src = this.image_;
-            img.style.width = '100%';
-            img.style.height = '100%';
-            //img.style.position = 'absolute';
-            div.appendChild(img);
-
-            this.div_ = div;
-
-            // Add the element to the "overlayLayer" pane.
-            var panes = this.getPanes();
-            panes.overlayLayer.appendChild(div);
-        };
-
-        USGSOverlay.prototype.draw = function() {
-
-            // We use the south-west and north-east
-            // coordinates of the overlay to peg it to the correct position and size.
-            // To do this, we need to retrieve the projection from the overlay.
-            var overlayProjection = this.getProjection();
-
-            // Retrieve the south-west and north-east coordinates of this overlay
-            // in LatLngs and convert them to pixel coordinates.
-            // We'll use these coordinates to resize the div.
-            var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-            var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
-
-            // Resize the image's div to fit the indicated dimensions.
-            var div = this.div_;
-            div.style.left = sw.x + 'px';
-            div.style.top = ne.y + 'px';
-            div.style.width = (ne.x - sw.x) + 'px';
-            div.style.height = (sw.y - ne.y) + 'px';
-        };
-
-        // The onRemove() method will be called automatically from the API if
-        // we ever set the overlay's map property to 'null'.
-        USGSOverlay.prototype.onRemove = function() {
-            this.div_.parentNode.removeChild(this.div_);
-            this.div_ = null;
-        };
         google.maps.event.addDomListener(window, 'load', initMap);
 
         function initMap2() {
@@ -467,7 +596,7 @@
             fetch("{{ url('api/now/rain') }}")
                 .then((data) => data.json())
                 .then((data) => {
-                    data = data.filter((item)=>{
+                    data = data.filter((item) => {
                         return item.station.tele_station_lat >= 8.174971;
                     });
                     console.log("Rain : ", data);
