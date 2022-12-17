@@ -6,7 +6,7 @@
             let promise = await fetch(url);
             let wl_predict = await promise.json();
             // console.log(waterlevel);
-            let url2 = "{{ url('api/waterlevel/now/station/795') }}"; //THUNGSONG
+            let url2 = "{{ url('api/waterlevel/station/795') }}"; //THUNGSONG
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
             // console.log(wl_predict);
@@ -37,8 +37,8 @@
             return [wl_now, wl_predict];
         }
         async function loadWaterLevelBannPradoo() {
-            // let url2 = "{{ url('api/waterlevel/now/station/1101568') }}"; //BannPradoo
-            let url2 = "{{ url('api/waterlevel/now/station/13892') }}"; //Faiklongtalao
+            // let url2 = "{{ url('api/waterlevel/station/1101568') }}"; //BannPradoo
+            let url2 = "{{ url('api/waterlevel/station/13892') }}"; //Faiklongtalao
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
             console.log(wl_now);
@@ -55,7 +55,7 @@
             return wl_now;
         }
         async function loadRain(station_id) {
-            let url2 = "{{ url('api/rain/now/station') }}/" + station_id;
+            let url2 = "{{ url('api/rain/station') }}/" + station_id;
             let promise2 = await fetch(url2);
             let rain_now = await promise2.json();
             console.log(rain_now);

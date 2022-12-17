@@ -8,7 +8,7 @@
             let promise = await fetch(url);
             let wl_predict = await promise.json();
             // console.log(waterlevel);
-            let url2 = "{{ url('api/waterlevel/now/station/795') }}"; //THUNGSONG
+            let url2 = "{{ url('api/waterlevel/station/795') }}"; //THUNGSONG
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
             // console.log(wl_predict);
@@ -39,7 +39,7 @@
             return [wl_now, wl_predict];
         }
         async function loadWaterLevel(station_id) {
-            let url2 = "{{ url('api/waterlevel/now/station') }}/"+ station_id; 
+            let url2 = "{{ url('api/waterlevel/station') }}/"+ station_id; 
             console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
@@ -57,7 +57,7 @@
             return wl_now;
         }
         async function loadRain(station_id) {
-            let url2 = "{{ url('api/rain/now/station') }}/" + station_id;
+            let url2 = "{{ url('api/rain/station') }}/" + station_id;
             let promise2 = await fetch(url2);
             let rain_now = await promise2.json();
             console.log(rain_now);
@@ -660,8 +660,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" style="min-height: 600px;">
-                    <div id="map" style="height: 600px; padding:20"></div>
+                <div class="col-lg-4" style="min-height: 500px;">
+                    <div id="map" style="height: 500px; padding:20"></div>
                 </div>
                 <div class="col-lg-8">
                     <div class="p-4">
@@ -716,8 +716,8 @@
                                 <div id="chart_wl_bann_pradoo" style="width: 100%; height: 400px"></div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary">Download JSON</button>
-                                <button type="button" class="btn btn-primary">Download CSV</button>
+                                <a href="#" id="wl-json" class="btn btn-secondary" target="_blank">Download JSON</a>
+                                <a href="#" id="wl-csv" class="btn btn-primary" target="_blank">Download CSV</a>
                             </div>
                         </div>
                     </div>
@@ -732,8 +732,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" style="min-height: 600px;">
-                    <div id="map2" style="height: 600px; padding:20"></div>
+                <div class="col-lg-4" style="min-height: 500px;">
+                    <div id="map2" style="height: 500px; padding:20"></div>
                 </div>
                 <div class="col-lg-8">
                     <div class="p-4">
@@ -786,8 +786,8 @@
                                 <div id="chart_rain" style="width: 100%; height: 400px"></div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary">Download JSON</button>
-                                <button type="button" class="btn btn-primary">Download CSV</button>
+                                <a href="#" id="rain-json" class="btn btn-secondary" target="_blank">Download JSON</a>
+                                <a href="#" id="rain-csv" class="btn btn-primary" target="_blank">Download CSV</a>
                             </div>
                         </div>
                     </div>
@@ -804,6 +804,8 @@
                 let station_id = e.relatedTarget.getAttribute("station-id");
                 let station_name = e.relatedTarget.getAttribute("station-name");
                 document.querySelector("#wlModal h5").innerHTML = "ข้อมูลระดับน้ำ - "+station_name;
+                document.querySelector("#wlModal #wl-json").setAttribute("href",`{{ url('api/waterlevel/station') }}/${station_id}`);
+                document.querySelector("#wlModal #wl-csv").setAttribute("href",`{{ url('api/waterlevel/station') }}/${station_id}/csv`);
                 drawChartWaterLevel(station_id);
                 // drawChartWaterLevelThungsong();
             })
@@ -813,6 +815,8 @@
                 let station_id = e.relatedTarget.getAttribute("station-id");
                 let station_name = e.relatedTarget.getAttribute("station-name");
                 document.querySelector("#rainModal h5").innerHTML = "ข้อมูลปริมาณน้ำฝน - "+station_name;
+                document.querySelector("#rainModal #rain-json").setAttribute("href",`{{ url('api/rain/station') }}/${station_id}`);
+                document.querySelector("#rainModal #rain-csv").setAttribute("href",`{{ url('api/rain/station') }}/${station_id}/csv`);
                 drawChartRain(station_id);
             })
             $(document).ready(function() {
