@@ -12,9 +12,9 @@
                                 </h6>
                                 <!-- Heading -->
                                 <h2 class="text-gray mb-0" id="wl_thungsong">
-                                    <span class="icon-danger mr-2">
+                                    <span class="icon-danger mr-2 direction">
                                         <!-- <i class=" fas fa-long-arrow-alt-up "></i> -->
-                                        <i class="fas "></i>
+                                        <!-- <i class="fas "></i> -->
                                     </span>
                                     <span class="counter display-3 mr-2">0</span>
                                 </h2>
@@ -96,7 +96,7 @@
             // map data
             dataWL = dataWL.map((item) => {
                 return {
-                    "title": `ระดับน้ำ - ${item.station.tele_station_name.th}`,
+                    "title": `<i class="fas fa-water"></i> ระดับน้ำ - ${item.station.tele_station_name.th}`,
                     "number": `${item.waterlevel_msl}`,
                     "unit": "ม.รทก.",
                     "direction": `${item.waterlevel_msl-item.waterlevel_msl_previous}`,
@@ -106,7 +106,7 @@
             });
             dataRain = dataRain.map((item) => {
                 return {
-                    "title": `ปริมาณฝน - ${item.station.tele_station_name.th}`,
+                    "title": `<i class="fas fa-cloud-rain"></i> ปริมาณฝน - ${item.station.tele_station_name.th}`,
                     "number": `${item.rain_24h}`,
                     "unit": "มิลลิเมตร",
                     "direction": `0`,
@@ -142,6 +142,13 @@
                             .number;
                         document.querySelector(`#card-${index} span.text-center`).innerHTML =
                             item.unit;
+                        if(item.direction != 0){
+                            document.querySelector(`#card-${index} span.direction`).innerHTML =
+                            `<i class=" fas fa-long-arrow-alt-${item.direction.up?"up":"down"} "></i>`;
+                        }else{
+                            document.querySelector(`#card-${index} span.direction`).innerHTML = "";
+                        }
+                        
                         // document.querySelector(`#card-${index} h6`).innerHTML = item.title;
                         // document.querySelector("#rain_faiklongtalao i").classList.add(data
                         //     .rain_faiklongtalao.d > 0 ?
@@ -154,8 +161,13 @@
                         document.querySelector(`#card-${index} h6`).innerHTML = item.title;
                         document.querySelector(`#card-${index} .counter`).innerHTML = item
                             .number;
-                        document.querySelector(`#card-${index} span.text-center`).innerHTML =
-                            item.unit;
+                        document.querySelector(`#card-${index} span.text-center`).innerHTML =  item.unit;
+                        if(item.direction != 0){
+                            document.querySelector(`#card-${index} span.direction`).innerHTML =
+                            `<i class=" fas fa-long-arrow-alt-${item.direction.up?"up":"down"} "></i>`;
+                        }else{
+                            document.querySelector(`#card-${index} span.direction`).innerHTML = "";
+                        }
                         // document.querySelector(`#card-${index} h6`).innerHTML = item.title;
                         // document.querySelector("#rain_faiklongtalao i").classList.add(data
                         //     .rain_faiklongtalao.d > 0 ?

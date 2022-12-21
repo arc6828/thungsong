@@ -4,14 +4,14 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 text-center">
-                    <h1 class="pt-4">
+                    <!-- <h1 class="pt-4">
                         <img src="{{ url('img/LOGO_KU_Flood-02.png') }}" width="100" /> ML Flood by KU
-                    </h1>
+                    </h1> -->
                 </div>
                 <div class="col-12 d-md-none d-none">
-                    <h1 class="display-2 font-weight-bold mb-0">
+                    <!-- <h1 class="display-2 font-weight-bold mb-0">
                         ML Flood by KU
-                    </h1>
+                    </h1> -->
                 </div>
                 <div class="col-8 col-md-7 col-lg-6 order-lg-1 d-none">
                     <!-- Heading -->
