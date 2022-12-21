@@ -39,7 +39,7 @@
             return [wl_now, wl_predict];
         }
         async function loadWaterLevel(station_id) {
-            let url2 = "{{ url('api/waterlevel/station') }}/"+ station_id; 
+            let url2 = "{{ url('api/waterlevel/station') }}/" + station_id;
             console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
@@ -82,7 +82,7 @@
         google.charts.setOnLoadCallback(drawChartWaterLevelThungsong);
 
         async function drawChartWaterLevelThungsong() {
-            
+
             let [wl_now, wl_predict] = await loadWaterLevelThungsong();
 
             let dataset = [
@@ -145,12 +145,12 @@
         google.charts.setOnLoadCallback(drawChartWaterLevel);
 
         async function drawChartWaterLevel(station_id = 795) {
-            console.log("STATION_ID : ",station_id);
+            console.log("STATION_ID : ", station_id);
             let wl_now = await loadWaterLevel(station_id);
 
             let dataset = [
                 ['Year', 'ระดับท้องน้ำ', 'ระดับตลิ่ง', 'ข้อมูลจริง'],
-                
+
                 // ['', 0,0,0],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
@@ -160,8 +160,8 @@
             ];
             dataset = dataset.concat(wl_now);
             // console.log(dataset);
-            if(dataset.length == 1){
-                dataset.push(['', 0,0,0]);
+            if (dataset.length == 1) {
+                dataset.push(['', 0, 0, 0]);
             }
 
             var data = google.visualization.arrayToDataTable(dataset);
@@ -205,8 +205,8 @@
         google.charts.setOnLoadCallback(drawChartRain);
 
         async function drawChartRain(station_id = 795) {
-            
-            
+
+
             let rain_now2 = await loadRain(station_id);
             let dataset2 = [
                 ['Date', 'ข้อมูลจริง'],
@@ -219,8 +219,8 @@
             ];
             dataset2 = dataset2.concat(rain_now2);
             // console.log(dataset);
-            
-            if(dataset2.length == 1){
+
+            if (dataset2.length == 1) {
                 dataset2.push(['', 0]);
             }
 
@@ -323,7 +323,15 @@
                             map: map,
                             // label: item.rain_24h.toFixed(0),
                             title: `${item.station.tele_station_name.th} จ.${item.geocode.province_name.th} อ.${item.geocode.amphoe_name.th} ต.${item.geocode.tumbon_name.th}`,
+                            icon: {
+                                path: google.maps.SymbolPath.CIRCLE,
+                                scale: 8.5,
+                                fillColor: "#F00",
+                                fillOpacity: 0.4,
+                                strokeWeight: 0.4
+                            },
                         });
+
                         m.addListener("click", () => {
                             infos[index].open({
                                 anchor: m,
@@ -680,19 +688,18 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($wl as $item)
-                                        <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }}</td>
-                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
-                                            <td>{{ $item['waterlevel_msl'] }}</td>
-                                            <td>{{ number_format($item['storage_percent'], 0) }}%</td>
-                                            <td>{{ explode(' ', $item['waterlevel_datetime'])[1] }}</td>
-                                            <td>
-                                                <button href="#" class="btn btn-primary btn-sm"
-                                                    data-toggle="modal" data-target="#wlModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
-                                                    <i class="fa fa-chart-line"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{ $item['station']['tele_station_name']['th'] }}</td>
+                                        <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                        <td>{{ $item['waterlevel_msl'] }}</td>
+                                        <td>{{ number_format($item['storage_percent'], 0) }}%</td>
+                                        <td>{{ explode(' ', $item['waterlevel_datetime'])[1] }}</td>
+                                        <td>
+                                            <button href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#wlModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
+                                                <i class="fa fa-chart-line"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     @endforeach
 
                                 </tbody>
@@ -751,29 +758,27 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($rain as $item)
-                                        <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }}</td>
-                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
-                                            <td>{{ $item['rain_24h'] }}</td>
-                                            <td>{{ explode(' ', $item['rainfall_datetime'])[1] }}</td>
-                                            <td>
-                                                <button href="#" class="btn btn-secondary btn-sm"
-                                                    data-toggle="modal" data-target="#rainModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
-                                                    <i class="fa fa-chart-line"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{ $item['station']['tele_station_name']['th'] }}</td>
+                                        <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                        <td>{{ $item['rain_24h'] }}</td>
+                                        <td>{{ explode(' ', $item['rainfall_datetime'])[1] }}</td>
+                                        <td>
+                                            <button href="#" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#rainModal" station-id="{{ $item['station']['id'] }}" station-name="{{ $item['station']['tele_station_name']['th'] }}">
+                                                <i class="fa fa-chart-line"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
                                     @endforeach
 
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- Rain Modal -->
-                <div class="modal fade" id="rainModal" tabindex="-1" aria-labelledby="rainModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="rainModal" tabindex="-1" aria-labelledby="rainModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -803,9 +808,9 @@
                 console.log("OPEN");
                 let station_id = e.relatedTarget.getAttribute("station-id");
                 let station_name = e.relatedTarget.getAttribute("station-name");
-                document.querySelector("#wlModal h5").innerHTML = "ข้อมูลระดับน้ำ - "+station_name;
-                document.querySelector("#wlModal #wl-json").setAttribute("href",`{{ url('api/waterlevel/station') }}/${station_id}`);
-                document.querySelector("#wlModal #wl-csv").setAttribute("href",`{{ url('api/waterlevel/station') }}/${station_id}/csv`);
+                document.querySelector("#wlModal h5").innerHTML = "ข้อมูลระดับน้ำ - " + station_name;
+                document.querySelector("#wlModal #wl-json").setAttribute("href", `{{ url('api/waterlevel/station') }}/${station_id}`);
+                document.querySelector("#wlModal #wl-csv").setAttribute("href", `{{ url('api/waterlevel/station') }}/${station_id}/csv`);
                 drawChartWaterLevel(station_id);
                 // drawChartWaterLevelThungsong();
             })
@@ -814,9 +819,9 @@
                 console.log("OPEN");
                 let station_id = e.relatedTarget.getAttribute("station-id");
                 let station_name = e.relatedTarget.getAttribute("station-name");
-                document.querySelector("#rainModal h5").innerHTML = "ข้อมูลปริมาณน้ำฝน - "+station_name;
-                document.querySelector("#rainModal #rain-json").setAttribute("href",`{{ url('api/rain/station') }}/${station_id}`);
-                document.querySelector("#rainModal #rain-csv").setAttribute("href",`{{ url('api/rain/station') }}/${station_id}/csv`);
+                document.querySelector("#rainModal h5").innerHTML = "ข้อมูลปริมาณน้ำฝน - " + station_name;
+                document.querySelector("#rainModal #rain-json").setAttribute("href", `{{ url('api/rain/station') }}/${station_id}`);
+                document.querySelector("#rainModal #rain-csv").setAttribute("href", `{{ url('api/rain/station') }}/${station_id}/csv`);
                 drawChartRain(station_id);
             })
             $(document).ready(function() {

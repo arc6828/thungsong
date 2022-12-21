@@ -113,7 +113,10 @@
                         lineDashStyle: [10, 5]
                     },
                     2: {},
-                    3: {},
+                    3: {
+                        // lineDashSize: 2,
+                        lineDashStyle: [2.5, 10]
+                    },
                 },
 
                 // pointSize: 2,
@@ -222,7 +225,7 @@
                     viewWindow: {
                         // max: 100,
                         min: 0,
-                    }
+                    },
                 },
                 // width: 900,
                 // height: 500,
@@ -463,7 +466,7 @@
                 }
                 // [END maps_overlay_hideshow_hideshowtoggle]
             }
-            
+
             const bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(7.9810505258, 99.4672642786),
                 new google.maps.LatLng(8.2529753306, 99.8307601372)
@@ -505,7 +508,7 @@
             centerControlDiv.style.padding = "5px 10px";
             centerControlDiv.style.marginTop = "10px";
 
-            
+
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
             // const toggleButton = document.createElement("button");
@@ -682,16 +685,13 @@
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left" type="button"
-                                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                        aria-controls="collapseOne">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         ระดับน้ำ - สถานีทุ่งสง
                                     </button>
                                 </h2>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div id="chart_wl_thungsong" style="width: 100%; height: 400px"></div>
                                 </div>
@@ -700,15 +700,12 @@
                         <div class="card">
                             <div class="card-header" id="headingTwo">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         ระดับน้ำ - สถานีฝายคลองท่าเลา
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div id="chart_wl_bann_pradoo" style="width: 100%; height: 400px"></div>
                                 </div>
@@ -731,16 +728,13 @@
                         <div class="card">
                             <div class="card-header" id="headingOne2">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left" type="button"
-                                        data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true"
-                                        aria-controls="collapseOne">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
                                         ปริมาณน้ำฝน - สถานีทุ่งสง
                                     </button>
                                 </h2>
                             </div>
 
-                            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2"
-                                data-parent="#accordionExample2">
+                            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2" data-parent="#accordionExample2">
                                 <div class="card-body">
                                     <div id="chart_rain_thungsong" style="width: 100%; height: 400px"></div>
                                 </div>
@@ -749,15 +743,12 @@
                         <div class="card">
                             <div class="card-header" id="headingTwo2">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                        data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false"
-                                        aria-controls="collapseTwo">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
                                         ปริมาณน้ำฝน - สถานีฝายคลองท่าเลา
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2"
-                                data-parent="#accordionExample2">
+                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionExample2">
                                 <div class="card-body">
                                     <div id="chart_rain_fai_klong_ta_lao" style="width: 100%; height: 400px"></div>
                                 </div>
