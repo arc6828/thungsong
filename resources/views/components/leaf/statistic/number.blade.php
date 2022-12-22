@@ -95,6 +95,7 @@
 
             // map data
             dataWL = dataWL.map((item) => {
+                // console.log(item.station.tele_station_name.th,item.waterlevel_msl,item.waterlevel_msl_previous)
                 return {
                     "title": `<i class="fas fa-water"></i> ระดับน้ำ - ${item.station.tele_station_name.th}`,
                     "number": `${item.waterlevel_msl}`,
