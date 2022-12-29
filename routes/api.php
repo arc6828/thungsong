@@ -26,40 +26,62 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // สถานีทุ่งสง 795 https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id=795
 // สถานีฝายคลองท่าเลา 13892 https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id=13892
 
+// USE for chart in statistic.blade.php
 
-Route::get("waterlevel/now", function () {
-    //station_id 795 ทุ่งสง
-    $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-4 hour'));
-    // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=795&start_date={$past}&end_date={$current}";
-    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=795";
-    $response = Http::get($url);
-    return $response->json();
-});
-Route::get("waterlevel/station/{station_id}", function ($station_id) {
+Route::get("waterlevel/station/{station_id}", function (Request $request, $station_id) {
     //station_id 795 สถานีทุ่งสง
     //station_id 1101568 สถานีบ้านประดู่
     //station_id 13892 สถานีฝายคลองท่าเลา
-    $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
+    $current = date('Y-m-d');
+    $current = $request->query('end_date', $current) . " 23:59:59";
+    $past = date('Y-m-d', strtotime('-24 hour'));
+    $past = $request->query('start_date', $past);
     $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
     // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}";
     $response = Http::get($url);
     return $response->json();
 });
-Route::get("rain/station/{station_id}", function ($station_id) {
+Route::get("rain/station/{station_id}", function (Request $request, $station_id) {
+    // https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_monthly_graph?station_id=795&month=10&year=2022
+    // https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_yearly_graph?station_id=795&year=2022
     //station_id 795 ทุ่งสง
     //station_id 13892 สถานีฝายคลองท่าเลา
-    $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
-    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
-    $response = Http::get($url);
-    return $response->json();
+    $current = date('Y-m-d');
+    $past = date('Y-m-d', strtotime('-24 hour'));
+    $group_by = $request->query('group_by', "hour"); // ["hour","date","month"]
+
+    if ($group_by == "month") {
+        $year = $request->query('year', date('Y')); // 2022
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_yearly_graph?station_id={$station_id}&year={$year}";
+        $response = Http::get($url);
+        // return $response->json();
+
+        $json = $response->json();
+        $json_data = $json["data"];
+        $json["data"] = array_map(function ($item) {
+            return ["rainfall_datetime" => $item["date_time"],"rainfall_value" => $item["rainfall"],];
+        }, $json_data);
+        return $json;
+    } else if ($group_by == "date") {
+        $year = $request->query('year', date('Y')); // 2022
+        $month = $request->query('month', date('m')); // 12
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_monthly_graph?station_id={$station_id}&month={$month}&year={$year}";
+        $response = Http::get($url);
+        return $response->json();
+    } else {
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
+        $response = Http::get($url);
+        return $response->json();
+    }
 });
-// MAKE CSV
+
+// MAKE CSV in statistic.blade.php
+
 Route::get("waterlevel/station/{station_id}/csv", function (Request $request, $station_id) {
-    $current = date('Y-m-d H:i:s');
-    $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
+    $current = date('Y-m-d');
+    $current = $request->query('end_date', $current) . " 23:59:59";
+    $past = date('Y-m-d', strtotime('-24 hour'));
+    $past = $request->query('start_date', $past);
     $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}&start_date={$past}&end_date={$current}";
     // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id={$station_id}";
     $response = Http::get($url);
@@ -72,7 +94,7 @@ Route::get("waterlevel/station/{station_id}/csv", function (Request $request, $s
     return ExportFile::toCSV($request, "wl-{$station_id}.csv", $body, $head);
     // return 
 });
-Route::get("rain/station/{station_id}/csv", function (Request $request,$station_id) {
+Route::get("rain/station/{station_id}/csv", function (Request $request, $station_id) {
     //station_id 795 ทุ่งสง
     //station_id 13892 สถานีฝายคลองท่าเลา
     $current = date('Y-m-d H:i:s');
@@ -88,17 +110,23 @@ Route::get("rain/station/{station_id}/csv", function (Request $request,$station_
     return ExportFile::toCSV($request, "rain-{$station_id}.csv", $body, $head);
 });
 
+// use for predict chart
+
 Route::get("waterlevel/predict", function () {
     $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/predict/floodwaterlevel.json";
     $response = Http::get($url);
     return $response->json();
 });
 
+// USE FOR number.blade.php
+
 Route::get("now/{name}", function ($name) {
     $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/now/now-{$name}.json";
     $response = Http::get($url);
     return $response->json();
 });
+
+// USE FOR number.blade.php > deprecate
 
 Route::get("statistic/now", function () {
     $wl_urls = [
@@ -169,4 +197,14 @@ Route::get("statistic/now", function () {
     ];
 
     return $data;
+});
+
+Route::get("waterlevel/now", function () {
+    //station_id 795 ทุ่งสง
+    $current = date('Y-m-d H:i:s');
+    $past = date('Y-m-d H:i:s', strtotime('-4 hour'));
+    // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=795&start_date={$past}&end_date={$current}";
+    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_graph?station_type=tele_waterlevel&station_id=795";
+    $response = Http::get($url);
+    return $response->json();
 });

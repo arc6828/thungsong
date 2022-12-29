@@ -72,7 +72,7 @@
         data.addRows(dataset);
 
         var options = {
-            title: 'ระดับน้ำข้อมูลจริง/ทำนาย',
+            title: 'ระดับน้ำตรวจวัด / คาดการณ์',
             curveType: 'function',
             legend: {
                 position: 'bottom'

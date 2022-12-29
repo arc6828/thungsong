@@ -1,10 +1,21 @@
-<div>    
+<div>
+    <link type="text/css" href="{{ asset('css/floating-label.css') }}" rel="stylesheet" />
     <script type="text/javascript">
         var global_wl;
         var global_rain;
-        
+
         async function loadWaterLevel(station_id) {
-            let url2 = "{{ url('api/waterlevel/station') }}/" + station_id;
+            let start_date = document.querySelector("#start-date").value;
+            let end_date = document.querySelector("#end-date").value;
+            let json_link =
+                `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
+            let csv_link =
+                `{{ url('api/waterlevel/station') }}/${station_id}/csv?start_date=${start_date}&end_date=${end_date}`;
+            document.querySelector("#wlModal #wl-json").setAttribute("href", json_link);
+            document.querySelector("#wlModal #wl-csv").setAttribute("href", csv_link);
+
+            let url2 =
+            `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
             console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
@@ -50,6 +61,10 @@
 
         async function drawChartWaterLevel(station_id = 795) {
             console.log("STATION_ID : ", station_id);
+            document.querySelector("#wlModal #end-date").setAttribute(
+                "min",
+                document.querySelector("#wlModal #start-date").value
+            );
             let wl_now = await loadWaterLevel(station_id);
 
             var data = new google.visualization.DataTable();
@@ -64,7 +79,7 @@
                 type: 'string',
                 role: 'annotation'
             });
-            data.addColumn('number', 'ข้อมูลระดับน้ำ');
+            data.addColumn('number', 'ระดับน้ำตรวจวัด');
 
             wl_now = wl_now.map((item, index) => {
                 if (index == wl_now.length - 1)
@@ -75,19 +90,25 @@
             data.addRows(wl_now);
 
             var options = {
-                title: 'ระดับน้ำข้อมูลจริง',
+                title: 'ระดับน้ำตรวจวัด',
                 curveType: 'function',
                 legend: {
                     position: 'bottom'
                 },
                 series: {
                     0: {
-                        lineDashStyle: [10, 5]
+                        lineDashStyle: [10, 5],
+                        color: 'black',
+                        visibleInLegend: false,
                     },
                     1: {
-                        lineDashStyle: [10, 5]
+                        lineDashStyle: [10, 5],
+                        color: 'red',
+                        visibleInLegend: false,
                     },
-                    2: {},
+                    2: {
+                        color: '#0dcaf0', // blue info
+                    },
                 },
                 hAxis: {
                     // format: 'MMM dd, YYYY',
@@ -167,12 +188,13 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
-    
+
     <section class="section section-lg py-6 mb-0">
         <div class="container">
             <div class="row">
                 <div class="col-12 ">
-                    <h5><i class="fas fa-water mr-2"></i> ระบบคาดการณ์อุทกภัยเรียลไทม์</h5>
+                    <h2 class="h3"><i class="fas fa-chart-line mr-2"></i> ระบบแสดงผลคาดการณ์ย้อนหลัง </h2>
+                    <hr />
                     <x-leaf.statistic.chart-predict></x-leaf.statistic.chart-predict>
                 </div>
             </div>
@@ -188,13 +210,19 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12 ">
+                    <h2 class="h3"><i class="fas fa-layer-group mr-2"></i> ระบบแสดงผลข้อมูลตรวจวัด </h2>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12">
                     <h5><i class="fas fa-water mr-2"></i> ระดับน้ำ</h5>
                     {{-- <i class="fa-solid fa-arrow-up-wide-short"></i> --}}
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" >
+                <div class="col-lg-4">
                     <x-leaf.predict.map-wl></x-leaf.predict.map-wl>
                 </div>
                 <div class="col-lg-8">
@@ -249,6 +277,25 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-label-group">
+                                            <input type="date" id="start-date" class="form-control"
+                                                placeholder="Start Date"
+                                                value="{{ date('Y-m-d', strtotime('-24 hour')) }}" required>
+                                            <label for="inputEmail">วันที่เริ่มต้น</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-label-group">
+                                            <input type="date" id="end-date" class="form-control"
+                                                placeholder="End Date" value="{{ date('Y-m-d') }}" required>
+                                            <label for="inputEmail">วันที่สิ้นสุด</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div id="chart_wl_bann_pradoo" style="width: 100%; height: 400px"></div>
                             </div>
                             <div class="modal-footer">
@@ -270,7 +317,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4" >
+                <div class="col-lg-4">
                     <x-leaf.predict.map-rain></x-leaf.predict.map-rain>
                 </div>
                 <div class="col-lg-8">
@@ -350,6 +397,10 @@
                     `{{ url('api/waterlevel/station') }}/${station_id}`);
                 document.querySelector("#wlModal #wl-csv").setAttribute("href",
                     `{{ url('api/waterlevel/station') }}/${station_id}/csv`);
+                document.querySelector("#wlModal #start-date").setAttribute("onchange",
+                    `drawChartWaterLevel(${station_id})`);
+                document.querySelector("#wlModal #end-date").setAttribute("onchange",
+                    `drawChartWaterLevel(${station_id})`);
                 drawChartWaterLevel(station_id);
                 // drawChartWaterLevelThungsong();
             })
