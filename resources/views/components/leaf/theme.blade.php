@@ -96,13 +96,13 @@
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 
     <style>
-        #map {
+        /* #map {
             position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-        }
+        } */
 
         h1,
         h2,
