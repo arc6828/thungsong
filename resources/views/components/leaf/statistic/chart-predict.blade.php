@@ -31,7 +31,7 @@
                 item["forecast_wl(msl)"],
             ];
         });
-        wl_predict = wl_predict.filter(function(item,index){
+        wl_predict = wl_predict.filter(function(item, index) {
             return item[0] > current_date;
         });
         // console.log(wl_predict);
@@ -59,15 +59,26 @@
             role: 'annotation'
         });
         data.addColumn('number', 'ระดับน้ำตรวจวัด');
+        data.addColumn({
+            type: 'string',
+            role: 'annotation',
+            p: {
+                html: true
+            },
+        });
         data.addColumn('number', 'ระดับน้ำคาดการณ์');
-
         let dataset = [].concat(wl_now, wl_predict);
 
         dataset = dataset.map((item, index) => {
-            if (index == dataset.length - 1)
-                return [item[0], item[1], 'ระดับท้องน้ำ', item[2], 'ระดับตลิ่ง', item[3], item[4]];
-            else
-                return [item[0], item[1], null, item[2], null, item[3], item[4]];
+            if (index == dataset.length - 1) {
+                return [item[0], item[1], 'ระดับท้องน้ำ', item[2], 'ระดับตลิ่ง', item[3], null, item[4]];
+            } else if (index == wl_now.length - 1) {
+                let label =
+                    `${item[0].getHours()}:${item[0].getMinutes()} น. / ${item[3]} ม.ทรก. / ${(Number(item[3]-item[1])/(item[2]-item[1])*100).toFixed(0)}%`;
+                return [item[0], item[1], null, item[2], null, item[3], label, item[4]];
+            } else {
+                return [item[0], item[1], null, item[2], null, item[3], null, item[4]];
+            }
         });
         data.addRows(dataset);
 
