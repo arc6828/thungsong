@@ -15,7 +15,7 @@
             document.querySelector("#wlModal #wl-csv").setAttribute("href", csv_link);
 
             let url2 =
-            `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
+                `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
             console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
@@ -296,7 +296,7 @@
                                     </div>
                                 </div>
 
-                                <div id="chart_wl_bann_pradoo" style="width: 100%; height: 400px"></div>
+                                <div id="chart_wl_bann_pradoo" style="width: 100%; height: 300px"></div>
                             </div>
                             <div class="modal-footer">
                                 <a href="#" id="wl-json" class="btn btn-secondary" target="_blank">Download
@@ -370,7 +370,81 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div id="chart_rain" style="width: 100%; height: 400px"></div>
+                                <style>
+                                    #nav-tab a.nav-link, #nav-tab .nav-link:active{
+                                        padding-top: 10px;
+                                        padding-bottom: 10px;
+                                    }
+                                </style>
+                                <div id="tab-container">
+                                    <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="nav-hour-tab" data-toggle="tab"
+                                                data-target="#nav-hour" type="button" role="tab"
+                                                aria-controls="nav-hour" aria-selected="true" value="hour">
+                                                ฝนรายชั่วโมง
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="nav-day-tab" data-toggle="tab"
+                                                data-target="#nav-day" type="button" role="tab"
+                                                aria-controls="nav-day" aria-selected="false"
+                                                value="day">ฝนรายวัน</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="nav-month-tab" data-toggle="tab"
+                                                data-target="#nav-month" type="button" role="tab"
+                                                aria-controls="nav-month" aria-selected="false"
+                                                value="month">ฝนรายเดือน</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content my-4" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-hour" role="tabpanel"
+                                            aria-labelledby="nav-hour-tab">
+                                            <!-- Tab 1 -->
+                                        </div>
+                                        <div class="tab-pane fade " id="nav-day" role="tabpanel"
+                                            aria-labelledby="nav-day-tab">
+                                            <!-- Tab 2 -->
+                                            <div class="row">
+
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-label-group">
+                                                        <input type="month" id="month-year" class="form-control"
+                                                            placeholder="เลือกเดือน และ ปี ค.ศ."
+                                                            value="{{ date('Y-m') }}" required />
+                                                        <label for="inputEmail">เลือกเดือน และ ปี ค.ศ.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4"></div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-month" role="tabpanel"
+                                            aria-labelledby="nav-month-tab">
+                                            <!-- Tab 3 -->
+                                            <div class="row">
+
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-label-group">
+                                                        <input type="number" id="year" class="form-control"
+                                                            placeholder="เลือกปี ค.ศ." value="{{ date('Y') }}"
+                                                            required />
+                                                        <label for="inputEmail">เลือกปี ค.ศ.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="hour" id="rain-group-by" placeholder=""
+                                        readonly />
+                                </div>
+
+
+                                <div id="chart_rain" style="width: 100%; height: 300px"></div>
                             </div>
                             <div class="modal-footer">
                                 <a href="#" id="rain-json" class="btn btn-secondary" target="_blank">Download
@@ -416,6 +490,13 @@
                     `{{ url('api/rain/station') }}/${station_id}/csv`);
                 drawChartRain(station_id);
             })
+            $('a[data-toggle="tab"]').on("shown.bs.tab", function(event) {
+                // event.target; // newly activated tab
+                // event.relatedTarget; // previous active tab
+                let value = event.target.getAttribute("value");
+                // console.log(event.target);
+                document.querySelector("#rain-group-by").value = value;
+            });
             $(document).ready(function() {
                 $('.data-table').DataTable();
             });
