@@ -413,20 +413,20 @@
                                             <a class="nav-link active" id="nav-hour-tab" data-toggle="tab"
                                                 data-target="#nav-hour" type="button" role="tab"
                                                 aria-controls="nav-hour" aria-selected="true" value="hour">
-                                                ฝนรายชั่วโมง
+                                                รายชั่วโมง
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="nav-day-tab" data-toggle="tab"
                                                 data-target="#nav-day" type="button" role="tab"
                                                 aria-controls="nav-day" aria-selected="false"
-                                                value="date">ฝนรายวัน</a>
+                                                value="date">รายวัน</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="nav-month-tab" data-toggle="tab"
                                                 data-target="#nav-month" type="button" role="tab"
                                                 aria-controls="nav-month" aria-selected="false"
-                                                value="month">ฝนรายเดือน</a>
+                                                value="month">รายเดือน</a>
                                         </li>
                                     </ul>
 
