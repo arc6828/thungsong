@@ -1,8 +1,8 @@
 <div>
     <link type="text/css" href="{{ asset('css/floating-label.css') }}" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
+    
     <script type="text/javascript">
-        var global_wl;
-        var global_rain;
 
         async function loadWaterLevel(station_id) {
             let start_date = document.querySelector("#start-date").value;
@@ -200,7 +200,6 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUVQ6Qn1MqMrgH25iE31qUA3yGxPvmW8M"></script>
 
     <section class="section section-lg py-6 mb-0">
         <div class="container">

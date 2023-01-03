@@ -62,7 +62,7 @@
     
     <x-leaf.statistic.number></x-leaf.statistic.number>
 
-    <x-leaf.predict.map2></x-leaf.predict.map2>
+    <x-leaf.predict.map2 :wl="$wl" :rain="$rain"></x-leaf.predict.map2>
 
     <section class="section section-lg py-6 bg-soft">
         <div class="container">

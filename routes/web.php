@@ -35,7 +35,14 @@ Route::get('/', function () {
     //BLOG
     $response = Http::get('https://ckartisan.com/api/medium/feed/thungsong-th');
     $blogObject = $response->json();
-    return view('home', compact('blogObject','images'));
+    //WL + RAIN
+    $response = Http::get(url('api/now/wl'));
+    $wl = $response->json();
+    $wl = array_filter($wl,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });
+    $response = Http::get(url('api/now/rain'));
+    $rain = $response->json();
+    $rain = array_filter($rain,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });    
+    return view('home', compact('blogObject','images','wl','rain'));
 });
 Route::get('/about', function () {
     //IMAGES
