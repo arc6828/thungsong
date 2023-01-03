@@ -103,8 +103,12 @@
                     color: '#0dcaf0', // blue info
                 },
                 3: {
-                    lineDashStyle: [2.5, 10],
-                    color: '#ffc107', // orange warning
+                    // lineDashStyle: [2.5, 10],
+                    // color: '#ffc107', // orange warning
+                    lineDashStyle: [3, 10],
+                    // color: '#ffc107', // orange warning
+                    color: 'orange', // orange warning
+                    lineWidth: 3,
                 },
             },
 

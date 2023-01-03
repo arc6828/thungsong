@@ -32,16 +32,27 @@
             });
             return wl_now;
         }
-        async function loadRain(station_id) {
-            let url2 = "{{ url('api/rain/station') }}/" + station_id;
+        async function loadRain(station_id, group_by) {
+            let url2 = `{{ url('api/rain/station') }}/${station_id}?group_by=${group_by}`;
+            if (group_by == "date") {
+                let year_month = document.querySelector("#month-year").value;
+                let year = year_month.split("-")[0];
+                let month = year_month.split("-")[1];
+                url2 += `&year=${year}&month=${month}`;
+            } else if (group_by == "month") {
+                let year = document.querySelector("#year").value;
+                url2 += `&year=${year}`;
+            }
             let promise2 = await fetch(url2);
             let rain_now = await promise2.json();
-            console.log(rain_now);
+            console.log(url2, group_by, rain_now);
             //RESIZE
             rain_now = rain_now.data;
-            rain_now = rain_now.filter(function(item) {
-                return (item.rainfall_datetime.includes(":00") || item.rainfall_datetime.includes(":30")) &&
-                    item.rainfall_value != null;
+            rain_now = rain_now.map(function(item) {
+                if(item.rainfall_value == null){
+                    item.rainfall_value = 0;
+                }
+                return item;
             });
             rain_now = rain_now.map(function(item) {
                 return [new Date(item.rainfall_datetime), item.rainfall_value];
@@ -122,7 +133,7 @@
                 },
                 chartArea: {
                     'width': '80%',
-                    'height': '80%'
+                    // 'height': '80%'
                 },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_wl_bann_pradoo'));
@@ -132,12 +143,12 @@
         //RAIN
         google.charts.setOnLoadCallback(drawChartRain);
 
-        async function drawChartRain(station_id = 795) {
+        async function drawChartRain(station_id = 795, group_by = "hour") {
 
 
-            let rain_now2 = await loadRain(station_id);
+            let rain_now2 = await loadRain(station_id, group_by);
             let dataset2 = [
-                ['Date', 'ข้อมูลจริง'],
+                ['Date', 'ปริมาณฝนตรวจวัด'],
                 // ['', 0],
                 // ['2003', 900, null],
                 // ['2004', 1000, null],
@@ -156,22 +167,22 @@
 
             var options = {
                 title: 'ปริมาณฝน',
-                curveType: 'function',
+                // curveType: 'function',
                 legend: {
                     position: 'bottom'
                 },
                 hAxis: {
                     // format: 'MMM dd, YYYY',
                     // title : 'วันที่',
-                    viewWindow: {
-                        // min: new Date(Date.now() - 24 * 60 * 60 * 1000),
-                    },
+                    // viewWindow: {
+                    //     // min: new Date(Date.now() - 24 * 60 * 60 * 1000),
+                    // },
                 },
                 vAxis: {
                     title: "มิลลิเมตร",
                     viewWindow: {
                         // max: 100,
-                        max: rain_now2.reduce((accumulator, item) => (Math.max(item[1], accumulator)), 0) + 0.1,
+                        max: rain_now2.reduce((accumulator, item) => (Math.max(item[1], accumulator)), 0) + 0.2,
                         min: 0,
                     }
                 },
@@ -179,7 +190,7 @@
                 // height: 500,
                 chartArea: {
                     'width': '80%',
-                    'height': '80%'
+                    // 'height': '70%'
                 },
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart_rain'));
@@ -371,11 +382,13 @@
                             </div>
                             <div class="modal-body">
                                 <style>
-                                    #nav-tab a.nav-link, #nav-tab .nav-link:active{
+                                    #nav-tab a.nav-link,
+                                    #nav-tab .nav-link:active {
                                         padding-top: 10px;
                                         padding-bottom: 10px;
                                     }
                                 </style>
+                                <input type="hidden" id="station-id" value="hour" readonly />
                                 <div id="tab-container">
                                     <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                         <li class="nav-item">
@@ -389,7 +402,7 @@
                                             <a class="nav-link" id="nav-day-tab" data-toggle="tab"
                                                 data-target="#nav-day" type="button" role="tab"
                                                 aria-controls="nav-day" aria-selected="false"
-                                                value="day">ฝนรายวัน</a>
+                                                value="date">ฝนรายวัน</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="nav-month-tab" data-toggle="tab"
@@ -399,7 +412,7 @@
                                         </li>
                                     </ul>
 
-                                    <div class="tab-content my-4" id="nav-tabContent">
+                                    <div class="tab-content mt-4" id="nav-tabContent" style="min-height:66px;">
                                         <div class="tab-pane fade show active" id="nav-hour" role="tabpanel"
                                             aria-labelledby="nav-hour-tab">
                                             <!-- Tab 1 -->
@@ -414,7 +427,7 @@
                                                     <div class="form-label-group">
                                                         <input type="month" id="month-year" class="form-control"
                                                             placeholder="เลือกเดือน และ ปี ค.ศ."
-                                                            value="{{ date('Y-m') }}" required />
+                                                            value="{{ date('Y-m', strtotime('-30 day')) }}" required />
                                                         <label for="inputEmail">เลือกเดือน และ ปี ค.ศ.</label>
                                                     </div>
                                                 </div>
@@ -430,7 +443,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="form-label-group">
                                                         <input type="number" id="year" class="form-control"
-                                                            placeholder="เลือกปี ค.ศ." value="{{ date('Y') }}"
+                                                            placeholder="เลือกปี ค.ศ." value="{{ date('Y', strtotime('-30 day')) }}"
                                                             required />
                                                         <label for="inputEmail">เลือกปี ค.ศ.</label>
                                                     </div>
@@ -488,14 +501,24 @@
                     `{{ url('api/rain/station') }}/${station_id}`);
                 document.querySelector("#rainModal #rain-csv").setAttribute("href",
                     `{{ url('api/rain/station') }}/${station_id}/csv`);
-                drawChartRain(station_id);
+                document.querySelector("#rainModal #month-year").setAttribute("onchange",
+                    `drawChartRain(${station_id}, "date")`);
+                document.querySelector("#rainModal #year").setAttribute("onchange",
+                    `drawChartRain(${station_id}, "month")`);
+                document.querySelector("#rainModal #station-id").value = station_id;
+                
+                let group_by = document.querySelector("#rain-group-by").value;
+                drawChartRain(station_id, group_by);
             })
             $('a[data-toggle="tab"]').on("shown.bs.tab", function(event) {
                 // event.target; // newly activated tab
                 // event.relatedTarget; // previous active tab
-                let value = event.target.getAttribute("value");
+                let station_id = document.querySelector("#rainModal #station-id").value
+                let group_by = event.target.getAttribute("value");
                 // console.log(event.target);
-                document.querySelector("#rain-group-by").value = value;
+                document.querySelector("#rain-group-by").value = group_by;
+                drawChartRain(station_id, group_by);
+
             });
             $(document).ready(function() {
                 $('.data-table').DataTable();
