@@ -243,8 +243,9 @@
                                 <caption>รายชื่อสถานีวัดระดับน้ำใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
                                 <thead>
                                     <tr>
-                                        <th scope="col">สถานี</th>
-                                        <th scope="col">ที่ตั้ง</th>
+                                        <th scope="col">สถานี - ที่ตั้ง</th>
+                                        {{-- <th scope="col">สถานี</th>
+                                        <th scope="col">ที่ตั้ง</th> --}}
                                         <th scope="col">ระดับน้ำ</th>
                                         <th scope="col">สถานะ</th>
                                         <th scope="col">เวลา</th>
@@ -254,8 +255,9 @@
                                 <tbody>
                                     @foreach ($wl as $item)
                                         <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }}</td>
-                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            <td>{{ $item['station']['tele_station_name']['th'] }} - ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            {{-- <td>{{ $item['station']['tele_station_name']['th'] }}</td>
+                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td> --}}
                                             <td>{{ $item['waterlevel_msl'] }}</td>
                                             <td>{{ number_format($item['storage_percent'], 0) }}%</td>
                                             <td>{{ explode(' ', $item['waterlevel_datetime'])[1] }}</td>
@@ -338,8 +340,9 @@
                                 <caption>รายชื่อสถานีวัดปริมาณฝนใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
                                 <thead>
                                     <tr>
-                                        <th scope="col">สถานี</th>
-                                        <th scope="col">ที่ตั้ง</th>
+                                        <th scope="col">สถานี - ที่ตั้ง</th>
+                                        {{-- <th scope="col">สถานี</th>
+                                        <th scope="col">ที่ตั้ง</th> --}}
                                         <th scope="col">ฝน</th>
                                         <th scope="col">เวลา</th>
                                         <th scope="col">กราฟ</th>
@@ -348,8 +351,9 @@
                                 <tbody>
                                     @foreach ($rain as $item)
                                         <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }}</td>
-                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            <td>{{ $item['station']['tele_station_name']['th'] }} - ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            {{-- <td>{{ $item['station']['tele_station_name']['th'] }}</td>
+                                            <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td> --}}
                                             <td>{{ $item['rain_24h'] }}</td>
                                             <td>{{ explode(' ', $item['rainfall_datetime'])[1] }}</td>
                                             <td>
