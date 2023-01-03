@@ -299,7 +299,7 @@
                             <div class="modal-body">
 
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-6">
                                         <div class="form-label-group">
                                             <input type="date" id="start-date" class="form-control"
                                                 placeholder="Start Date"
@@ -307,7 +307,7 @@
                                             <label for="inputEmail">วันที่เริ่มต้น</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-6">
                                         <div class="form-label-group">
                                             <input type="date" id="end-date" class="form-control"
                                                 placeholder="End Date" value="{{ date('Y-m-d') }}" required>
