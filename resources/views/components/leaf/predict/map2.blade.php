@@ -320,7 +320,7 @@
                     title: 'ม.ทรก.',
                 },
                 chartArea: {
-                    'width': '80%',
+                    // 'width': '80%',
                     // 'height': '80%'
                 },
             };
@@ -382,7 +382,7 @@
                 // width: 900,
                 // height: 500,
                 chartArea: {
-                    'width': '80%',
+                    // 'width': '80%',
                     // 'height': '70%'
                 },
             };
