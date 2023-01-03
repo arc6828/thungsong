@@ -61,18 +61,19 @@ Route::get("rain/station/{station_id}", function (Request $request, $station_id)
         $json["data"] = array_map(function ($item) {
             return ["rainfall_datetime" => $item["date_time"],"rainfall_value" => $item["rainfall"],];
         }, $json_data);
-        return $json;
+        // return $json;
     } else if ($group_by == "date") {
         $year = $request->query('year', date('Y')); // 2022
         $month = $request->query('month', date('m')); // 12
         $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_monthly_graph?station_id={$station_id}&month={$month}&year={$year}";
         $response = Http::get($url);
-        return $response->json();
+        $json = $response->json();
     } else {
         $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
         $response = Http::get($url);
-        return $response->json();
+        $json = $response->json();
     }
+    return $json;
 });
 
 // MAKE CSV in statistic.blade.php
@@ -99,9 +100,35 @@ Route::get("rain/station/{station_id}/csv", function (Request $request, $station
     //station_id 13892 สถานีฝายคลองท่าเลา
     $current = date('Y-m-d H:i:s');
     $past = date('Y-m-d H:i:s', strtotime('-24 hour'));
-    $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
-    $response = Http::get($url);
-    $json = $response->json();
+    // $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
+    // $response = Http::get($url);
+    // $json = $response->json();
+    $group_by = $request->query('group_by', "hour"); // ["hour","date","month"]
+
+    if ($group_by == "month") {
+        $year = $request->query('year', date('Y')); // 2022
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_yearly_graph?station_id={$station_id}&year={$year}";
+        $response = Http::get($url);
+        // return $response->json();
+
+        $json = $response->json();
+        $json_data = $json["data"];
+        $json["data"] = array_map(function ($item) {
+            return ["rainfall_datetime" => $item["date_time"],"rainfall_value" => $item["rainfall"],];
+        }, $json_data);
+        // return $json;
+    } else if ($group_by == "date") {
+        $year = $request->query('year', date('Y')); // 2022
+        $month = $request->query('month', date('m')); // 12
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_monthly_graph?station_id={$station_id}&month={$month}&year={$year}";
+        $response = Http::get($url);
+        $json = $response->json();
+    } else {
+        $url = "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h_graph?station_id={$station_id}";
+        $response = Http::get($url);
+        $json = $response->json();
+    }
+
     $json_data = $json["data"];
     $body = array_map(function ($item) {
         return [$item["rainfall_datetime"], $item["rainfall_value"]];

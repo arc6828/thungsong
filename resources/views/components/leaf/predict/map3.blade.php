@@ -7,15 +7,12 @@
         async function loadWaterLevel(station_id) {
             let start_date = document.querySelector("#start-date").value;
             let end_date = document.querySelector("#end-date").value;
-            let json_link =
-                `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
-            let csv_link =
-                `{{ url('api/waterlevel/station') }}/${station_id}/csv?start_date=${start_date}&end_date=${end_date}`;
-            document.querySelector("#wlModal #wl-json").setAttribute("href", json_link);
-            document.querySelector("#wlModal #wl-csv").setAttribute("href", csv_link);
-
             let url2 =
                 `{{ url('api/waterlevel/station') }}/${station_id}?start_date=${start_date}&end_date=${end_date}`;
+            let json_link = url2;
+            let csv_link = json_link.replace("?", "/csv?");
+            document.querySelector("#wlModal #wl-json").setAttribute("href", json_link);
+            document.querySelector("#wlModal #wl-csv").setAttribute("href", csv_link);
             console.log(url2);
             let promise2 = await fetch(url2);
             let wl_now = await promise2.json();
@@ -43,6 +40,11 @@
                 let year = document.querySelector("#year").value;
                 url2 += `&year=${year}`;
             }
+            let json_link = url2;
+            let csv_link = json_link.replace("?", "/csv?");
+            document.querySelector("#rainModal #rain-json").setAttribute("href", json_link);
+            document.querySelector("#rainModal #rain-csv").setAttribute("href", csv_link);
+            console.log(url2);
             let promise2 = await fetch(url2);
             let rain_now = await promise2.json();
             console.log(url2, group_by, rain_now);
