@@ -49,7 +49,7 @@
             //RESIZE
             rain_now = rain_now.data;
             rain_now = rain_now.map(function(item) {
-                if(item.rainfall_value == null){
+                if (item.rainfall_value == null) {
                     item.rainfall_value = 0;
                 }
                 return item;
@@ -249,26 +249,33 @@
                                         <th scope="col">ระดับน้ำ</th>
                                         <th scope="col">สถานะ</th>
                                         <th scope="col">เวลา</th>
-                                        <th scope="col">กราฟ</th>
+                                        {{-- <th scope="col">กราฟ</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($wl as $item)
                                         <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }} - ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#wlModal"
+                                                    station-id="{{ $item['station']['id'] }}"
+                                                    station-name="{{ $item['station']['tele_station_name']['th'] }}">
+                                                    {{ $item['station']['tele_station_name']['th'] }} -
+                                                    ต.{{ $item['geocode']['tumbon_name']['th'] }}
+                                                </a>
+                                            </td>
                                             {{-- <td>{{ $item['station']['tele_station_name']['th'] }}</td>
                                             <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td> --}}
                                             <td>{{ $item['waterlevel_msl'] }}</td>
                                             <td>{{ number_format($item['storage_percent'], 0) }}%</td>
                                             <td>{{ explode(' ', $item['waterlevel_datetime'])[1] }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <button href="#" class="btn btn-primary btn-sm"
                                                     data-toggle="modal" data-target="#wlModal"
                                                     station-id="{{ $item['station']['id'] }}"
                                                     station-name="{{ $item['station']['tele_station_name']['th'] }}">
                                                     <i class="fa fa-chart-line"></i>
                                                 </button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
 
@@ -345,25 +352,32 @@
                                         <th scope="col">ที่ตั้ง</th> --}}
                                         <th scope="col">ฝน</th>
                                         <th scope="col">เวลา</th>
-                                        <th scope="col">กราฟ</th>
+                                        {{-- <th scope="col">กราฟ</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($rain as $item)
                                         <tr>
-                                            <td>{{ $item['station']['tele_station_name']['th'] }} - ต.{{ $item['geocode']['tumbon_name']['th'] }}</td>
+                                            <td>
+                                                <a href="#" class="" data-toggle="modal"
+                                                    data-target="#rainModal" station-id="{{ $item['station']['id'] }}"
+                                                    station-name="{{ $item['station']['tele_station_name']['th'] }}">
+                                                    {{ $item['station']['tele_station_name']['th'] }} -
+                                                    ต.{{ $item['geocode']['tumbon_name']['th'] }}
+                                                </a>
+                                            </td>
                                             {{-- <td>{{ $item['station']['tele_station_name']['th'] }}</td>
                                             <td>ต.{{ $item['geocode']['tumbon_name']['th'] }}</td> --}}
                                             <td>{{ $item['rain_24h'] }}</td>
                                             <td>{{ explode(' ', $item['rainfall_datetime'])[1] }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <button href="#" class="btn btn-secondary btn-sm"
                                                     data-toggle="modal" data-target="#rainModal"
                                                     station-id="{{ $item['station']['id'] }}"
                                                     station-name="{{ $item['station']['tele_station_name']['th'] }}">
                                                     <i class="fa fa-chart-line"></i>
                                                 </button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
 
@@ -431,7 +445,8 @@
                                                     <div class="form-label-group">
                                                         <input type="month" id="month-year" class="form-control"
                                                             placeholder="เลือกเดือน และ ปี ค.ศ."
-                                                            value="{{ date('Y-m', strtotime('-30 day')) }}" required />
+                                                            value="{{ date('Y-m', strtotime('-30 day')) }}"
+                                                            required />
                                                         <label for="inputEmail">เลือกเดือน และ ปี ค.ศ.</label>
                                                     </div>
                                                 </div>
@@ -447,8 +462,8 @@
                                                 <div class="col-lg-4">
                                                     <div class="form-label-group">
                                                         <input type="number" id="year" class="form-control"
-                                                            placeholder="เลือกปี ค.ศ." value="{{ date('Y', strtotime('-30 day')) }}"
-                                                            required />
+                                                            placeholder="เลือกปี ค.ศ."
+                                                            value="{{ date('Y', strtotime('-30 day')) }}" required />
                                                         <label for="inputEmail">เลือกปี ค.ศ.</label>
                                                     </div>
                                                 </div>
@@ -510,7 +525,7 @@
                 document.querySelector("#rainModal #year").setAttribute("onchange",
                     `drawChartRain(${station_id}, "month")`);
                 document.querySelector("#rainModal #station-id").value = station_id;
-                
+
                 let group_by = document.querySelector("#rain-group-by").value;
                 drawChartRain(station_id, group_by);
             })
