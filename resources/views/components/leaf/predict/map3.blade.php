@@ -237,7 +237,7 @@
                     <x-leaf.predict.map-wl></x-leaf.predict.map-wl>
                 </div>
                 <div class="col-lg-8">
-                    <div class="p-4">
+                    <div class="py-4">
                         <div class="table-responsive">
                             <table class="table  data-table">
                                 <caption>รายชื่อสถานีวัดระดับน้ำใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
@@ -332,7 +332,7 @@
                     <x-leaf.predict.map-rain></x-leaf.predict.map-rain>
                 </div>
                 <div class="col-lg-8">
-                    <div class="p-4">
+                    <div class="py-4">
                         <div class="table-responsive">
                             <table class="table  data-table">
                                 <caption>รายชื่อสถานีวัดปริมาณฝนใน อ.ทุ่งสง จ.นครศรีธรรมราช</caption>
