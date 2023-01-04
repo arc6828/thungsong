@@ -1,81 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Thungsong : ML Flood by KU
+<center>
+<img src="https://thungsongflood.org/img/LOGO_KU_Flood-01.png" width="400" />
+</center>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This web application is build on top PHP Laravel Framework to visualize result data of water level and rain. Data come from 2 sources : thaiwater.net and our proposed machine learning model. This project divided into 2 parts: web application part and machine learning model part
 
-## About Thungsong Flood Project
+## 1. Web Application Part
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Laravel Installation for development : Windows
+#### Requied Softwares
+1. `xampp`
+1. `composer`
+1. `git-scm` or `github-desktop` or both
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```
+cd c:\xampp\htdocs
+git clone https://github.com/arc6828/thungsong
+cd thungsong
+composer install
+copy .env.example .env
+php artisan key:generate
+```
 
-## How does it work
+#### Run on local
+```
+php artisan serve
+```
+
+### Deployment on Server : Shared Host
+#### Deployment on initital state
+This is the deployment when the server is empty
+1. zipped your entire project
+1. send your zipped file to your server, use `file zilla`
+1. extract your zipped file on server
+1. write .htaccess to set root on folder `public`
+
+#### Deployment on update state
+This is the deployment when there is a previous version of project in server
+1. use `file zilla`
+1. place or replace your `new` or `updated` files
+
+## 2. Machine Learning Model Part
+
+### How does it work
 1. Schedule every hour by window Task Scheduler 
-2. รับข้อมูลจาก “คลังข้อมูลน้ำ” ผ่าน API
-3. รัน Model  ผ่าน Jupyter
-4. ได้ผลลัพธ์ออกมาเป็นไฟล์ในโฟลเดอร์ output
-- รูปภาพ (.png)
-- ข้อมูล (.csv)
-- metadata (.json)
-5. ส่งข้อมูล Output ไปเก็บไว้ที่ S3
+1. Call secondary data from `thaiwater.net` API
+1. Run machine learning model on Python Jupyter
+1. Result place on folder `output`
+    1. image (.png)
+    1. data (.csv)
+    1. metadata (.json)
+    1. other information (.json)
+1. Gether all results and send to S3
+1. Visulization on web service
 
 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### papermill
+- Papermill is a tool for parameterizing and executing Jupyter Notebooks.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## papermill
-Papermill is a tool for parameterizing and executing Jupyter Notebooks.
-https://papermill.readthedocs.io/en/latest/installation.html
+```
+# https://papermill.readthedocs.io/en/latest/installation.html
 pip install papermill
+
+# normal run
 papermill Test.ipynb Testoutput.ipynb
+# or run with some parameters
 papermill local/input.ipynb s3://bkt/output.ipynb -p alpha 0.6 -p l1_ratio 0.1
+```
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Thanks
+thanks for `https://markdownlivepreview.com/`
