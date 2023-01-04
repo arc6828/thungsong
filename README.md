@@ -1,7 +1,7 @@
 # Thungsong : ML Flood by KU
-<center>
+<div align="center">
 <img src="https://thungsongflood.org/img/LOGO_KU_Flood-01.png" width="400" />
-</center>
+</div>
 
 This web application is build on top PHP Laravel Framework to visualize result data of water level and rain. Data come from 2 sources : thaiwater.net and our proposed machine learning model. This project divided into 2 parts: web application part and machine learning model part
 
