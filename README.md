@@ -29,18 +29,9 @@ php artisan key:generate
 php artisan serve
 ```
 
-### Deployment on Server : Shared Host
-#### Deployment on initital state
-This is the deployment when the server is empty
-1. zipped your entire project
-1. send your zipped file to your server, use `file zilla`
-1. extract your zipped file on server
-1. write .htaccess to set root on folder `public`
+### Remeark
+Deploy by using git
 
-#### Deployment on update state
-This is the deployment when there is a previous version of project in server
-1. use `file zilla`
-1. place or replace your `new` or `updated` files
 
 ## 2. Machine Learning Model Part
 
