@@ -1,0 +1,251 @@
+[
+    {
+        "id": 789345121,
+        "waterlevel_datetime": "2023-08-05 16:30",
+        "waterlevel_m": null,
+        "waterlevel_msl": "122.82",
+        "waterlevel_msl_previous": "122.82",
+        "flow_rate": null,
+        "discharge": null,
+        "storage_percent": "70.11",
+        "sort_order": null,
+        "station_type": "tele_waterlevel",
+        "situation_level": 4,
+        "agency": {
+            "id": 9,
+            "agency_name": {
+                "th": "\u0e2a\u0e16\u0e32\u0e1a\u0e31\u0e19\u0e2a\u0e32\u0e23\u0e2a\u0e19\u0e40\u0e17\u0e28\u0e17\u0e23\u0e31\u0e1e\u0e22\u0e32\u0e01\u0e23\u0e19\u0e49\u0e33 (\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e32\u0e23\u0e21\u0e2b\u0e32\u0e0a\u0e19)",
+                "en": "Hydro \u2013 Informatics Institute (Public Organization)",
+                "jp": ""
+            },
+            "agency_shortname": {
+                "th": "\u0e2a\u0e2a\u0e19.",
+                "en": "HII",
+                "jp": ""
+            }
+        },
+        "basin": {
+            "id": 27,
+            "basin_code": 22,
+            "basin_name": {
+                "th": "\u0e25\u0e38\u0e48\u0e21\u0e19\u0e49\u0e33\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49\u0e1d\u0e31\u0e48\u0e07\u0e15\u0e30\u0e27\u0e31\u0e19\u0e15\u0e01",
+                "en": "Peninsula - West Coast"
+            }
+        },
+        "station": {
+            "id": 13892,
+            "tele_station_name": {
+                "en": "Na Luang Sen",
+                "th": "\u0e1d\u0e32\u0e22\u0e04\u0e25\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e40\u0e25\u0e32"
+            },
+            "tele_station_lat": 8.232547,
+            "tele_station_long": 99.70778,
+            "tele_station_oldcode": "SWR025",
+            "tele_station_type": "tele_waterlevel",
+            "left_bank": 123.816,
+            "right_bank": 123.809,
+            "min_bank": 123.81,
+            "ground_level": 120.5,
+            "offset": null,
+            "sub_basin_id": 349,
+            "agency_id": 9,
+            "geocode_id": 7259,
+            "hydro_id": null,
+            "qmax": null,
+            "is_key_station": false,
+            "warning_level_m": null,
+            "critical_level_m": null,
+            "critical_level_msl": null
+        },
+        "geocode": {
+            "area_code": "5",
+            "area_name": {
+                "th": "\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49",
+                "en": "South"
+            },
+            "amphoe_code": "09",
+            "amphoe_name": {
+                "th": "\u0e17\u0e38\u0e48\u0e07\u0e2a\u0e07",
+                "en": "Thung Song District"
+            },
+            "tumbon_code": "06",
+            "tumbon_name": {
+                "th": "\u0e19\u0e32\u0e2b\u0e25\u0e27\u0e07\u0e40\u0e2a\u0e19",
+                "en": "Na Luang Sen"
+            },
+            "province_code": "80",
+            "province_name": {
+                "th": "\u0e19\u0e04\u0e23\u0e28\u0e23\u0e35\u0e18\u0e23\u0e23\u0e21\u0e23\u0e32\u0e0a",
+                "en": "Nakhon Si Thammarat"
+            }
+        },
+        "diff_wl_bank": "0.99",
+        "diff_wl_bank_text": "\u0e15\u0e48\u0e33\u0e01\u0e27\u0e48\u0e32\u0e15\u0e25\u0e34\u0e48\u0e07 (\u0e21.)"
+    },
+    {
+        "id": 789348948,
+        "waterlevel_datetime": "2023-08-05 16:50",
+        "waterlevel_m": null,
+        "waterlevel_msl": "51.17",
+        "waterlevel_msl_previous": "51.18",
+        "flow_rate": null,
+        "discharge": null,
+        "storage_percent": "12.89",
+        "sort_order": null,
+        "station_type": "tele_waterlevel",
+        "situation_level": 2,
+        "agency": {
+            "id": 9,
+            "agency_name": {
+                "th": "\u0e2a\u0e16\u0e32\u0e1a\u0e31\u0e19\u0e2a\u0e32\u0e23\u0e2a\u0e19\u0e40\u0e17\u0e28\u0e17\u0e23\u0e31\u0e1e\u0e22\u0e32\u0e01\u0e23\u0e19\u0e49\u0e33 (\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e32\u0e23\u0e21\u0e2b\u0e32\u0e0a\u0e19)",
+                "en": "Hydro \u2013 Informatics Institute (Public Organization)",
+                "jp": ""
+            },
+            "agency_shortname": {
+                "th": "\u0e2a\u0e2a\u0e19.",
+                "en": "HII",
+                "jp": ""
+            }
+        },
+        "basin": {
+            "id": 27,
+            "basin_code": 22,
+            "basin_name": {
+                "th": "\u0e25\u0e38\u0e48\u0e21\u0e19\u0e49\u0e33\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49\u0e1d\u0e31\u0e48\u0e07\u0e15\u0e30\u0e27\u0e31\u0e19\u0e15\u0e01",
+                "en": "Peninsula - West Coast"
+            }
+        },
+        "station": {
+            "id": 795,
+            "tele_station_name": {
+                "en": "Nakhon Si Thammarat 1",
+                "th": "\u0e17\u0e38\u0e48\u0e07\u0e2a\u0e07"
+            },
+            "tele_station_lat": 8.174972,
+            "tele_station_long": 99.67887,
+            "tele_station_oldcode": "NKO001",
+            "tele_station_type": "tele_waterlevel",
+            "left_bank": 55.203,
+            "right_bank": 55.685,
+            "min_bank": 55.2,
+            "ground_level": 50.573,
+            "offset": null,
+            "sub_basin_id": 349,
+            "agency_id": 9,
+            "geocode_id": 7254,
+            "hydro_id": null,
+            "qmax": null,
+            "is_key_station": false,
+            "warning_level_m": null,
+            "critical_level_m": null,
+            "critical_level_msl": null
+        },
+        "geocode": {
+            "area_code": "5",
+            "area_name": {
+                "th": "\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49",
+                "en": "South"
+            },
+            "amphoe_code": "09",
+            "amphoe_name": {
+                "th": "\u0e17\u0e38\u0e48\u0e07\u0e2a\u0e07",
+                "en": "Thung Song District"
+            },
+            "tumbon_code": "01",
+            "tumbon_name": {
+                "th": "\u0e1b\u0e32\u0e01\u0e41\u0e1e\u0e23\u0e01",
+                "en": "Pak Phraek"
+            },
+            "province_code": "80",
+            "province_name": {
+                "th": "\u0e19\u0e04\u0e23\u0e28\u0e23\u0e35\u0e18\u0e23\u0e23\u0e21\u0e23\u0e32\u0e0a",
+                "en": "Nakhon Si Thammarat"
+            }
+        },
+        "diff_wl_bank": "4.03",
+        "diff_wl_bank_text": "\u0e15\u0e48\u0e33\u0e01\u0e27\u0e48\u0e32\u0e15\u0e25\u0e34\u0e48\u0e07 (\u0e21.)"
+    },
+    {
+        "id": 789348885,
+        "waterlevel_datetime": "2023-08-05 16:50",
+        "waterlevel_m": null,
+        "waterlevel_msl": "66.71",
+        "waterlevel_msl_previous": "66.71",
+        "flow_rate": null,
+        "discharge": null,
+        "storage_percent": "5.47",
+        "sort_order": null,
+        "station_type": "tele_waterlevel",
+        "situation_level": 1,
+        "agency": {
+            "id": 9,
+            "agency_name": {
+                "th": "\u0e2a\u0e16\u0e32\u0e1a\u0e31\u0e19\u0e2a\u0e32\u0e23\u0e2a\u0e19\u0e40\u0e17\u0e28\u0e17\u0e23\u0e31\u0e1e\u0e22\u0e32\u0e01\u0e23\u0e19\u0e49\u0e33 (\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e32\u0e23\u0e21\u0e2b\u0e32\u0e0a\u0e19)",
+                "en": "Hydro \u2013 Informatics Institute (Public Organization)",
+                "jp": ""
+            },
+            "agency_shortname": {
+                "th": "\u0e2a\u0e2a\u0e19.",
+                "en": "HII",
+                "jp": ""
+            }
+        },
+        "basin": {
+            "id": 27,
+            "basin_code": 22,
+            "basin_name": {
+                "th": "\u0e25\u0e38\u0e48\u0e21\u0e19\u0e49\u0e33\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49\u0e1d\u0e31\u0e48\u0e07\u0e15\u0e30\u0e27\u0e31\u0e19\u0e15\u0e01",
+                "en": "Peninsula - West Coast"
+            }
+        },
+        "station": {
+            "id": 1101568,
+            "tele_station_name": {
+                "en": "Ban Pradu",
+                "th": "\u0e1a\u0e49\u0e32\u0e19\u0e1b\u0e23\u0e30\u0e14\u0e39\u0e48"
+            },
+            "tele_station_lat": 8.212015,
+            "tele_station_long": 99.703285,
+            "tele_station_oldcode": "FOP057",
+            "tele_station_type": "tele_waterlevel",
+            "left_bank": 70.406,
+            "right_bank": 70.406,
+            "min_bank": 70.41,
+            "ground_level": 66.496,
+            "offset": null,
+            "sub_basin_id": 349,
+            "agency_id": 9,
+            "geocode_id": 7259,
+            "hydro_id": null,
+            "qmax": null,
+            "is_key_station": false,
+            "warning_level_m": null,
+            "critical_level_m": null,
+            "critical_level_msl": null
+        },
+        "geocode": {
+            "area_code": "5",
+            "area_name": {
+                "th": "\u0e20\u0e32\u0e04\u0e43\u0e15\u0e49",
+                "en": "South"
+            },
+            "amphoe_code": "09",
+            "amphoe_name": {
+                "th": "\u0e17\u0e38\u0e48\u0e07\u0e2a\u0e07",
+                "en": "Thung Song District"
+            },
+            "tumbon_code": "06",
+            "tumbon_name": {
+                "th": "\u0e19\u0e32\u0e2b\u0e25\u0e27\u0e07\u0e40\u0e2a\u0e19",
+                "en": "Na Luang Sen"
+            },
+            "province_code": "80",
+            "province_name": {
+                "th": "\u0e19\u0e04\u0e23\u0e28\u0e23\u0e35\u0e18\u0e23\u0e23\u0e21\u0e23\u0e32\u0e0a",
+                "en": "Nakhon Si Thammarat"
+            }
+        },
+        "diff_wl_bank": "3.70",
+        "diff_wl_bank_text": "\u0e15\u0e48\u0e33\u0e01\u0e27\u0e48\u0e32\u0e15\u0e25\u0e34\u0e48\u0e07 (\u0e21.)"
+    }
+]

@@ -62,5 +62,15 @@ papermill Test.ipynb Testoutput.ipynb
 papermill local/input.ipynb s3://bkt/output.ipynb -p alpha 0.6 -p l1_ratio 0.1
 ```
 
-## Thanks
-thanks for `https://markdownlivepreview.com/`
+
+## Line Developer Console
+- Config Page
+https://developers.line.biz/console/channel/2000317971/messaging-api
+
+- Webhook production
+https://www.thungsong.org/api/line/webhook
+
+
+- Webhook development
+https://ef45-202-29-39-122.ngrok-free.app/api/line/webhook
+

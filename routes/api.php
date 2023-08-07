@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\LineWebhookController;
 use App\Models\ExportFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -235,3 +236,6 @@ Route::get("waterlevel/now", function () {
     $response = Http::get($url);
     return $response->json();
 });
+
+
+Route::post('/line/webhook', [LineWebhookController::class, 'store']);
