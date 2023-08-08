@@ -22,12 +22,15 @@ class LineMessageAPI extends Model
             case "text":
                 $text = $event["message"]["text"];
                 if (str_contains($text, "ปัจจุบัน")) {
-                    $m1 = $this->replyWithFlexCarousel($event);
-                    $m2 = $this->replyWithText($event, "https://thungsongflood.org");
-                    $messages[] = $m1;
-                    $messages[] = $m2;
+                    $m_carousel = $this->replyWithFlexCarousel($event);
+                    $messages[] = $m_carousel;
+                    $m_link = $this->replyWithText($event, "https://thungsongflood.org");
+                    $messages[] = $m_link;
                 } else if (str_contains($text, "คาดการณ์")) {
-                    $this->replyWithText($event, "https://thungsongflood.org/statistic");
+                    $m_bubble = $this->replyWithFlexBubble($event);
+                    $messages[] = $m_bubble;
+                    $m_link = $this->replyWithText($event, "https://thungsongflood.org/statistic");
+                    $messages[] = $m_link;
                 } else if (str_contains($text, "ภาพถ่าย") || str_contains($text, "ถ่ายภาพ")) {
                     $this->replyWithQuickReply($event, "quick_reply.json");
                 } else {
@@ -56,40 +59,116 @@ class LineMessageAPI extends Model
     }
     public  function replyWithFlexCarousel($event)
     {
-        $template_path = storage_path('../public/flex-templates/now.json');
-        $string_json = file_get_contents($template_path);
+        // $template_path = storage_path('../public/flex-templates/now.json');
+        // $string_json = file_get_contents($template_path);
         // custom
-        $json = json_decode($string_json, true);
-        $template_bubble = array_merge([], $json["contents"][0]);
-        $json["contents"] = [];
+        $json = [
+            "type" => "carousel",
+            "contents" => []
+        ];
+        $template_path = storage_path('../public/flex-templates/waterlevel.json');
+        $template_bubble = json_decode(file_get_contents($template_path), true);
+        // $json["contents"] = [];
         // data        
         $data = json_decode(file_get_contents("https://thungsongflood.org/api/now/wl"), true);
         foreach ($data as $item) {
             $b = array_merge([], $template_bubble);
-            // $b["body"]["contents"][0]["text"] = "hey";
-            $b["body"]["contents"][0]["text"] = "สถานี".$item["station"]["tele_station_name"]["th"];
-            $json["contents"][] = $b;
-            // break;
+            $json["contents"][] = $this->injectBubble($b, $item);
         }
 
         // end custom
         $message = [
             "type" => "flex",
-            "altText" => "สถานีระดับน้ำในอำเภอทุ่งส่งล่าสุด",
+            "altText" => "สถานีระดับน้ำในอำเภอทุ่งสงล่าสุด",
             "contents" => $json,
         ];
 
         return $message;
         // $this->reply($event, $message);
     }
+
+    public function injectBubble($b, $item)
+    {
+        // สถานีระดับน้ำ
+        $b["body"]["contents"][0]["text"] .= " ({$item["station"]["id"]})";
+        $b["body"]["contents"][1]["text"] = "{$item["station"]["tele_station_name"]["th"]}";
+
+        // location,
+        $b["body"]["contents"][2]["text"] = "ต.{$item["geocode"]["tumbon_name"]["th"]} อ.{$item["geocode"]["amphoe_name"]["th"]} จ.{$item["geocode"]["province_name"]["th"]}";
+
+        // ------------------------------
+
+        // date "waterlevel_datetime": "2023-08-05 19:30",
+        $b["body"]["contents"][4]["contents"][0]["contents"][1]["text"] = $item["waterlevel_datetime"];
+
+        // ปริมาณน้ำ "storage_percent": "70.41",
+        $b["body"]["contents"][4]["contents"][1]["contents"][1]["text"] = "" . number_format($item["storage_percent"]) . "%";
+
+        // สถานะ
+        $situation_level_dict = [
+            "1" => "น้ำน้อยวิกฤติ",
+            "2" => "น้ำน้อย",
+            "3" => "น้ำปานกลาง",
+            "4" => "น้ำมาก",
+            "5" => "น้ำล้นตลิ่ง",
+        ];
+        $b["body"]["contents"][4]["contents"][2]["contents"][1]["text"] = $situation_level_dict[$item["situation_level"]];
+
+        // diff_wl_bank_text
+        $b["body"]["contents"][4]["contents"][3]["contents"][0]["text"] = $item["diff_wl_bank_text"];
+
+        // diff_wl_bank
+        $b["body"]["contents"][4]["contents"][3]["contents"][1]["text"] = $item["diff_wl_bank"];
+
+        // ------------------------------
+
+        // ระดับตลิ่ง
+        $b["body"]["contents"][4]["contents"][5]["contents"][1]["text"] = "" . number_format($item["station"]["min_bank"], 1);
+
+        // ระดับน้ำ
+        $b["body"]["contents"][4]["contents"][6]["contents"][1]["text"] = "" . number_format($item["waterlevel_msl"], 1);
+
+        // ระดับท้องน้ำ
+        $b["body"]["contents"][4]["contents"][7]["contents"][1]["text"] = "" . number_format($item["station"]["ground_level"], 1);
+
+        // ------------------------------
+
+        // map https://www.google.com/maps/@14.1546271,100.6159917,15z
+        $b["body"]["contents"][4]["contents"][9]["contents"][0]["action"]["uri"] = "https://www.google.com/maps/@{$item["station"]["tele_station_lat"]},{$item["station"]["tele_station_long"]},15z";
+
+        // ------------------------------
+        // id
+        $b["body"]["contents"][6]["contents"][1]["text"] = "#".$item["id"];
+
+
+        // agency
+        $b["body"]["contents"][7]["contents"][0]["text"] = $item["agency"]["agency_name"]["th"];
+
+
+        return $b;
+    }
     public  function replyWithFlexBubble($event)
     {
-        $template_path = storage_path('../public/flex-templates/bubble.json');
-        $string_json = file_get_contents($template_path);
+        $template_path = storage_path('../public/flex-templates/waterlevel.json');
+        $json = json_decode(file_get_contents($template_path), true);
+        // data        
+        $data = json_decode(file_get_contents("https://thungsongflood.org/api/now/wl"), true);
+        $data = array_filter($data, function($item){
+            return $item["station"]["id"] == "795"; //ทุ่งสง
+        });
+        //
+        foreach ($data as $item) {
+            $json = $this->injectBubble($json, $item);
+            break;
+        }
+        $json["body"]["contents"][4]["contents"][8] = $json["body"]["contents"][4]["contents"][7];
+        $json["body"]["contents"][4]["contents"][8]["contents"][0]["text"] = "ระดับน้ำคาดการณ์";
+        $json["body"]["contents"][4]["contents"][8]["contents"][1]["text"] = "+ 0.5 เมตร/ชม.";
+
         $message = [
             "type" => "flex",
-            "altText" => "สถานที่ใกล้คุณ",
-            "contents" => json_decode($string_json, true),
+            "altText" => "bubble",
+            "contents" => $json,
         ];
 
         return $message;

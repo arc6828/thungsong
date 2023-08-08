@@ -68,9 +68,13 @@ papermill local/input.ipynb s3://bkt/output.ipynb -p alpha 0.6 -p l1_ratio 0.1
 https://developers.line.biz/console/channel/2000317971/messaging-api
 
 - Webhook production
+https://developers.line.biz/console/channel/2000317971/messaging-api
 https://www.thungsong.org/api/line/webhook
 
 
 - Webhook development
+https://developers.line.biz/console/channel/1656209501/messaging-api
 https://ef45-202-29-39-122.ngrok-free.app/api/line/webhook
+
+https://bcd8-202-29-39-122.ngrok-free.app/api/line/webhook
 
