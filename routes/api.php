@@ -60,7 +60,7 @@ Route::get("rain/station/{station_id}", function (Request $request, $station_id)
         $json = $response->json();
         $json_data = $json["data"];
         $json["data"] = array_map(function ($item) {
-            return ["rainfall_datetime" => $item["date_time"],"rainfall_value" => $item["rainfall"],];
+            return ["rainfall_datetime" => $item["date_time"], "rainfall_value" => $item["rainfall"],];
         }, $json_data);
         // return $json;
     } else if ($group_by == "date") {
@@ -115,7 +115,7 @@ Route::get("rain/station/{station_id}/csv", function (Request $request, $station
         $json = $response->json();
         $json_data = $json["data"];
         $json["data"] = array_map(function ($item) {
-            return ["rainfall_datetime" => $item["date_time"],"rainfall_value" => $item["rainfall"],];
+            return ["rainfall_datetime" => $item["date_time"], "rainfall_value" => $item["rainfall"],];
         }, $json_data);
         // return $json;
     } else if ($group_by == "date") {
@@ -151,7 +151,16 @@ Route::get("waterlevel/predict", function () {
 Route::get("now/{name}", function ($name) {
     $url = "https://ckartisanspace.sgp1.digitaloceanspaces.com/thungsong/now/now-{$name}.json";
     $response = Http::get($url);
-    return $response->json();
+    $data = $response->json();
+    $station_id = request("station_id");
+    if (!empty($station_id)) {
+        $data = array_filter($data, function ($item) use ($station_id)  {
+            return $item["station"]["id"] == $station_id;
+        });
+        $data = array_values($data);
+    }
+    
+    return json_encode($data,JSON_UNESCAPED_UNICODE );
 });
 
 // USE FOR number.blade.php > deprecate

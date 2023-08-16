@@ -38,14 +38,16 @@ Route::get('/', function () {
     //WL + RAIN
     $response = Http::get(url('api/now/wl'));
     $wl = $response->json();
-    $wl = array_filter($wl,function($item){ 
-        if(!isset($item['station']['tele_station_lat'])) return false;
-        return $item['station']['tele_station_lat'] >= 8.174971; 
+    $wl = array_filter($wl, function ($item) {
+        if (!isset($item['station']['tele_station_lat'])) return false;
+        return $item['station']['tele_station_lat'] >= 8.174971;
     });
     $response = Http::get(url('api/now/rain'));
     $rain = $response->json();
-    $rain = array_filter($rain,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });    
-    return view('home', compact('blogObject','images','wl','rain'));
+    $rain = array_filter($rain, function ($item) {
+        return $item['station']['tele_station_lat'] >= 8.174971;
+    });
+    return view('home', compact('blogObject', 'images', 'wl', 'rain'));
 });
 Route::get('/about', function () {
     //IMAGES
@@ -58,23 +60,25 @@ Route::get('/about', function () {
         'LINE_ALBUM_Nakhon Sri _day 1_160222_220914_137.jpg',
     ];
     $profiles = [
-        (object)[ "image" => "sitang.jpg" , "name" => "ผศ.ดร.สิตางศุ์ พิลัยหล้า" , "position" => "Project Manager" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
-        (object)[ "image" => "jirayu.jpg" , "name" => "นายจิรายุ พึ่งฉิ่ง" , "position" => "Water Resources Engineer, Machine Learning Developer" , "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"  ],
-        (object)[ "image" => "chavalit.jpg" , "name" => "นายชวลิต โควีระวงศ์" , "position" => "Software Engineer" , "organization" => "หลักสูตรวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์"  ],
+        (object)["image" => "sitang.jpg", "name" => "ผศ.ดร.สิตางศุ์ พิลัยหล้า", "position" => "Project Manager", "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"],
+        (object)["image" => "jirayu.jpg", "name" => "นายจิรายุ พึ่งฉิ่ง", "position" => "Water Resources Engineer, Machine Learning Developer", "organization" => "ภาควิชาวิศวกรรมทรัพยากรน้ำ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์"],
+        (object)["image" => "chavalit.jpg", "name" => "นายชวลิต โควีระวงศ์", "position" => "Software Engineer", "organization" => "หลักสูตรวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏวไลยอลงกรณ์ ในพระบรมราชูปถัมภ์"],
     ];
-    return view('about',compact('profiles','images'));
+    return view('about', compact('profiles', 'images'));
 });
 Route::get('/statistic', function () {
     $response = Http::get(url('api/now/wl'));
     $wl = $response->json();
-    $wl = array_filter($wl,function($item){ 
-        if(!isset($item['station']['tele_station_lat'])) return false;
-        return $item['station']['tele_station_lat'] >= 8.174971; 
+    $wl = array_filter($wl, function ($item) {
+        if (!isset($item['station']['tele_station_lat'])) return false;
+        return $item['station']['tele_station_lat'] >= 8.174971;
     });
     $response = Http::get(url('api/now/rain'));
     $rain = $response->json();
-    $rain = array_filter($rain,function($item){ return $item['station']['tele_station_lat'] >= 8.174971; });    
-    return view('statistic', compact('wl','rain'));
+    $rain = array_filter($rain, function ($item) {
+        return $item['station']['tele_station_lat'] >= 8.174971;
+    });
+    return view('statistic', compact('wl', 'rain'));
 });
 Route::get('/predict', function () {
     return view('predict');
@@ -103,4 +107,22 @@ Route::get('livewire', function () {
     return view('livewire');
 });
 
+Route::get('place/{station_id}', function ($station_id) {
+    $data = [
+        "wl" => [],
+        "rain" => [],
+    ];
+    foreach ($data as $key => $value) {
+        $url = url("api/now/{$key}?station_id={$station_id}");
+        $response = Http::get($url);
+        $v = $response->json();
+        $data[$key] = $v;
+    }
+    if ( $data["wl"] && $data["rain"] == false ) {
+        abort(404);
+    }
+    $data["station"] = $data["wl"] ? $data["wl"][0]["station"] : $data["rain"][0]["station"];
+    $data["geocode"] = $data["wl"] ? $data["wl"][0]["geocode"] : $data["rain"][0]["geocode"];
+    return view('place', compact('data'));
+});
 
