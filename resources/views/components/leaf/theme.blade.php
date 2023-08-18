@@ -50,6 +50,9 @@
     <link type="text/css" href="{{ asset('leaf/node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}"
         rel="stylesheet" />
 
+    {{-- bootstrap icon --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> --}}
+
     <!-- Prism -->
     <link type="text/css" href="{{ asset('leaf/node_modules/prismjs/themes/prism.css') }}" rel="stylesheet" />
 

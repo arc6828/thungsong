@@ -123,6 +123,7 @@ Route::get('place/{station_id}', function ($station_id) {
     }
     $data["station"] = $data["wl"] ? $data["wl"][0]["station"] : $data["rain"][0]["station"];
     $data["geocode"] = $data["wl"] ? $data["wl"][0]["geocode"] : $data["rain"][0]["geocode"];
-    return view('place', compact('data'));
+    $images = Http::get("https://picsum.photos/v2/list")->json();
+    return view('place', compact('data','images'));
 });
 

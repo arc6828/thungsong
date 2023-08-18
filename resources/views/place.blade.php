@@ -2,11 +2,14 @@
     description="บทความที่เกี่ยวข้องกับงายวิจัย ความรู้ที่เป็นประโยชน์และต้องการเผยแพร่สู่สาธารณะ"
     image="https://cdn-images-1.medium.com/max/1024/1*pnw6OuU-R4JXzgUUPWbmbg.jpeg">
 
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css" />
 
     <!-- lightgallery plugins -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-zoom.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-zoom.min.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css" />
 
     <section class="section section-header">
 
@@ -28,42 +31,45 @@
                 </div>
             </div>
 
+            {{-- number --}}
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <x-leaf.statistic.number></x-leaf.statistic.number>                    
+                </div>                
+            </div>
 
-            <div class="row">
+            {{-- buttons --}}
+            <div class="row my-5 ">
+                <div class="col-6 text-right">
+                    <button class="btn btn-lg btn-primary">
+                        <i class="fas fa-water mr-2"></i> ระดับน้ำย้อนหลัง
+                    </button>             
+                </div>                
+                <div class="col-6 text-start">
+                    <button class="btn btn-lg btn-secondary">
+                        <i class="fas fa-cloud-rain mr-2"></i> ปริมาณฝนย้อนหลัง
+                    </button>             
+                </div>                
+            </div>
+
+            <div class="row mt-5">
 
                 <div class="col-12">
-                    <div class="blog-card">
-                        <div class="card border-0" data-equalize-height="related-news">
-                            <a href="" target="_blank">
-                                <img src="https://hips.hearstapps.com/hmg-prod/images/index-luxuryfurniture-1659361945.jpg?resize=1200:*"
-                                    class="card-img-top" alt="Related news image 1" height=300>
+                    <div id="animated-thumbnails"  data-responsive="img/1-375.jpg 375, img/1-480.jpg 480, img/1-757.jpg 757">
+                        @foreach ($images as $item)
+                            <a data-sub-html="#caption{{ $item["id"] }}" href="{{ $item["download_url"] }}">
+                                <img class="img-responsive" width="200"src="{{ $item["download_url"] }}" />
                             </a>
-                            <div class="card-body px-0">
-                                <small class="d-block mb-2">
-                                    {{-- January 20, <span class="current-year">2022</span> --}}
-
-                                </small>
-                                <h2 class="h5">
-                                    <a href="" target="_blank"></a>
-                                </h2>
-                                <p class="card-text my-2"></p>
-                                <small class="d-block mb-2">
-
-                                </small>
-                            </div>
-                            <div class="card-footer px-0 pt-0">
-                                <a class="btn btn-sm btn-block btn-primary animate-up-2" href="" target="_blank">
-                                    <span class="fas fa-book-open mr-1"></span>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-
-                    <div id="animated-thumbnails">
-                        @foreach(range(1,16) as $i)
-                        <a href="https://raw.githubusercontent.com/arc6828/laravel8/main/public/img/book-{{$i}}.png">
-                            <img src="https://raw.githubusercontent.com/arc6828/laravel8/main/public/img/book-{{$i}}.png" />
-                        </a>
+                    <div class="caption">
+                        @foreach ($images as $item)
+                            <div id="caption{{ $item["id"] }}" style="display:none">
+                                <h4>{{$item["author"]}}</h4>
+                                <p>
+                                    {{ date("Y-M-d", mt_rand(1, time())) }}
+                                </p>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -79,7 +85,8 @@
 
     <!-- lightgallery plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/mediumZoom/lg-medium-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/mediumZoom/lg-medium-zoom.min.js">
+    </script>
 
     <script>
         lightGallery(document.getElementById('animated-thumbnails'), {
