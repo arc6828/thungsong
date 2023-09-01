@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -127,3 +129,6 @@ Route::get('place/{station_id}', function ($station_id) {
     return view('place', compact('data','images'));
 });
 
+
+Route::resource('post', PostController::class);
+Route::resource('product', ProductController::class);

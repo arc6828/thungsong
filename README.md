@@ -78,3 +78,6 @@ https://ef45-202-29-39-122.ngrok-free.app/api/line/webhook
 
 https://bcd8-202-29-39-122.ngrok-free.app/api/line/webhook
 
+## S3 compatible upload file
+
+composer require --with-all-dependencies league/flysystem-aws-s3-v3 "^1.0"
