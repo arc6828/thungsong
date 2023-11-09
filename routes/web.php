@@ -127,7 +127,7 @@ Route::get('place/{station_id}', function ($station_id) {
     $data["geocode"] = $data["wl"] ? $data["wl"][0]["geocode"] : $data["rain"][0]["geocode"];
     $images = Http::get("https://picsum.photos/v2/list")->json();
     return view('place', compact('data','images'));
-});
+})->name('place.show');
 
 
 Route::resource('post', PostController::class);
