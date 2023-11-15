@@ -1,0 +1,8 @@
+{
+    "fields": [
+        { "name": "code", "type": "string" },
+        { "name": "name", "type": "string" },
+        { "name": "latitude", "type": "float" },
+        { "name": "longitude", "type": "file" }
+    ]
+}

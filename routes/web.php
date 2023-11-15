@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StationController;
+use App\Http\Controllers\StationImageController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -132,3 +134,5 @@ Route::get('place/{station_id}', function ($station_id) {
 
 Route::resource('post', PostController::class);
 Route::resource('product', ProductController::class);
+Route::resource('station', StationController::class);
+Route::resource('station-image', StationImageController::class);

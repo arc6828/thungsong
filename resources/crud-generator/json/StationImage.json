@@ -1,0 +1,7 @@
+{
+    "fields": [
+        { "name": "url", "type": "file" },
+        { "name": "owner", "type": "string" },
+        { "name": "station_code", "type": "string" }
+    ]
+}

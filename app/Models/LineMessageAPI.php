@@ -44,7 +44,7 @@ class LineMessageAPI extends Model
                 $this->replyWithFlexBubble($event);
                 break;
             case "image":
-                // $this->imageHandler($event);
+                $this->replyImage($event);
                 break;
         }
         $this->replyMessages($event, $messages);
@@ -175,14 +175,48 @@ class LineMessageAPI extends Model
         // $this->reply($event, $message);
     }
 
-    // public  function replyImage($event, $image)
-    // {
-    //     $message = [
-    //         "type" => "text",
-    //         "text" => $image,
-    //     ];        
-    //     $this->reply($event, $message);
-    // }
+    public  function replyImage($event)
+    {
+        $requestData = [
+            "url" => $this->getImageFromLine($event["message"]["id"]),
+            "owner" => $event["source"]["userId"],
+            "station_code" => "795",    // default
+        ];
+        if (true) {
+            // $requestData['url'] = $request->file('url')->store('uploads', 'public');
+
+            // s3
+            // $requestData['url'] = $request->file('url')->store('thungsong/uploads','s3');
+            // $requestData['url'] = env('AWS_URL')."/".$requestData['url'];
+        }
+
+        StationImage::create($requestData);
+
+        // Reply with something
+        $message = [
+            "type" => "text",
+            "text" => "ส่งรูปสำเร็จ",
+        ];        
+        $this->reply($event, $message);
+        
+    }
+
+    public function getImageFromLine($id){
+        $opts = array('http' =>[
+                'method'  => 'GET',
+                //'header'  => "Content-Type: text/xml\r\n".
+                'header' => 'Authorization: Bearer '. env('LINE_CHANNEL_ACCESS_TOKEN'),
+                //'content' => $body,
+                //'timeout' => 60
+            ]
+        );
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api-data.line.me/v2/bot/message/{$id}/content";
+        $result = file_get_contents($url, false, $context);
+        return $result;
+    }
 
     public  function replyWithText($event, $text)
     {
