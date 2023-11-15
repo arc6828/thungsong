@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use finfo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LineMessageAPI extends Model
 {
@@ -188,6 +190,17 @@ class LineMessageAPI extends Model
             // s3
             // $requestData['url'] = $request->file('url')->store('thungsong/uploads','s3');
             // $requestData['url'] = env('AWS_URL')."/".$requestData['url'];
+            // content
+            $content = $requestData["url"];
+            // filepath
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->buffer($content);
+            $extension = ".".explode("/",$mimeType)[1];
+            $filename = substr(md5(mt_rand()), 0, 32).$extension;
+            $filepath = 'thungsong/uploads/'.$filename;
+            // send to s3
+            Storage::disk('s3')->put( $filepath, $content);
+            $requestData['url'] = env('AWS_URL')."/". $filepath;            
         }
 
         StationImage::create($requestData);
