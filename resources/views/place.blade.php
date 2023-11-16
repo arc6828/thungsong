@@ -436,7 +436,8 @@
 
                 <div class="card-columns">
                     @foreach ($station->images()->get() as $item)
-                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item['url'] }}" data-glightbox="title: {{ $item['owner'] }}; description: {{ $item['created_at'] }}">
+                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item['url'] }}"
+                            data-glightbox="title: {{ $item['owner'] }}; description: {{ $item['created_at'] }}">
                             <div class="card card-element-hover card-overlay-hover overflow-hidden">
                                 <!-- Image -->
                                 <img class="lazyload card-img" src="{{ $item['url'] }}"
@@ -448,16 +449,38 @@
                                 </div>
                             </div>
                         </a>
-                    @endforeach                    
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
 
-  
+
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" /> --}}
+    {{-- glightbox + dayjs --}}
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
-    <script type="text/javascript">
+    {{-- + --}}
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/th.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script>
+        dayjs.locale('th'); // use loaded locale globally : Thailand
+        dayjs.extend(window.dayjs_plugin_relativeTime);
+    </script>
+    <script>
+        let ds = document.querySelectorAll(".glightbox");
+        // console.log(ds);
+        // console.log(dayjs.locale());
+        // console.log(dayjs().to(dayjs('1990-01-01')));
+        ds.forEach(function(node) {
+            let value = node.getAttribute("data-glightbox");
+            let reg = /.*:(.*)/;
+            // const str = "Java3foobar4Script"
+            let newStr = value.replace(reg, dayjs(new Date(value)).fromNow());
+            // console.log(dayjs(new Date()).locale('th').format('llll'));
+            node.setAttribute("data-glightbox", newStr);
+            // node.innerHTML =dayjs(new Date()).locale('th').toString();
+        })
         const lightbox = GLightbox();
     </script>
     {{-- masonry --}}
@@ -516,4 +539,5 @@
         //     $('.data-table').DataTable();
         // });
     </script>
+
 </x-leaf.theme>
