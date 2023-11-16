@@ -29,5 +29,8 @@ class Station extends Model
      */
     protected $fillable = ['code', 'name', 'latitude', 'longitude'];
 
-    
+    public function images()
+    {
+        return $this->hasMany(StationImage::class,'station_code','code');
+    }
 }

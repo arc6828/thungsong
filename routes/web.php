@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\StationImageController;
+use App\Models\Station;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -128,7 +129,8 @@ Route::get('place/{station_id}', function ($station_id) {
     $data["station"] = $data["wl"] ? $data["wl"][0]["station"] : $data["rain"][0]["station"];
     $data["geocode"] = $data["wl"] ? $data["wl"][0]["geocode"] : $data["rain"][0]["geocode"];
     $images = Http::get("https://picsum.photos/v2/list")->json();
-    return view('place', compact('data','images'));
+    $station = Station::where('code', $station_id)->firstOrFail();
+    return view('place', compact('data','images','station'));
 })->name('place.show');
 
 

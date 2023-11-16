@@ -435,63 +435,26 @@
             <div>
 
                 <div class="card-columns">
-                    @foreach ($images as $item)
-                        {{-- <a data-sub-html="#caption{{ $item['id'] }}" href="{{ $item['download_url'] }}">
-                            <img class="img-responsive" src="{{ $item['download_url'] }}" />
-                        </a> --}}
-                        <!-- cover_img START-->
-                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item['download_url'] }}">
+                    @foreach ($station->images()->get() as $item)
+                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item['url'] }}">
                             <div class="card card-element-hover card-overlay-hover overflow-hidden">
                                 <!-- Image -->
-                                <img class="lazyload card-img" src="{{ $item['download_url'] }}"
-                                    data-src="{{ $item['download_url'] }}" />
+                                <img class="lazyload card-img" src="{{ $item['url'] }}"
+                                    data-src="{{ $item['url'] }}" />
                                 <div class="overlay">
                                     <div class="text">
-
                                         <i class="fa fa-expand fs-6 text-white"></i>
                                     </div>
                                 </div>
                             </div>
                         </a>
-                    @endforeach
-                    {{-- <div id="animated-thumbnails"  data-responsive="img/1-375.jpg 375, img/1-480.jpg 480, img/1-757.jpg 757">
-                        @foreach ($images as $item)
-                            <a data-sub-html="#caption{{ $item["id"] }}" href="{{ $item["download_url"] }}">
-                                <img class="img-responsive" width="200"src="{{ $item["download_url"] }}" />
-                            </a>
-                        @endforeach
-                    </div>
-                    <div class="caption">
-                        @foreach ($images as $item)
-                            <div id="caption{{ $item["id"] }}" style="display:none">
-                                <h4>{{$item["author"]}}</h4>
-                                <p>
-                                    {{ date("Y-M-d", mt_rand(1, time())) }}
-                                </p>
-                            </div>
-                        @endforeach
-                    </div> --}}
+                    @endforeach                    
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- <script src="js/lightgallery.umd.js"></script> --}}
-    <!-- Or use the minified version -->
-    {{-- https://cdnjs.com/libraries/lightgallery --}}
-    {{-- https://www.lightgalleryjs.com/demos/ --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script> --}}
-
-    <!-- lightgallery plugins -->
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script> --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/mediumZoom/lg-medium-zoom.min.js"> --}}
-    </script>
-
-    {{-- <script>
-        lightGallery(document.getElementById('animated-thumbnails'), {
-            thumbnail: true,
-        });
-    </script> --}}
+  
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" /> --}}
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <script type="text/javascript">
