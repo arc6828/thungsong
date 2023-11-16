@@ -474,7 +474,7 @@
         // console.log(dayjs().to(dayjs('1990-01-01')));
         ds.forEach(function(node) {
             let value = node.getAttribute("data-glightbox");
-            let reg = /(?<=description : ).*/g
+            let reg = /(?<=description: ).*/g
             // const str = "Java3foobar4Script"
             let d = value.match(reg);
             let newStr = value.replace(reg, dayjs(new Date(d)).fromNow());
