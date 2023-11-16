@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\LineWebhookController;
 use App\Models\ExportFile;
+use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -154,13 +155,13 @@ Route::get("now/{name}", function ($name) {
     $data = $response->json();
     $station_id = request("station_id");
     if (!empty($station_id)) {
-        $data = array_filter($data, function ($item) use ($station_id)  {
+        $data = array_filter($data, function ($item) use ($station_id) {
             return $item["station"]["id"] == $station_id;
         });
         $data = array_values($data);
     }
-    
-    return json_encode($data,JSON_UNESCAPED_UNICODE );
+
+    return json_encode($data, JSON_UNESCAPED_UNICODE);
 });
 
 // USE FOR number.blade.php > deprecate
@@ -248,3 +249,40 @@ Route::get("waterlevel/now", function () {
 
 
 Route::post('/line/webhook', [LineWebhookController::class, 'store']);
+
+Route::get('/station/feed', function () {
+    //WL
+    $response = Http::get(url('api/now/wl'));
+    $wl = $response->json();
+    $wl = array_filter($wl, function ($item) {
+        if (!isset($item['station']['tele_station_lat'])) return false;
+        return $item['station']['tele_station_lat'] >= 8.174971;
+    });
+    foreach ($wl as $item) {
+        Station::firstOrCreate(
+            ['code' => $item['station']['id'],],
+            [                
+                'name' => $item['station']['tele_station_name']['th'],
+                'latitude' => $item['station']['tele_station_lat'], 
+                'longitude' => $item['station']['tele_station_long'],
+            ],
+        );
+    }
+    //RAIN
+    $response = Http::get(url('api/now/rain'));
+    $rain = $response->json();
+    $rain = array_filter($rain, function ($item) {
+        return $item['station']['tele_station_lat'] >= 8.174971;
+    });
+    foreach ($rain as $item) {
+        Station::firstOrCreate(
+            ['code' => $item['station']['id'],],
+            [                
+                'name' => $item['station']['tele_station_name']['th'],
+                'latitude' => $item['station']['tele_station_lat'], 
+                'longitude' => $item['station']['tele_station_long'],
+            ],
+        );
+    }
+    return "Update Successfully";
+});
