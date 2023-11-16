@@ -476,7 +476,8 @@
             let value = node.getAttribute("data-glightbox");
             let reg = /(?<=description : ).*/g
             // const str = "Java3foobar4Script"
-            let newStr = value.replace(reg, dayjs(new Date(value)).fromNow());
+            let d = value.match(reg);
+            let newStr = value.replace(reg, dayjs(new Date(d)).fromNow());
             // console.log(dayjs(new Date()).locale('th').format('llll'));
             node.setAttribute("data-glightbox", newStr);
             // node.innerHTML =dayjs(new Date()).locale('th').toString();
