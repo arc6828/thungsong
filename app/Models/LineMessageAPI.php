@@ -40,7 +40,8 @@ class LineMessageAPI extends Model
                 }
                 break;
             case "location":
-                $this->replyWithFlexCarousel($event);
+                // $this->replyWithFlexCarousel($event);
+                $this->replyLocation($event);
                 break;
             case "sticker":
                 $this->replyWithFlexBubble($event);
@@ -177,12 +178,49 @@ class LineMessageAPI extends Model
         // $this->reply($event, $message);
     }
 
+    public  function replyLocation($event)
+    {
+        $requestData = [
+            "url" => $this->getImageFromLine($event["message"]["id"]),
+            "owner" => $event["source"]["userId"],
+            "station_code" => "",    // default or pick from last share location
+        ];
+        if (true) {
+            // $requestData['url'] = $request->file('url')->store('uploads', 'public');
+
+            // s3
+            // $requestData['url'] = $request->file('url')->store('thungsong/uploads','s3');
+            // $requestData['url'] = env('AWS_URL')."/".$requestData['url'];
+            // content
+            $content = $requestData["url"];
+            // filepath
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->buffer($content);
+            $extension = ".".explode("/",$mimeType)[1];
+            $filename = substr(md5(mt_rand()), 0, 32).$extension;
+            $filepath = 'thungsong/uploads/'.$filename;
+            // send to s3
+            Storage::disk('s3')->put( $filepath, $content);
+            $requestData['url'] = env('AWS_URL')."/". $filepath;            
+        }
+
+        StationImage::create($requestData);
+
+        // Reply with something
+        $message = [
+            "type" => "text",
+            "text" => "ส่งตำแหน่งสำเร็จ",
+        ];        
+        $this->reply($event, $message);
+        
+    }
+
     public  function replyImage($event)
     {
         $requestData = [
             "url" => $this->getImageFromLine($event["message"]["id"]),
             "owner" => $event["source"]["userId"],
-            "station_code" => "795",    // default
+            "station_code" => "795",    // default or pick from last share location
         ];
         if (true) {
             // $requestData['url'] = $request->file('url')->store('uploads', 'public');
