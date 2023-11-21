@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\StationImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StationImageController extends Controller
 {
@@ -129,6 +130,16 @@ class StationImageController extends Controller
      */
     public function destroy($id)
     {
+        // delete from s3
+        $stationimage = StationImage::findOrFail($id);
+        $url = str_replace(env('AWS_URL')."/","",$stationimage->url);
+        Storage::disk('s3')->delete($url);
+        // Storage::disk('s3')->delete($stationimage->url);
+        // echo $stationimage->url;
+        // echo "<br>";
+        // echo $url;
+        
+        // delete from db
         StationImage::destroy($id);
 
         return redirect('station-image')->with('flash_message', 'StationImage deleted!');

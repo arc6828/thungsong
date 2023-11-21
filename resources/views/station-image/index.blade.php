@@ -55,7 +55,12 @@
                                                     {{-- <a href="{{ url('/station-image/' . $item->id) }}"
                                                         title="View StationImage"><button class="btn btn-info btn-sm"><i
                                                                 class="fa fa-eye" aria-hidden="true"></i>
-                                                            View</button></a>
+                                                            View</button></a> --}}
+                                                    <a href="{{ route('place.show' , $item->station_code) }}" title="Place">
+                                                        <button class="btn btn-info btn-sm">
+                                                            <i class="fa fa-map" aria-hidden="true"></i> Place
+                                                        </button>
+                                                    </a>
                                                     <a href="{{ url('/station-image/' . $item->id . '/edit') }}"
                                                         title="Edit StationImage"><button
                                                             class="btn btn-primary btn-sm"><i
@@ -72,7 +77,7 @@
                                                             onclick="return confirm('Confirm delete?')"><i
                                                                 class="fa fa-trash" aria-hidden="true"></i>
                                                             Delete</button>
-                                                    </form> --}}
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
