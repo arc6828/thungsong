@@ -17,7 +17,7 @@ class CreateUserLocationsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title')->nullable();
-            $table->string('address')->nullable();
+            $table->string('address',1024)->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('owner')->nullable();

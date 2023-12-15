@@ -181,7 +181,7 @@ class LineMessageAPI extends Model
     public  function replyLocation($event)
     {
         $requestData = [
-            "title" => $event["message"]["title"],
+            // "title" => $event["message"]["title"],
             "address" => $event["message"]["address"],
             "latitude" => $event["message"]["latitude"],  
             "longitude" => $event["message"]["longitude"],  
