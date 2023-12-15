@@ -372,7 +372,7 @@ class LineMessageAPI extends Model
 
         $opts = [
             'http' => [
-                'method'  => 'POST',
+                'method'  => 'GET',
                 'header'  => "Content-Type: application/json \r\n" .
                     'Authorization: Bearer ' . env('LINE_CHANNEL_ACCESS_TOKEN'),
                 // 'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
