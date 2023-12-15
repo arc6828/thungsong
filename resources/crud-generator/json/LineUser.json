@@ -1,0 +1,9 @@
+{
+    "fields": [
+        { "name": "userId", "type": "string" },
+        { "name": "displayName", "type": "string" },
+        { "name": "pictureUrl", "type": "string" },
+        { "name": "statusMessage", "type": "string" },
+        { "name": "language", "type": "string" }
+    ]
+}

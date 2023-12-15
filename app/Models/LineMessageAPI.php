@@ -181,11 +181,13 @@ class LineMessageAPI extends Model
     public  function replyLocation($event)
     {
         $requestData = [
-            "url" => $this->getImageFromLine($event["message"]["id"]),
-            "owner" => $event["source"]["userId"],
-            "station_code" => "",    // default or pick from last share location
+            "title" => $event["message"]["title"],
+            "address" => $event["message"]["address"],
+            "latitude" => $event["message"]["latitude"],  
+            "longitude" => $event["message"]["longitude"],  
+            "owner" => $event["source"]["userId"],    
         ];
-        if (true) {
+        if (false) {
             // $requestData['url'] = $request->file('url')->store('uploads', 'public');
 
             // s3

@@ -1,0 +1,9 @@
+{
+    "fields": [
+        { "name": "title", "type": "string" },
+        { "name": "address", "type": "string" },
+        { "name": "latitude", "type": "string" },
+        { "name": "longitude", "type": "string" },
+        { "name": "owner", "type": "string" }
+    ]
+}
