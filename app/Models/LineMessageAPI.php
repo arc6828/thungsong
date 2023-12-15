@@ -206,7 +206,7 @@ class LineMessageAPI extends Model
             $requestData['url'] = env('AWS_URL')."/". $filepath;            
         }
 
-        StationImage::create($requestData);
+        UserLocation::create($requestData);
 
         // Reply with something
         $message = [
