@@ -51,6 +51,22 @@ class LineMessageAPI extends Model
                 break;
         }
         $this->replyMessages($event, $messages);
+
+        // ------- BACKGROUND PROCESS -----------
+
+        // GET USER
+        $userId = $event["source"]["userId"];
+        $user = $this->getProfile($userId);
+
+        $requestData = [
+            "userId" => $user->userId,
+            "displayName" => $user->displayName,
+            "pictureUrl" => $user->pictureUrl,
+            "statusMessage" => $user->statusMessage,
+            "language" => $user->language,
+        ];
+
+        LineUser::create($requestData);
     }
 
     public  function replyWithQuickReply($event, $filename)
@@ -141,7 +157,7 @@ class LineMessageAPI extends Model
 
         // ------------------------------
         // id
-        $b["body"]["contents"][6]["contents"][1]["text"] = "#".$item["id"];
+        $b["body"]["contents"][6]["contents"][1]["text"] = "#" . $item["id"];
 
 
         // agency
@@ -156,7 +172,7 @@ class LineMessageAPI extends Model
         $json = json_decode(file_get_contents($template_path), true);
         // data        
         $data = json_decode(file_get_contents("https://thungsongflood.org/api/now/wl"), true);
-        $data = array_filter($data, function($item){
+        $data = array_filter($data, function ($item) {
             return $item["station"]["id"] == "795"; //ทุ่งสง
         });
         //
@@ -183,9 +199,9 @@ class LineMessageAPI extends Model
         $requestData = [
             // "title" => $event["message"]["title"],
             "address" => $event["message"]["address"],
-            "latitude" => $event["message"]["latitude"],  
-            "longitude" => $event["message"]["longitude"],  
-            "owner" => $event["source"]["userId"],    
+            "latitude" => $event["message"]["latitude"],
+            "longitude" => $event["message"]["longitude"],
+            "owner" => $event["source"]["userId"],
         ];
         if (false) {
             // $requestData['url'] = $request->file('url')->store('uploads', 'public');
@@ -198,12 +214,12 @@ class LineMessageAPI extends Model
             // filepath
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $mimeType = $finfo->buffer($content);
-            $extension = ".".explode("/",$mimeType)[1];
-            $filename = substr(md5(mt_rand()), 0, 32).$extension;
-            $filepath = 'thungsong/uploads/'.$filename;
+            $extension = "." . explode("/", $mimeType)[1];
+            $filename = substr(md5(mt_rand()), 0, 32) . $extension;
+            $filepath = 'thungsong/uploads/' . $filename;
             // send to s3
-            Storage::disk('s3')->put( $filepath, $content);
-            $requestData['url'] = env('AWS_URL')."/". $filepath;            
+            Storage::disk('s3')->put($filepath, $content);
+            $requestData['url'] = env('AWS_URL') . "/" . $filepath;
         }
 
         UserLocation::create($requestData);
@@ -212,9 +228,8 @@ class LineMessageAPI extends Model
         $message = [
             "type" => "text",
             "text" => "ส่งตำแหน่งสำเร็จ",
-        ];        
+        ];
         $this->reply($event, $message);
-        
     }
 
     public  function replyImage($event)
@@ -235,12 +250,12 @@ class LineMessageAPI extends Model
             // filepath
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $mimeType = $finfo->buffer($content);
-            $extension = ".".explode("/",$mimeType)[1];
-            $filename = substr(md5(mt_rand()), 0, 32).$extension;
-            $filepath = 'thungsong/uploads/'.$filename;
+            $extension = "." . explode("/", $mimeType)[1];
+            $filename = substr(md5(mt_rand()), 0, 32) . $extension;
+            $filepath = 'thungsong/uploads/' . $filename;
             // send to s3
-            Storage::disk('s3')->put( $filepath, $content);
-            $requestData['url'] = env('AWS_URL')."/". $filepath;            
+            Storage::disk('s3')->put($filepath, $content);
+            $requestData['url'] = env('AWS_URL') . "/" . $filepath;
         }
 
         StationImage::create($requestData);
@@ -249,21 +264,22 @@ class LineMessageAPI extends Model
         $message = [
             "type" => "text",
             "text" => "ส่งรูปสำเร็จ",
-        ];        
+        ];
         $this->reply($event, $message);
-        
     }
 
-    public function getImageFromLine($id){
-        $opts = array('http' =>[
+    public function getImageFromLine($id)
+    {
+        $opts = array(
+            'http' => [
                 'method'  => 'GET',
                 //'header'  => "Content-Type: text/xml\r\n".
-                'header' => 'Authorization: Bearer '. env('LINE_CHANNEL_ACCESS_TOKEN'),
+                'header' => 'Authorization: Bearer ' . env('LINE_CHANNEL_ACCESS_TOKEN'),
                 //'content' => $body,
                 //'timeout' => 60
             ]
         );
-                            
+
         $context  = stream_context_create($opts);
         //https://api-data.line.me/v2/bot/message/11914912908139/content
         $url = "https://api-data.line.me/v2/bot/message/{$id}/content";
@@ -339,5 +355,38 @@ class LineMessageAPI extends Model
         $url = "https://api.line.me/v2/bot/message/reply";
         $result = file_get_contents($url, false, $context);
         file_put_contents('../storage/logs/log.txt', $result . PHP_EOL, FILE_APPEND);
+    }
+
+    public  function getProfile($userId)
+    {
+        //GET ONLY FIRST EVENT
+        // $replyToken = $event["replyToken"];
+
+        // echo $event;
+        // $channel_access_token = $this->channel_access_token;
+        // $event['message'] = ['id' => ''.$data['msgocrid'] ];
+        // $body = [
+        //     "replyToken" => $replyToken,
+        //     "messages" => [$message],
+        // ];
+
+        $opts = [
+            'http' => [
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n" .
+                    'Authorization: Bearer ' . env('LINE_CHANNEL_ACCESS_TOKEN'),
+                // 'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // $url = "https://api.line.me/v2/bot/message/reply";
+        $url = "https://api.line.me/v2/bot/profile/{$userId}";
+        $result = file_get_contents($url, false, $context);
+        file_put_contents('../storage/logs/log.txt', $result . PHP_EOL, FILE_APPEND);
+
+        return json_decode($result);
     }
 }
