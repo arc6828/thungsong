@@ -34,20 +34,20 @@ class LineMessageAPI extends Model
                     $m_link = $this->replyWithText($event, "https://thungsongflood.org/statistic");
                     $messages[] = $m_link;
                 } else if (str_contains($text, "ภาพถ่าย") || str_contains($text, "ถ่ายภาพ")) {
-                    $this->replyWithQuickReply($event, "quick_reply.json");
+                    $messages[] = $this->replyWithQuickReply($event, "quick_reply.json");
                 } else {
-                    $this->replyWithText($event, "Hello World");
+                    $messages[] = $this->replyWithText($event, "Hello World");
                 }
                 break;
             case "location":
                 // $this->replyWithFlexCarousel($event);
-                $this->replyLocation($event);
+                $messages[] = $this->replyLocation($event);
                 break;
             case "sticker":
-                $this->replyWithFlexBubble($event);
+                $messages[] = $this->replyWithFlexBubble($event);
                 break;
             case "image":
-                $this->replyImage($event);
+                $messages[] = $this->replyImage($event);
                 break;
         }
         $this->replyMessages($event, $messages);
@@ -74,7 +74,8 @@ class LineMessageAPI extends Model
         $template_path = storage_path('../public/json/' . $filename);
         $string_json = file_get_contents($template_path);
         $message = json_decode($string_json, true);
-        $this->reply($event, $message);
+        return $message;
+        // $this->reply($event, $message);
     }
     public  function replyWithFlexCarousel($event)
     {
@@ -229,7 +230,8 @@ class LineMessageAPI extends Model
             "type" => "text",
             "text" => "ส่งตำแหน่งสำเร็จ",
         ];
-        $this->reply($event, $message);
+        return $message;
+        // $this->reply($event, $message);
     }
 
     public  function replyImage($event)
@@ -265,7 +267,8 @@ class LineMessageAPI extends Model
             "type" => "text",
             "text" => "ส่งรูปสำเร็จ",
         ];
-        $this->reply($event, $message);
+        return $message;
+        // $this->reply($event, $message);
     }
 
     public function getImageFromLine($id)
