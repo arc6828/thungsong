@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use finfo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -208,26 +209,32 @@ class LineMessageAPI extends Model
             "longitude" => $event["message"]["longitude"],
             "owner" => $event["source"]["userId"],
         ];
-        if (false) {
-            // $requestData['url'] = $request->file('url')->store('uploads', 'public');
-
-            // s3
-            // $requestData['url'] = $request->file('url')->store('thungsong/uploads','s3');
-            // $requestData['url'] = env('AWS_URL')."/".$requestData['url'];
-            // content
-            $content = $requestData["url"];
-            // filepath
-            $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $mimeType = $finfo->buffer($content);
-            $extension = "." . explode("/", $mimeType)[1];
-            $filename = substr(md5(mt_rand()), 0, 32) . $extension;
-            $filepath = 'thungsong/uploads/' . $filename;
-            // send to s3
-            Storage::disk('s3')->put($filepath, $content);
-            $requestData['url'] = env('AWS_URL') . "/" . $filepath;
-        }
 
         UserLocation::create($requestData);
+
+        // UPDATE IMAGE STATION within 30 minutes of this user
+        // get latest image of this user
+        $image = StationImage::where('owner', $requestData['owner'])->latest()->first();
+        if (isset($image)) {
+            // $newYear = new Carbon('2023-11-30 12:18:34')
+
+            // get  latest location of this user
+            $location = UserLocation::where('owner', $requestData['owner'])->latest()->first();
+
+            // $newYear = new Carbon('2023-11-30 12:18:34')
+            // $newYear->diffInMinutes($oldYear)
+            // diff minutes < 30 min
+            $image_created_at = new Carbon($image->created_at);
+            $location_created_at = new Carbon($location->created_at);
+            $diff_minutes =  $image_created_at->diffInMinutes($location_created_at);
+            if ($diff_minutes <= 30 ) {
+                // update nearest location
+                // $image->station_code = 795;
+                // $image->save();
+            }
+        }
+
+
 
         // Reply with something
         $message = [
