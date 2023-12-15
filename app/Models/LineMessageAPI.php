@@ -59,14 +59,18 @@ class LineMessageAPI extends Model
         $user = $this->getProfile($userId);
 
         $requestData = [
-            "userId" => $user->userId,
+            // "userId" => $user->userId,
             "displayName" => $user->displayName,
             "pictureUrl" => $user->pictureUrl,
             "statusMessage" => $user->statusMessage,
             "language" => $user->language,
         ];
 
-        LineUser::create($requestData);
+        // LineUser::create($requestData);
+        LineUser::firstOrCreate(
+            ['userId' => $userId],
+            $requestData
+        );
     }
 
     public  function replyWithQuickReply($event, $filename)

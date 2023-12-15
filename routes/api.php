@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\API\LineWebhookController;
 use App\Models\ExportFile;
+use App\Models\LineMessageAPI;
+use App\Models\LineUser;
 use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -249,7 +251,27 @@ Route::get("waterlevel/now", function () {
 
 
 Route::post('/line/webhook', [LineWebhookController::class, 'store']);
+Route::get('/line/profile/{userId}', function ($userId) {
+    // GET USER
+    // $userId = $event["source"]["userId"];
+    $line = new LineMessageAPI();
+    $user = $line->getProfile($userId);
 
+    $requestData = [
+        // "userId" => $user->userId,
+        "displayName" => $user->displayName,
+        "pictureUrl" => $user->pictureUrl,
+        "statusMessage" => $user->statusMessage,
+        "language" => $user->language,
+    ];
+
+    // LineUser::create($requestData);
+    LineUser::firstOrCreate(
+        ['userId' => $userId],
+        $requestData
+    );
+    
+});
 Route::get('/station/feed', function () {
     //WL
     $response = Http::get(url('api/now/wl'));
@@ -286,3 +308,4 @@ Route::get('/station/feed', function () {
     }
     return "Update Successfully";
 });
+
