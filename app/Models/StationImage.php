@@ -29,5 +29,8 @@ class StationImage extends Model
      */
     protected $fillable = ['url', 'owner', 'station_code'];
 
-    
+    public function lineUser()
+    {
+        return $this->belongsTo(LineUser::class,'owner','userId');
+    }
 }

@@ -436,8 +436,8 @@
 
                 <div class="card-columns">
                     @foreach ($station->images()->get() as $item)
-                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item['url'] }}"
-                            data-glightbox="title: {{ $item['owner'] }}; description: {{ $item['created_at'] }}">
+                        <a class="w-100 h-100 glightbox" data-type="image" href="{{ $item->url }}"
+                            data-glightbox="title: โพสต์โดย {{ $item->lineUser->displayName }}; description: {{ $item['created_at'] }}">
                             <div class="card card-element-hover card-overlay-hover overflow-hidden">
                                 <!-- Image -->
                                 <img class="lazyload card-img" src="{{ $item['url'] }}"
